@@ -1,0 +1,13 @@
+# Статический анализ: vendor/bin/phpstan analyse
+# Уровень 5 — типы аргументов и возвращаемых значений, обращения к несуществующим
+# методам и свойствам. Поднимать уровень — по мере того, как код его выдерживает.
+includes:
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app
+        - routes
+        - database
+    level: 5
+    tmpDir: storage/framework/phpstan

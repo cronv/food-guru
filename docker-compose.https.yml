@@ -1,0 +1,35 @@
+# HTTPS поверх боевой сборки: Caddy принимает 80/443, сам получает и продлевает
+# сертификаты Let's Encrypt и проксирует запросы в nginx. Наружу nginx больше не смотрит.
+#
+#   docker compose -f docker-compose.prod.yml -f docker-compose.https.yml up -d --build
+#
+# deploy.sh подключает этот файл сам. SITE_DOMAIN и ACME_EMAIL он пишет в .env.
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN:?задайте SITE_DOMAIN в .env рядом с compose}
+      ACME_EMAIL: ${ACME_EMAIL:?задайте ACME_EMAIL в .env рядом с compose}
+    volumes:
+      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      # Сертификаты: без тома Caddy запрашивал бы их заново при каждом пересоздании
+      # и быстро упёрся бы в лимиты Let's Encrypt.
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - nginx
+
+  nginx:
+    ports: !reset []
+    volumes:
+      - ./docker/nginx/realip.conf:/etc/nginx/conf.d/00-realip.conf:ro
+
+volumes:
+  caddy-data:
+  caddy-config:

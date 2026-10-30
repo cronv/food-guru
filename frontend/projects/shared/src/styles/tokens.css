@@ -1,0 +1,296 @@
+/* Дизайн-токены Food Guru. Значения из брендбука, контрасты посчитаны и держат
+   4,5:1 для текста и 3:1 для рамок и значащей графики в обеих темах. */
+
+:root {
+  --bg: #FFFBF4;
+  --surface: #F7EFE1;
+  --sunken: #EFE3CF;
+  --ink: #2A1C14;
+  --muted: #6B5748;
+  --line: #E7D8C2;
+  --green: #17704A;
+  --green-soft: #E6F2EA;
+  --green-ink: #146040;
+  --brick: #B52C17;
+  --brick-soft: #FCEBE6;
+  --brick-ink: #B52C17;
+  --on-accent: #FFFBF4;
+  --panel: #2A1C14;
+  --panel-ink: #C9B9A6;
+  --panel-hi: #3E2E22;
+  --shadow: 0 1px 2px rgba(42, 28, 20, .06);
+
+  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17120E;
+    --surface: #211A14;
+    --sunken: #30261D;
+    --ink: #F7EEE2;
+    --muted: #B8A795;
+    --line: #3A2E23;
+    --green: #4FC98A;
+    --green-soft: #16261D;
+    --green-ink: #6FD9A2;
+    --brick: #FF8A66;
+    --brick-soft: #2E1A13;
+    --brick-ink: #FF9B7A;
+    --on-accent: #17120E;
+    --panel: #100C09;
+    --panel-ink: #B8A795;
+    --panel-hi: #241B14;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .35);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #17120E;
+  --surface: #211A14;
+  --sunken: #30261D;
+  --ink: #F7EEE2;
+  --muted: #B8A795;
+  --line: #3A2E23;
+  --green: #4FC98A;
+  --green-soft: #16261D;
+  --green-ink: #6FD9A2;
+  --brick: #FF8A66;
+  --brick-soft: #2E1A13;
+  --brick-ink: #FF9B7A;
+  --on-accent: #17120E;
+  --panel: #100C09;
+  --panel-ink: #B8A795;
+  --panel-hi: #241B14;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .35);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--display);
+  /* Характер заголовков даёт не вес, а оси переменного шрифта:
+     SOFT округляет концы штрихов, WONK разворачивает косые.
+     Без этой строки Fraunces выглядит обычной книжной антиквой. */
+  font-variation-settings: "opsz" 72, "SOFT" 40, "WONK" 1;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--green); }
+
+img { max-width: 100%; }
+
+button { font: inherit; cursor: pointer; }
+
+:focus-visible {
+  outline: 2px solid var(--brick);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- общие классы ---------- */
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+.band { padding-block: 44px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  background: none;
+  color: var(--ink);
+}
+.btn-primary { background: var(--brick); color: var(--on-accent); }
+.btn-green { background: var(--green); color: var(--on-accent); }
+.btn-ghost { border-color: var(--line); }
+.btn-line { border-color: currentColor; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-sm { min-height: 38px; padding: 0 14px; border-radius: 10px; font-size: 14px; }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--sunken);
+  color: var(--muted);
+}
+.chip-g { background: var(--green-soft); color: var(--green-ink); }
+.chip-b { background: var(--brick-soft); color: var(--brick-ink); }
+
+.row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 12px;
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.muted { color: var(--muted); }
+.tnum { font-variant-numeric: tabular-nums; }
+
+label.fl {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+/* Пароль и ссылка — те же поля: без них браузер рисовал их по-своему, мельче и с другой рамкой. */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="url"],
+input[type="tel"],
+input[type="search"],
+input[type="number"],
+input[type="date"],
+input[type="datetime-local"],
+select,
+textarea {
+  min-height: 46px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--sunken);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 400;
+  width: 100%;
+}
+
+textarea { padding: 12px 14px; min-height: 90px; resize: vertical; line-height: 1.6; }
+
+/*
+ * Своя стрелка у выпадающего списка: системная стояла вплотную к правому краю.
+ * Цвет стрелки — --muted светлой и тёмной темы.
+ */
+select:not([multiple]) {
+  appearance: none;
+  padding-right: 44px;
+  cursor: pointer;
+  background: var(--sunken)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%236B5748' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+    no-repeat right 16px center;
+}
+:root[data-theme="dark"] select:not([multiple]) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23B8A795' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) select:not([multiple]) {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23B8A795' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+}
+
+/* Радиокнопки по умолчанию 12–14px (Firefox, Safari) — мелко для пальца; выравниваем с галочками. */
+input[type="checkbox"], input[type="radio"] { width: 18px; height: 18px; accent-color: var(--green); min-height: 0; flex: none; }
+input[type="range"] { accent-color: var(--green); width: 100%; min-height: 0; padding: 0; }
+
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.sec-head h2 { font-size: 28px; }
+
+.scroll {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th {
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  white-space: nowrap;
+}
+td { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+
+.note {
+  background: var(--green-soft);
+  color: var(--green-ink);
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.note-warn { background: var(--brick-soft); color: var(--brick-ink); }
+
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--line);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation-duration: 2s; } }
+
+.empty {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 40px 28px;
+  text-align: center;
+}

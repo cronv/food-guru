@@ -1,0 +1,93 @@
+name: Проверки
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  backend:
+    name: Бэкенд — PHPUnit
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          # pdo_sqlite нужен для тестов: база поднимается в памяти.
+          extensions: pdo_mysql, pdo_sqlite, mbstring, intl, zip, bcmath, fileinfo, gd
+          coverage: none
+
+      - name: Кэш зависимостей Composer
+        uses: actions/cache@v4
+        with:
+          path: backend/vendor
+          key: composer-${{ hashFiles('backend/composer.json') }}
+
+      - name: Установка зависимостей
+        working-directory: backend
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Ключ приложения
+        working-directory: backend
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Тесты
+        working-directory: backend
+        run: vendor/bin/phpunit --testdox
+
+      - name: Стиль кода
+        working-directory: backend
+        run: vendor/bin/pint --test
+
+  frontend:
+    name: Фронтенд — сборка и Karma
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Установка зависимостей
+        working-directory: frontend
+        # npm ci, если есть package-lock.json; иначе обычная установка.
+        run: npm ci || npm install
+
+      - name: Тесты публичного сайта
+        working-directory: frontend
+        run: npm test
+
+      - name: Тесты админки
+        working-directory: frontend
+        run: npm run test:admin
+
+      # Сборка — главная проверка фронтенда: только она разбирает шаблоны
+      # Angular и сверяет типы выражений внутри них. Ни tsc, ни тесты этого
+      # не делают, а большинство ошибок в разметке вылезает именно здесь.
+      - name: Боевая сборка
+        working-directory: frontend
+        run: npm run build
+
+      - name: Проверка серверного рендера
+        working-directory: frontend
+        run: |
+          node dist/site/server/server.mjs &
+          sleep 6
+          # В ответе должен быть текст, а не пустой <app-root>: иначе SSR не работает,
+          # и превью ссылок в Telegram вместе с поисковой выдачей отвалятся.
+          curl -sf http://localhost:4000/ | tee /tmp/ssr.html | head -c 400
+          # Атрибут ng-server-context ставит только серверный рендер. Проверять
+          # «Food Guru» мало: он есть и в index.csr.html, который сервер отдаёт
+          # как страховку, когда SSR упал.
+          grep -q "ng-server-context" /tmp/ssr.html

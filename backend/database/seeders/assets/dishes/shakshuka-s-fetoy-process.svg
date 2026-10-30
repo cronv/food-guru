@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="1200" height="900" role="img" aria-label="Блюдо в процессе приготовления">
+    <defs>
+      <linearGradient id="g24bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#E6E2DB"/><stop offset="1" stop-color="#D6D0C4"/>
+      </linearGradient>
+      <linearGradient id="g24v" x1="0" y1="0" x2=".4" y2="1">
+        <stop offset="0" stop-color="#EFE7D8"/><stop offset=".45" stop-color="#EFE7D8"/><stop offset="1" stop-color="#3A2014"/>
+      </linearGradient>
+      <linearGradient id="g24r" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".4" stop-color="#EFE7D8"/><stop offset="1" stop-color="#F4F1EA"/>
+      </linearGradient>
+      <radialGradient id="g24b" cx=".36" cy=".3" r=".85">
+        <stop offset="0" stop-color="#C4452A"/><stop offset=".7" stop-color="#C4452A"/><stop offset="1" stop-color="#3A2014" stop-opacity=".5"/>
+      </radialGradient>
+      <filter id="g24s" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="g24d" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+    </defs>
+    <rect width="400" height="300" fill="url(#g24bg)"/>
+    <ellipse cx="212" cy="206" rx="150" ry="100" fill="#000" opacity=".32" filter="url(#g24d)"/>
+      <ellipse cx="200" cy="162" rx="150" ry="112" fill="url(#g24v)"/>
+      <ellipse cx="200" cy="164" rx="131" ry="96" fill="#F4F1EA"/>
+      <ellipse cx="200" cy="164" rx="116" ry="82" fill="url(#g24b)"/>
+      <ellipse cx="146" cy="110" rx="48" ry="22" fill="#fff" opacity=".1" filter="url(#g24s)"/>
+    <ellipse cx="196.8" cy="179.5" rx="30" ry="22.5" fill="#F2EDE2"/>
+          <ellipse cx="189.3" cy="173.5" rx="12" ry="6.75" fill="#fff" opacity=".3"/><ellipse cx="176.6" cy="138.5" rx="30" ry="22.5" fill="#F2EDE2"/>
+          <ellipse cx="169.1" cy="132.5" rx="12" ry="6.75" fill="#fff" opacity=".3"/><ellipse cx="250.6" cy="169.9" rx="30" ry="22.5" fill="#F2EDE2"/>
+          <ellipse cx="243.1" cy="163.9" rx="12" ry="6.75" fill="#fff" opacity=".3"/><circle cx="175.9" cy="157.5" r="12" fill="#E6A93C"/>
+          <circle cx="172.3" cy="153.9" r="3.5999999999999996" fill="#fff" opacity=".35"/><circle cx="236.0" cy="148.6" r="12" fill="#E6A93C"/>
+          <circle cx="232.4" cy="145.0" r="3.5999999999999996" fill="#fff" opacity=".35"/><circle cx="182.4" cy="196.5" r="12" fill="#E6A93C"/>
+          <circle cx="178.8" cy="192.9" r="3.5999999999999996" fill="#fff" opacity=".35"/>
+  </svg>

@@ -1,0 +1,23 @@
+# Не попадает в образы Docker. Главное — .env: в нём APP_KEY и пароли базы и почты,
+# а слой образа с ними уезжает в реестр вместе с образом.
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.production.example
+
+.git
+**/node_modules
+**/vendor
+**/.angular
+**/dist
+
+backend/storage/app/*
+backend/storage/framework/cache/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+backend/storage/framework/phpstan
+backend/storage/logs/*
+backend/.phpunit.cache
+
+tools/reels/out
+release

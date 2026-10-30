@@ -1,0 +1,16 @@
+# TLS для всех доменов проекта (docker-compose.https.yml).
+# Домены берутся из SITE_DOMAIN, сами маршруты по поддоменам по-прежнему разводит nginx.
+{
+	email {$ACME_EMAIL}
+}
+
+{$SITE_DOMAIN}, api.{$SITE_DOMAIN}, admin.{$SITE_DOMAIN} {
+	# Host и X-Forwarded-Proto: https доходят до nginx: по первому он выбирает
+	# сайт, по второму Laravel понимает, что запрос пришёл по HTTPS.
+	reverse_proxy nginx:80
+}
+
+# Основное зеркало — без www, второе отдаёт 301 (см. DEPLOY.md → SEO).
+www.{$SITE_DOMAIN} {
+	redir https://{$SITE_DOMAIN}{uri} permanent
+}

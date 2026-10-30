@@ -1,0 +1,2 @@
+# Скрипты запускаются на Linux: с CRLF из Windows sh падает на первой строке.
+*.sh text eol=lf

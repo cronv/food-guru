@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="1200" height="900" role="img" aria-label="Шоколадный фондан на тарелке">
+    <defs>
+      <linearGradient id="g4bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#E3E6DC"/><stop offset="1" stop-color="#D2D8C6"/>
+      </linearGradient>
+      <linearGradient id="g4v" x1="0" y1="0" x2=".4" y2="1">
+        <stop offset="0" stop-color="#EFE7D8"/><stop offset=".45" stop-color="#EFE7D8"/><stop offset="1" stop-color="#3A2014"/>
+      </linearGradient>
+      <linearGradient id="g4r" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".4" stop-color="#EFE7D8"/><stop offset="1" stop-color="#F4F1EA"/>
+      </linearGradient>
+      <radialGradient id="g4b" cx=".36" cy=".3" r=".85">
+        <stop offset="0" stop-color="#6B3F22"/><stop offset=".7" stop-color="#6B3F22"/><stop offset="1" stop-color="#3A2014" stop-opacity=".5"/>
+      </radialGradient>
+      <filter id="g4s" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="g4d" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+    </defs>
+    <rect width="400" height="300" fill="url(#g4bg)"/>
+    <ellipse cx="212" cy="206" rx="150" ry="30" fill="#000" opacity=".32" filter="url(#g4d)"/>
+      <ellipse cx="200" cy="166" rx="152" ry="44" fill="url(#g4r)"/>
+      <ellipse cx="200" cy="166" rx="124" ry="36" fill="url(#g4v)"/>
+      <ellipse cx="200" cy="166" rx="116" ry="32" fill="url(#g4b)"/>
+      <ellipse cx="128" cy="160" rx="38" ry="10" fill="#fff" opacity=".2" filter="url(#g4s)"/>
+    <ellipse cx="197.4" cy="171.6" rx="32" ry="24" fill="#3A2014"/>
+          <ellipse cx="189.4" cy="165.2" rx="12.8" ry="7.2" fill="#fff" opacity=".3"/><ellipse cx="180.9" cy="158.5" rx="32" ry="24" fill="#3A2014"/>
+          <ellipse cx="172.9" cy="152.1" rx="12.8" ry="7.2" fill="#fff" opacity=".3"/><circle cx="178.2" cy="164.4" r="5" fill="#D9A24E"/>
+          <circle cx="176.7" cy="162.9" r="1.5" fill="#fff" opacity=".35"/><circle cx="232.5" cy="161.3" r="5" fill="#D9A24E"/>
+          <circle cx="231.0" cy="159.8" r="1.5" fill="#fff" opacity=".35"/><circle cx="184.1" cy="178.2" r="5" fill="#D9A24E"/>
+          <circle cx="182.6" cy="176.7" r="1.5" fill="#fff" opacity=".35"/><circle cx="178.8" cy="152.0" r="5" fill="#D9A24E"/>
+          <circle cx="177.3" cy="150.5" r="1.5" fill="#fff" opacity=".35"/><circle cx="256.5" cy="173.2" r="5" fill="#D9A24E"/>
+          <circle cx="255.0" cy="171.7" r="1.5" fill="#fff" opacity=".35"/><circle cx="212.9" cy="157.3" r="6" fill="#8E2B4A"/>
+          <circle cx="211.1" cy="155.5" r="1.7999999999999998" fill="#fff" opacity=".35"/><circle cx="219.3" cy="180.4" r="6" fill="#8E2B4A"/>
+          <circle cx="217.5" cy="178.6" r="1.7999999999999998" fill="#fff" opacity=".35"/><circle cx="136.8" cy="157.0" r="6" fill="#8E2B4A"/>
+          <circle cx="135.0" cy="155.2" r="1.7999999999999998" fill="#fff" opacity=".35"/><circle cx="280.7" cy="159.9" r="6" fill="#8E2B4A"/>
+          <circle cx="278.9" cy="158.1" r="1.7999999999999998" fill="#fff" opacity=".35"/>
+  </svg>

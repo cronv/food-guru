@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="1200" height="900" role="img" aria-label="Паста качо-э-пепе на тарелке">
+    <defs>
+      <linearGradient id="g10bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#E6E2DB"/><stop offset="1" stop-color="#D6D0C4"/>
+      </linearGradient>
+      <linearGradient id="g10v" x1="0" y1="0" x2=".4" y2="1">
+        <stop offset="0" stop-color="#EFE7D8"/><stop offset=".45" stop-color="#EFE7D8"/><stop offset="1" stop-color="#3A2014"/>
+      </linearGradient>
+      <linearGradient id="g10r" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".4" stop-color="#EFE7D8"/><stop offset="1" stop-color="#F4F1EA"/>
+      </linearGradient>
+      <radialGradient id="g10b" cx=".36" cy=".3" r=".85">
+        <stop offset="0" stop-color="#E8C77E"/><stop offset=".7" stop-color="#E8C77E"/><stop offset="1" stop-color="#3A2014" stop-opacity=".5"/>
+      </radialGradient>
+      <filter id="g10s" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="g10d" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+    </defs>
+    <rect width="400" height="300" fill="url(#g10bg)"/>
+    <ellipse cx="212" cy="206" rx="150" ry="30" fill="#000" opacity=".32" filter="url(#g10d)"/>
+      <ellipse cx="200" cy="166" rx="152" ry="44" fill="url(#g10r)"/>
+      <ellipse cx="200" cy="166" rx="124" ry="36" fill="url(#g10v)"/>
+      <ellipse cx="200" cy="166" rx="116" ry="32" fill="url(#g10b)"/>
+      <ellipse cx="128" cy="160" rx="38" ry="10" fill="#fff" opacity=".2" filter="url(#g10s)"/>
+    <path d="M180.7 171.3q8.4 -9.799999999999999 16.8 0t16.8 0" fill="none" stroke="#D9A24E" stroke-width="4.2" stroke-linecap="round" opacity=".9"/><path d="M165.1 158.9q8.4 -9.799999999999999 16.8 0t16.8 0" fill="none" stroke="#D9A24E" stroke-width="4.2" stroke-linecap="round" opacity=".9"/><path d="M222.4 168.4q8.4 -9.799999999999999 16.8 0t16.8 0" fill="none" stroke="#D9A24E" stroke-width="4.2" stroke-linecap="round" opacity=".9"/><path d="M142.3 172.5q8.4 -9.799999999999999 16.8 0t16.8 0" fill="none" stroke="#D9A24E" stroke-width="4.2" stroke-linecap="round" opacity=".9"/><path d="M199.2 151.9q8.4 -9.799999999999999 16.8 0t16.8 0" fill="none" stroke="#D9A24E" stroke-width="4.2" stroke-linecap="round" opacity=".9"/><circle cx="180.3" cy="164.6" r="3" fill="#3A2014"/>
+          <circle cx="179.4" cy="163.7" r="0.8999999999999999" fill="#fff" opacity=".35"/><circle cx="229.5" cy="161.7" r="3" fill="#3A2014"/>
+          <circle cx="228.6" cy="160.8" r="0.8999999999999999" fill="#fff" opacity=".35"/><circle cx="185.6" cy="177.0" r="3" fill="#3A2014"/>
+          <circle cx="184.7" cy="176.1" r="0.8999999999999999" fill="#fff" opacity=".35"/><circle cx="180.8" cy="153.3" r="3" fill="#3A2014"/>
+          <circle cx="179.9" cy="152.4" r="0.8999999999999999" fill="#fff" opacity=".35"/><circle cx="251.2" cy="172.5" r="3" fill="#3A2014"/>
+          <circle cx="250.3" cy="171.6" r="0.8999999999999999" fill="#fff" opacity=".35"/><circle cx="140.7" cy="171.2" r="3" fill="#3A2014"/>
+          <circle cx="139.8" cy="170.3" r="0.8999999999999999" fill="#fff" opacity=".35"/><circle cx="233.6" cy="149.8" r="3" fill="#3A2014"/>
+          <circle cx="232.7" cy="148.9" r="0.8999999999999999" fill="#fff" opacity=".35"/><circle cx="215.9" cy="185.5" r="3" fill="#3A2014"/>
+          <circle cx="215.0" cy="184.6" r="0.8999999999999999" fill="#fff" opacity=".35"/><circle cx="136.7" cy="153.8" r="3" fill="#3A2014"/>
+          <circle cx="135.8" cy="152.9" r="0.8999999999999999" fill="#fff" opacity=".35"/><g transform="rotate(291 207.8 160.7)">
+          <rect x="202.8" y="157.2" width="10" height="7" rx="3" fill="#F2EDE2"/>
+          <rect x="202.8" y="157.2" width="10" height="2.5" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(67 211.7 174.8)">
+          <rect x="206.7" y="171.3" width="10" height="7" rx="3" fill="#F2EDE2"/>
+          <rect x="206.7" y="171.3" width="10" height="2.5" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(204 161.6 160.5)">
+          <rect x="156.6" y="157.0" width="10" height="7" rx="3" fill="#F2EDE2"/>
+          <rect x="156.6" y="157.0" width="10" height="2.5" rx="3" fill="#fff" opacity=".22"/></g>
+  </svg>

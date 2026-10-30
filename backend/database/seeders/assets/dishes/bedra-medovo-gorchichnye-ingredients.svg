@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="1200" height="900" role="img" aria-label="Ингредиенты, разложенные перед приготовлением">
+    <defs>
+      <linearGradient id="g20bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#EEE3D6"/><stop offset="1" stop-color="#E0D0BC"/>
+      </linearGradient>
+      <linearGradient id="g20v" x1="0" y1="0" x2=".4" y2="1">
+        <stop offset="0" stop-color="#EFE7D8"/><stop offset=".45" stop-color="#EFE7D8"/><stop offset="1" stop-color="#3A2014"/>
+      </linearGradient>
+      <linearGradient id="g20r" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".4" stop-color="#EFE7D8"/><stop offset="1" stop-color="#F4F1EA"/>
+      </linearGradient>
+      <radialGradient id="g20b" cx=".36" cy=".3" r=".85">
+        <stop offset="0" stop-color="#F4F1EA"/><stop offset=".7" stop-color="#F4F1EA"/><stop offset="1" stop-color="#3A2014" stop-opacity=".5"/>
+      </radialGradient>
+      <filter id="g20s" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="g20d" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+    </defs>
+    <rect width="400" height="300" fill="url(#g20bg)"/>
+    <ellipse cx="212" cy="206" rx="150" ry="30" fill="#000" opacity=".32" filter="url(#g20d)"/>
+      <ellipse cx="200" cy="166" rx="152" ry="44" fill="url(#g20r)"/>
+      <ellipse cx="200" cy="166" rx="124" ry="36" fill="url(#g20v)"/>
+      <ellipse cx="200" cy="166" rx="116" ry="32" fill="url(#g20b)"/>
+      <ellipse cx="128" cy="160" rx="38" ry="10" fill="#fff" opacity=".2" filter="url(#g20s)"/>
+    <g transform="rotate(97 196.7 173.1)">
+          <rect x="180.5" y="161.7" width="32.4" height="22.679999999999996" rx="3" fill="#6B3F22"/>
+          <rect x="180.5" y="161.7" width="32.4" height="8.1" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(234 175.8 156.5)">
+          <rect x="159.6" y="145.1" width="32.4" height="22.679999999999996" rx="3" fill="#6B3F22"/>
+          <rect x="159.6" y="145.1" width="32.4" height="8.1" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(10 252.5 169.2)">
+          <rect x="236.3" y="157.8" width="32.4" height="22.679999999999996" rx="3" fill="#6B3F22"/>
+          <rect x="236.3" y="157.8" width="32.4" height="8.1" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(147 145.3 174.7)">
+          <rect x="129.1" y="163.4" width="32.4" height="22.679999999999996" rx="3" fill="#6B3F22"/>
+          <rect x="129.1" y="163.4" width="32.4" height="8.1" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(284 221.4 147.2)">
+          <rect x="205.2" y="135.9" width="32.4" height="22.679999999999996" rx="3" fill="#6B3F22"/>
+          <rect x="205.2" y="135.9" width="32.4" height="8.1" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(61 233.4 185.7)">
+          <rect x="217.2" y="174.4" width="32.4" height="22.679999999999996" rx="3" fill="#6B3F22"/>
+          <rect x="217.2" y="174.4" width="32.4" height="8.1" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(198 120.9 157.0)">
+          <rect x="104.7" y="145.6" width="32.4" height="22.679999999999996" rx="3" fill="#6B3F22"/>
+          <rect x="104.7" y="145.6" width="32.4" height="8.1" rx="3" fill="#fff" opacity=".22"/></g><circle cx="178.0" cy="164.4" r="4.5" fill="#D9A24E"/>
+          <circle cx="176.6" cy="163.0" r="1.3499999999999999" fill="#fff" opacity=".35"/><circle cx="232.9" cy="161.2" r="4.5" fill="#D9A24E"/>
+          <circle cx="231.6" cy="159.9" r="1.3499999999999999" fill="#fff" opacity=".35"/><circle cx="183.9" cy="178.3" r="4.5" fill="#D9A24E"/>
+          <circle cx="182.6" cy="176.9" r="1.3499999999999999" fill="#fff" opacity=".35"/><circle cx="178.5" cy="151.8" r="4.5" fill="#D9A24E"/>
+          <circle cx="177.2" cy="150.5" r="1.3499999999999999" fill="#fff" opacity=".35"/><circle cx="257.2" cy="173.3" r="4.5" fill="#D9A24E"/>
+          <circle cx="255.8" cy="172.0" r="1.3499999999999999" fill="#fff" opacity=".35"/><circle cx="133.7" cy="171.8" r="4.5" fill="#D9A24E"/>
+          <circle cx="132.4" cy="170.5" r="1.3499999999999999" fill="#fff" opacity=".35"/><circle cx="237.6" cy="147.9" r="4.5" fill="#D9A24E"/>
+          <circle cx="236.2" cy="146.6" r="1.3499999999999999" fill="#fff" opacity=".35"/><circle cx="217.7" cy="187.8" r="4.5" fill="#D9A24E"/>
+          <circle cx="216.4" cy="186.5" r="1.3499999999999999" fill="#fff" opacity=".35"/><circle cx="129.3" cy="152.4" r="4.5" fill="#D9A24E"/>
+          <circle cx="127.9" cy="151.1" r="1.3499999999999999" fill="#fff" opacity=".35"/><g transform="rotate(291 210.5 158.9)">
+          <ellipse cx="210.5" cy="158.9" rx="9.18" ry="4.32" fill="#4E7A46"/>
+          <line x1="203.0" y1="158.9" x2="218.1" y2="158.9" stroke="#fff" stroke-opacity=".3" stroke-width="1"/></g><g transform="rotate(67 215.8 177.8)">
+          <ellipse cx="215.8" cy="177.8" rx="9.18" ry="4.32" fill="#4E7A46"/>
+          <line x1="208.2" y1="177.8" x2="223.3" y2="177.8" stroke="#fff" stroke-opacity=".3" stroke-width="1"/></g><g transform="rotate(204 148.4 158.7)">
+          <ellipse cx="148.4" cy="158.7" rx="9.18" ry="4.32" fill="#4E7A46"/>
+          <line x1="140.8" y1="158.7" x2="156.0" y2="158.7" stroke="#fff" stroke-opacity=".3" stroke-width="1"/></g><g transform="rotate(341 265.9 161.0)">
+          <ellipse cx="265.9" cy="161.0" rx="9.18" ry="4.32" fill="#4E7A46"/>
+          <line x1="258.3" y1="161.0" x2="273.4" y2="161.0" stroke="#fff" stroke-opacity=".3" stroke-width="1"/></g><g transform="rotate(118 158.8 184.0)">
+          <ellipse cx="158.8" cy="184.0" rx="9.18" ry="4.32" fill="#4E7A46"/>
+          <line x1="151.3" y1="184.0" x2="166.4" y2="184.0" stroke="#fff" stroke-opacity=".3" stroke-width="1"/></g><g transform="rotate(255 184.8 142.9)">
+          <ellipse cx="184.8" cy="142.9" rx="9.18" ry="4.32" fill="#4E7A46"/>
+          <line x1="177.3" y1="142.9" x2="192.4" y2="142.9" stroke="#fff" stroke-opacity=".3" stroke-width="1"/></g>
+  </svg>

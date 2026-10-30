@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="1200" height="900" role="img" aria-label="Блюдо в процессе приготовления">
+    <defs>
+      <linearGradient id="g42bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#E3E6DC"/><stop offset="1" stop-color="#D2D8C6"/>
+      </linearGradient>
+      <linearGradient id="g42v" x1="0" y1="0" x2=".4" y2="1">
+        <stop offset="0" stop-color="#EFE7D8"/><stop offset=".45" stop-color="#EFE7D8"/><stop offset="1" stop-color="#3A2014"/>
+      </linearGradient>
+      <linearGradient id="g42r" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".4" stop-color="#EFE7D8"/><stop offset="1" stop-color="#F4F1EA"/>
+      </linearGradient>
+      <radialGradient id="g42b" cx=".36" cy=".3" r=".85">
+        <stop offset="0" stop-color="#C4452A"/><stop offset=".7" stop-color="#C4452A"/><stop offset="1" stop-color="#3A2014" stop-opacity=".5"/>
+      </radialGradient>
+      <filter id="g42s" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="g42d" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+    </defs>
+    <rect width="400" height="300" fill="url(#g42bg)"/>
+    <ellipse cx="212" cy="206" rx="150" ry="100" fill="#000" opacity=".32" filter="url(#g42d)"/>
+      <ellipse cx="200" cy="162" rx="150" ry="112" fill="url(#g42v)"/>
+      <ellipse cx="200" cy="164" rx="131" ry="96" fill="#F4F1EA"/>
+      <ellipse cx="200" cy="164" rx="116" ry="82" fill="url(#g42b)"/>
+      <ellipse cx="146" cy="110" rx="48" ry="22" fill="#fff" opacity=".1" filter="url(#g42s)"/>
+    <path d="M180.0 179.5q8.4 -9.799999999999999 16.8 0t16.8 0" fill="none" stroke="#F4F0E6" stroke-width="4.2" stroke-linecap="round" opacity=".9"/><path d="M159.8 138.5q8.4 -9.799999999999999 16.8 0t16.8 0" fill="none" stroke="#F4F0E6" stroke-width="4.2" stroke-linecap="round" opacity=".9"/><path d="M233.8 169.9q8.4 -9.799999999999999 16.8 0t16.8 0" fill="none" stroke="#F4F0E6" stroke-width="4.2" stroke-linecap="round" opacity=".9"/><g transform="rotate(194 175.9 157.5)">
+          <rect x="168.9" y="152.6" width="14" height="9.799999999999999" rx="3" fill="#6B3F22"/>
+          <rect x="168.9" y="152.6" width="14" height="3.5" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(331 236.0 148.6)">
+          <rect x="229.0" y="143.7" width="14" height="9.799999999999999" rx="3" fill="#6B3F22"/>
+          <rect x="229.0" y="143.7" width="14" height="3.5" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(107 182.4 196.5)">
+          <rect x="175.4" y="191.6" width="14" height="9.799999999999999" rx="3" fill="#6B3F22"/>
+          <rect x="175.4" y="191.6" width="14" height="3.5" rx="3" fill="#fff" opacity=".22"/></g>
+  </svg>

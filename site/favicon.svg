@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="t">
+  <title id="t">Food Guru</title>
+  <circle cx="16" cy="18" r="8" fill="none" stroke="#e3401f" stroke-width="8"/>
+  <path d="M20.8 6.4C22.4 3.6 24.8 2 27.2 1.6C26.4 4 24.4 5.8 22.4 7Z" fill="#1e8a57"/>
+</svg>

@@ -1,0 +1,106 @@
+# Боевая сборка: API, SSR публичного сайта, админка и обвязка.
+# Отличия от docker-compose.yml: нет Mailhog (письма идут через реальный SMTP),
+# код внутри образов, добавлены обработчик очереди и планировщик.
+#
+#   docker compose -f docker-compose.prod.yml up -d --build
+
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/api.prod.conf:/etc/nginx/conf.d/api.conf:ro
+      - ./docker/nginx/site.prod.conf:/etc/nginx/conf.d/site.conf:ro
+      - site-build:/var/www/site:ro
+      - admin-build:/var/www/admin:ro
+      - storage-public:/var/www/html/public/storage:ro
+    depends_on:
+      - php
+      - ssr
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile.prod
+    restart: unless-stopped
+    env_file: ./backend/.env
+    environment:
+      # Один секрет на API и SSR — задаётся в .env рядом с compose.
+      SSR_API_KEY: ${SSR_API_KEY:?задайте SSR_API_KEY в .env рядом с compose}
+    volumes:
+      - storage-public:/var/www/html/public/storage
+      - storage-app:/var/www/html/storage/app
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  # SSR публичного сайта: рендерит HTML с OG-разметкой для Telegram и поиска.
+  ssr:
+    build:
+      context: .
+      dockerfile: docker/node/Dockerfile
+    restart: unless-stopped
+    environment:
+      PORT: 4000
+      SSR_API_KEY: ${SSR_API_KEY:?задайте SSR_API_KEY в .env рядом с compose}
+    volumes:
+      - site-build:/export/site
+      - admin-build:/export/admin
+    # Статику Angular копируем в тома, откуда её отдаёт nginx.
+    command: >
+      sh -c "cp -r /app/dist/site/browser/. /export/site/ &&
+             cp -r /app/dist/admin/browser/. /export/admin/ &&
+             node dist/site/server/server.mjs"
+
+  # Письма подтверждения уходят отсюда, а не из веб-запроса.
+  queue:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile.prod
+    restart: unless-stopped
+    command: php artisan queue:work --tries=3 --timeout=60 --sleep=1 --max-time=3600
+    env_file: ./backend/.env
+    volumes:
+      - storage-app:/var/www/html/storage/app
+      - storage-public:/var/www/html/public/storage
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  # Чистка протухших токенов подтверждения раз в сутки.
+  scheduler:
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile.prod
+    restart: unless-stopped
+    command: php artisan schedule:work
+    env_file: ./backend/.env
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-food_guru}
+      MYSQL_USER: ${DB_USERNAME:-food_guru}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?задайте DB_PASSWORD в .env рядом с compose}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?задайте DB_ROOT_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-p${DB_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    # Наружу порт не открыт: в базу ходят только контейнеры.
+
+volumes:
+  mysql-data:
+  storage-public:
+  storage-app:
+  site-build:
+  admin-build:

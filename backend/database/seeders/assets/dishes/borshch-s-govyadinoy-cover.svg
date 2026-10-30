@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="1200" height="900" role="img" aria-label="Борщ с говядиной и сметаной в миске">
+    <defs>
+      <linearGradient id="g40bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#E3E6DC"/><stop offset="1" stop-color="#D2D8C6"/>
+      </linearGradient>
+      <linearGradient id="g40v" x1="0" y1="0" x2=".4" y2="1">
+        <stop offset="0" stop-color="#EFE7D8"/><stop offset=".45" stop-color="#EFE7D8"/><stop offset="1" stop-color="#3A2014"/>
+      </linearGradient>
+      <linearGradient id="g40r" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".4" stop-color="#EFE7D8"/><stop offset="1" stop-color="#F4F1EA"/>
+      </linearGradient>
+      <radialGradient id="g40b" cx=".36" cy=".3" r=".85">
+        <stop offset="0" stop-color="#C4452A"/><stop offset=".7" stop-color="#C4452A"/><stop offset="1" stop-color="#3A2014" stop-opacity=".5"/>
+      </radialGradient>
+      <filter id="g40s" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="g40d" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+    </defs>
+    <rect width="400" height="300" fill="url(#g40bg)"/>
+    <ellipse cx="212" cy="250" rx="150" ry="30" fill="#000" opacity=".32" filter="url(#g40d)"/>
+      <path d="M60 148a140 140 0 0 0 280 0z" fill="url(#g40v)"/>
+      <ellipse cx="200" cy="148" rx="140" ry="34" fill="url(#g40r)"/>
+      <ellipse cx="200" cy="148" rx="118" ry="27" fill="url(#g40b)"/>
+      <ellipse cx="146" cy="214" rx="34" ry="46" fill="#fff" opacity=".1" filter="url(#g40s)"/>
+    <path d="M180.9 152.1q8.4 -9.799999999999999 16.8 0t16.8 0" fill="none" stroke="#F4F0E6" stroke-width="4.2" stroke-linecap="round" opacity=".9"/><path d="M166.2 142.5q8.4 -9.799999999999999 16.8 0t16.8 0" fill="none" stroke="#F4F0E6" stroke-width="4.2" stroke-linecap="round" opacity=".9"/><g transform="rotate(194 175.3 146.5)">
+          <rect x="168.3" y="141.6" width="14" height="9.799999999999999" rx="3" fill="#6B3F22"/>
+          <rect x="168.3" y="141.6" width="14" height="3.5" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(331 237.0 143.6)">
+          <rect x="230.0" y="138.7" width="14" height="9.799999999999999" rx="3" fill="#6B3F22"/>
+          <rect x="230.0" y="138.7" width="14" height="3.5" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(107 181.9 159.5)">
+          <rect x="174.9" y="154.6" width="14" height="9.799999999999999" rx="3" fill="#6B3F22"/>
+          <rect x="174.9" y="154.6" width="14" height="3.5" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(244 175.8 134.8)">
+          <rect x="168.8" y="129.9" width="14" height="9.799999999999999" rx="3" fill="#6B3F22"/>
+          <rect x="168.8" y="129.9" width="14" height="3.5" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(291 212.8 140.8)">
+          <ellipse cx="212.8" cy="140.8" rx="6.8" ry="3.2" fill="#4E7A46"/>
+          <line x1="207.2" y1="140.8" x2="218.4" y2="140.8" stroke="#fff" stroke-opacity=".3" stroke-width="1"/></g><g transform="rotate(67 219.1 159.8)">
+          <ellipse cx="219.1" cy="159.8" rx="6.8" ry="3.2" fill="#4E7A46"/>
+          <line x1="213.5" y1="159.8" x2="224.7" y2="159.8" stroke="#fff" stroke-opacity=".3" stroke-width="1"/></g><g transform="rotate(204 137.5 140.6)">
+          <ellipse cx="137.5" cy="140.6" rx="6.8" ry="3.2" fill="#4E7A46"/>
+          <line x1="131.9" y1="140.6" x2="143.1" y2="140.6" stroke="#fff" stroke-opacity=".3" stroke-width="1"/></g>
+  </svg>

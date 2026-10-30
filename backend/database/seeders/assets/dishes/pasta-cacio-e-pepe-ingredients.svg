@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="1200" height="900" role="img" aria-label="Ингредиенты, разложенные перед приготовлением">
+    <defs>
+      <linearGradient id="g11bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#E6E2DB"/><stop offset="1" stop-color="#D6D0C4"/>
+      </linearGradient>
+      <linearGradient id="g11v" x1="0" y1="0" x2=".4" y2="1">
+        <stop offset="0" stop-color="#EFE7D8"/><stop offset=".45" stop-color="#EFE7D8"/><stop offset="1" stop-color="#3A2014"/>
+      </linearGradient>
+      <linearGradient id="g11r" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".4" stop-color="#EFE7D8"/><stop offset="1" stop-color="#F4F1EA"/>
+      </linearGradient>
+      <radialGradient id="g11b" cx=".36" cy=".3" r=".85">
+        <stop offset="0" stop-color="#F4F1EA"/><stop offset=".7" stop-color="#F4F1EA"/><stop offset="1" stop-color="#3A2014" stop-opacity=".5"/>
+      </radialGradient>
+      <filter id="g11s" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="g11d" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+    </defs>
+    <rect width="400" height="300" fill="url(#g11bg)"/>
+    <ellipse cx="212" cy="206" rx="150" ry="30" fill="#000" opacity=".32" filter="url(#g11d)"/>
+      <ellipse cx="200" cy="166" rx="152" ry="44" fill="url(#g11r)"/>
+      <ellipse cx="200" cy="166" rx="124" ry="36" fill="url(#g11v)"/>
+      <ellipse cx="200" cy="166" rx="116" ry="32" fill="url(#g11b)"/>
+      <ellipse cx="128" cy="160" rx="38" ry="10" fill="#fff" opacity=".2" filter="url(#g11s)"/>
+    <path d="M181.8 172.6q7.56 -8.819999999999999 15.12 0t15.12 0" fill="none" stroke="#D9A24E" stroke-width="3.78" stroke-linecap="round" opacity=".9"/><path d="M162.2 157.1q7.56 -8.819999999999999 15.12 0t15.12 0" fill="none" stroke="#D9A24E" stroke-width="3.78" stroke-linecap="round" opacity=".9"/><path d="M234.0 169.0q7.56 -8.819999999999999 15.12 0t15.12 0" fill="none" stroke="#D9A24E" stroke-width="3.78" stroke-linecap="round" opacity=".9"/><path d="M133.7 174.2q7.56 -8.819999999999999 15.12 0t15.12 0" fill="none" stroke="#D9A24E" stroke-width="3.78" stroke-linecap="round" opacity=".9"/><path d="M204.9 148.4q7.56 -8.819999999999999 15.12 0t15.12 0" fill="none" stroke="#D9A24E" stroke-width="3.78" stroke-linecap="round" opacity=".9"/><path d="M216.1 184.4q7.56 -8.819999999999999 15.12 0t15.12 0" fill="none" stroke="#D9A24E" stroke-width="3.78" stroke-linecap="round" opacity=".9"/><path d="M110.9 157.6q7.56 -8.819999999999999 15.12 0t15.12 0" fill="none" stroke="#D9A24E" stroke-width="3.78" stroke-linecap="round" opacity=".9"/><path d="M265.6 157.9q7.56 -8.819999999999999 15.12 0t15.12 0" fill="none" stroke="#D9A24E" stroke-width="3.78" stroke-linecap="round" opacity=".9"/><circle cx="178.0" cy="164.4" r="2.7" fill="#3A2014"/>
+          <circle cx="177.2" cy="163.6" r="0.81" fill="#fff" opacity=".35"/><circle cx="232.9" cy="161.2" r="2.7" fill="#3A2014"/>
+          <circle cx="232.1" cy="160.4" r="0.81" fill="#fff" opacity=".35"/><circle cx="183.9" cy="178.3" r="2.7" fill="#3A2014"/>
+          <circle cx="183.1" cy="177.5" r="0.81" fill="#fff" opacity=".35"/><circle cx="178.5" cy="151.8" r="2.7" fill="#3A2014"/>
+          <circle cx="177.7" cy="151.0" r="0.81" fill="#fff" opacity=".35"/><circle cx="257.2" cy="173.3" r="2.7" fill="#3A2014"/>
+          <circle cx="256.4" cy="172.5" r="0.81" fill="#fff" opacity=".35"/><circle cx="133.7" cy="171.8" r="2.7" fill="#3A2014"/>
+          <circle cx="132.9" cy="171.0" r="0.81" fill="#fff" opacity=".35"/><circle cx="237.6" cy="147.9" r="2.7" fill="#3A2014"/>
+          <circle cx="236.8" cy="147.1" r="0.81" fill="#fff" opacity=".35"/><circle cx="217.7" cy="187.8" r="2.7" fill="#3A2014"/>
+          <circle cx="216.9" cy="187.0" r="0.81" fill="#fff" opacity=".35"/><circle cx="129.3" cy="152.4" r="2.7" fill="#3A2014"/>
+          <circle cx="128.5" cy="151.6" r="0.81" fill="#fff" opacity=".35"/><g transform="rotate(291 210.5 158.9)">
+          <rect x="206.0" y="155.7" width="9" height="6.3" rx="3" fill="#F2EDE2"/>
+          <rect x="206.0" y="155.7" width="9" height="2.25" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(67 215.8 177.8)">
+          <rect x="211.3" y="174.6" width="9" height="6.3" rx="3" fill="#F2EDE2"/>
+          <rect x="211.3" y="174.6" width="9" height="2.25" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(204 148.4 158.7)">
+          <rect x="143.9" y="155.5" width="9" height="6.3" rx="3" fill="#F2EDE2"/>
+          <rect x="143.9" y="155.5" width="9" height="2.25" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(341 265.9 161.0)">
+          <rect x="261.4" y="157.9" width="9" height="6.3" rx="3" fill="#F2EDE2"/>
+          <rect x="261.4" y="157.9" width="9" height="2.25" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(118 158.8 184.0)">
+          <rect x="154.3" y="180.9" width="9" height="6.3" rx="3" fill="#F2EDE2"/>
+          <rect x="154.3" y="180.9" width="9" height="2.25" rx="3" fill="#fff" opacity=".22"/></g><g transform="rotate(255 184.8 142.9)">
+          <rect x="180.3" y="139.7" width="9" height="6.3" rx="3" fill="#F2EDE2"/>
+          <rect x="180.3" y="139.7" width="9" height="2.25" rx="3" fill="#fff" opacity=".22"/></g>
+  </svg>

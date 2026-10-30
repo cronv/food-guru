@@ -1,0 +1,37 @@
+FROM php:8.3-fpm-alpine
+
+# poppler-utils: pdftoppm рисует обложку выпуска журнала из первой
+# страницы PDF, pdfinfo считает страницы. Без них выпуск просто
+# останется без обложки — загрузка файла не ломается.
+RUN apk add --no-cache git unzip icu-dev oniguruma-dev libzip-dev poppler-utils \
+    && docker-php-ext-install pdo_mysql intl mbstring zip bcmath opcache \
+    && apk del git
+
+# Боевые настройки OPcache: код не перечитывается с диска на каждый запрос.
+RUN { \
+      echo 'opcache.enable=1'; \
+      echo 'opcache.memory_consumption=192'; \
+      echo 'opcache.max_accelerated_files=20000'; \
+      echo 'opcache.validate_timestamps=0'; \
+      echo 'realpath_cache_size=4096K'; \
+      echo 'realpath_cache_ttl=600'; \
+      echo 'expose_php=Off'; \
+      echo 'upload_max_filesize=100M'; \
+      echo 'post_max_size=110M'; \
+      echo 'max_execution_time=300'; \
+      echo 'max_input_time=300'; \
+    } > /usr/local/etc/php/conf.d/99-prod.ini
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www/html
+
+# Зависимости ставятся на этапе сборки образа, без dev-пакетов.
+COPY backend/composer.json ./
+RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist --no-interaction || true
+
+COPY backend/ ./
+RUN composer install --no-dev --optimize-autoloader --no-interaction \
+    && chown -R www-data:www-data storage bootstrap/cache
+
+CMD ["php-fpm"]

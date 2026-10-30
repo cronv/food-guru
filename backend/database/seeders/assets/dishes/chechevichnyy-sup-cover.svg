@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="1200" height="900" role="img" aria-label="Чечевичный суп с томатами в миске">
+    <defs>
+      <linearGradient id="g25bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#E7E0D2"/><stop offset="1" stop-color="#D9CFBC"/>
+      </linearGradient>
+      <linearGradient id="g25v" x1="0" y1="0" x2=".4" y2="1">
+        <stop offset="0" stop-color="#EFE7D8"/><stop offset=".45" stop-color="#EFE7D8"/><stop offset="1" stop-color="#3A2014"/>
+      </linearGradient>
+      <linearGradient id="g25r" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".4" stop-color="#EFE7D8"/><stop offset="1" stop-color="#F4F1EA"/>
+      </linearGradient>
+      <radialGradient id="g25b" cx=".36" cy=".3" r=".85">
+        <stop offset="0" stop-color="#C9752E"/><stop offset=".7" stop-color="#C9752E"/><stop offset="1" stop-color="#3A2014" stop-opacity=".5"/>
+      </radialGradient>
+      <filter id="g25s" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="g25d" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+    </defs>
+    <rect width="400" height="300" fill="url(#g25bg)"/>
+    <ellipse cx="212" cy="250" rx="150" ry="30" fill="#000" opacity=".32" filter="url(#g25d)"/>
+      <path d="M60 148a140 140 0 0 0 280 0z" fill="url(#g25v)"/>
+      <ellipse cx="200" cy="148" rx="140" ry="34" fill="url(#g25r)"/>
+      <ellipse cx="200" cy="148" rx="118" ry="27" fill="url(#g25b)"/>
+      <ellipse cx="146" cy="214" rx="34" ry="46" fill="#fff" opacity=".1" filter="url(#g25s)"/>
+    <circle cx="197.3" cy="152.8" r="6" fill="#C4452A"/>
+          <circle cx="195.5" cy="151.0" r="1.7999999999999998" fill="#fff" opacity=".35"/><circle cx="180.1" cy="141.5" r="6" fill="#C4452A"/>
+          <circle cx="178.3" cy="139.7" r="1.7999999999999998" fill="#fff" opacity=".35"/><circle cx="243.1" cy="150.2" r="6" fill="#C4452A"/>
+          <circle cx="241.3" cy="148.4" r="1.7999999999999998" fill="#fff" opacity=".35"/><circle cx="155.1" cy="154.0" r="6" fill="#C4452A"/>
+          <circle cx="153.3" cy="152.2" r="1.7999999999999998" fill="#fff" opacity=".35"/><circle cx="217.6" cy="135.2" r="6" fill="#C4452A"/>
+          <circle cx="215.8" cy="133.4" r="1.7999999999999998" fill="#fff" opacity=".35"/><circle cx="227.4" cy="161.4" r="6" fill="#C4452A"/>
+          <circle cx="225.6" cy="159.6" r="1.7999999999999998" fill="#fff" opacity=".35"/><circle cx="135.0" cy="141.9" r="6" fill="#C4452A"/>
+          <circle cx="133.2" cy="140.1" r="1.7999999999999998" fill="#fff" opacity=".35"/><circle cx="270.9" cy="142.1" r="6" fill="#C4452A"/>
+          <circle cx="269.1" cy="140.3" r="1.7999999999999998" fill="#fff" opacity=".35"/><circle cx="176.0" cy="146.5" r="4" fill="#E8C77E"/>
+          <circle cx="174.8" cy="145.3" r="1.2" fill="#fff" opacity=".35"/><circle cx="236.0" cy="143.7" r="4" fill="#E8C77E"/>
+          <circle cx="234.8" cy="142.5" r="1.2" fill="#fff" opacity=".35"/><circle cx="182.4" cy="159.1" r="4" fill="#E8C77E"/>
+          <circle cx="181.2" cy="157.9" r="1.2" fill="#fff" opacity=".35"/><circle cx="176.5" cy="135.1" r="4" fill="#E8C77E"/>
+          <circle cx="175.3" cy="133.9" r="1.2" fill="#fff" opacity=".35"/><circle cx="262.5" cy="154.6" r="4" fill="#E8C77E"/>
+          <circle cx="261.3" cy="153.4" r="1.2" fill="#fff" opacity=".35"/><circle cx="127.6" cy="153.3" r="4" fill="#E8C77E"/>
+          <circle cx="126.4" cy="152.1" r="1.2" fill="#fff" opacity=".35"/><circle cx="241.1" cy="131.6" r="4" fill="#E8C77E"/>
+          <circle cx="239.9" cy="130.4" r="1.2" fill="#fff" opacity=".35"/><g transform="rotate(291 208.8 143.1)">
+          <ellipse cx="208.8" cy="143.1" rx="8.5" ry="4" fill="#4E7A46"/>
+          <line x1="201.8" y1="143.1" x2="215.8" y2="143.1" stroke="#fff" stroke-opacity=".3" stroke-width="1"/></g><g transform="rotate(67 213.2 156.2)">
+          <ellipse cx="213.2" cy="156.2" rx="8.5" ry="4" fill="#4E7A46"/>
+          <line x1="206.2" y1="156.2" x2="220.2" y2="156.2" stroke="#fff" stroke-opacity=".3" stroke-width="1"/></g>
+  </svg>

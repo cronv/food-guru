@@ -1,0 +1,1957 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Food Guru — рецепты, которые получаются с первого раза</title>
+<meta name="description" content="Кулинарный портал: пошаговые рецепты с пересчётом граммовок на любое число порций, видеорецепты по 20 секунд и отзывы читателей с фотографиями.">
+<meta name="theme-color" content="#FCFBF8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#141310" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://example.com/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/og-cover.jpg">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Food Guru">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Food Guru — рецепты, которые получаются с первого раза">
+<meta property="og:description" content="Граммовки на любое число порций, видеорецепты и отзывы с фотографиями.">
+<meta property="og:url" content="https://example.com/">
+<meta property="og:image" content="https://example.com/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<style>
+/* сброс: в артефакте это делал рантайм, на хостинге пишем явно */
+:root {
+  color-scheme: light;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+html, body { margin: 0; }
+body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; font-size: 14px; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<style>
+/* Макет: одна колонка до 1200px, карточные сетки авто-подгоном, админка — тёмная боковая панель + рабочая область */
+:root {
+  --bg: #FCFBF8;
+  --surface: #FFFFFF;
+  --sunken: #F4F1EA;
+  --ink: #16150F;
+  --muted: #5C5548;
+  --line: #E6E0D4;
+  --green: #27583C;
+  --green-soft: #EDF2EC;
+  --green-ink: #1F4A31;
+  --brick: #B4451F;
+  --brick-soft: #FBF0EB;
+  --brick-ink: #93380F;
+  --on-accent: #FFFFFF;
+  --panel: #23211B;
+  --panel-ink: #CFC9BA;
+  --panel-hi: #3B372C;
+  --ph1: #E7E0D2;
+  --ph2: #E3E6DC;
+  --ph3: #EEE3D6;
+  --ph4: #E6E2DB;
+  --ph-ink: #55503F;
+  --choc-d: #3A2014; --choc: #6B3F22; --gold: #D9A24E; --plate: #EFE7D8;
+  --pan: #55555A; --shrimp: #E08A5F; --tomato: #C4452A; --basil: #4E7A46; --noodle: #E8C77E;
+  --pumpkin: #D98A3A; --beet: #9B2F55; --feta: #F2EDE2; --yolk: #E6A93C; --mush: #BFA98A;
+  --broth: #C9752E; --berry: #8E2B4A; --sourcream: #F4F0E6;
+  --shadow: 0 1px 2px rgba(22,21,15,.05);
+  --display: 'Lora', Georgia, 'Times New Roman', serif;
+  --body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141310; --surface: #1D1B16; --sunken: #232019; --ink: #F4F1E9; --muted: #B2AA98;
+    --line: #353126; --green: #8CC9A0; --green-soft: #1E2A22; --green-ink: #A8D9B8;
+    --brick: #E8814F; --brick-soft: #2A1C14; --brick-ink: #F0A57E; --on-accent: #10160F;
+    --panel: #0F0E0B; --panel-ink: #B2AA98; --panel-hi: #2A2720;
+    --ph1: #2B2721; --ph2: #262A24; --ph3: #2E2720; --ph4: #272521; --ph-ink: #9A917E;
+    --choc-d: #2E1A10; --choc: #7A472A; --gold: #E0AE63; --plate: #2F2B24;
+    --pan: #3C3C41; --shrimp: #E8956B; --tomato: #CF5236; --basil: #5E8E55; --noodle: #D8B86C;
+    --pumpkin: #C9823C; --beet: #A33A5E; --feta: #DCD5C6; --yolk: #DFA645; --mush: #A08B70;
+    --broth: #B86F31; --berry: #99334F; --sourcream: #DED8CA;
+    --shadow: 0 1px 2px rgba(0,0,0,.3);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141310; --surface: #1D1B16; --sunken: #232019; --ink: #F4F1E9; --muted: #B2AA98;
+  --line: #353126; --green: #8CC9A0; --green-soft: #1E2A22; --green-ink: #A8D9B8;
+  --brick: #E8814F; --brick-soft: #2A1C14; --brick-ink: #F0A57E; --on-accent: #10160F;
+  --panel: #0F0E0B; --panel-ink: #B2AA98; --panel-hi: #2A2720;
+  --ph1: #2B2721; --ph2: #262A24; --ph3: #2E2720; --ph4: #272521; --ph-ink: #9A917E;
+  --shadow: 0 1px 2px rgba(0,0,0,.3);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 20; background: var(--surface); }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; letter-spacing: -0.015em; text-wrap: balance; margin: 0; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--brick); outline-offset: 2px; border-radius: 4px; }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.band { padding-block: 44px; }
+
+/* шапка */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 15; background: var(--surface); border-bottom: 1px solid var(--line); }
+.top-in { display: flex; align-items: center; gap: 20px; padding-block: 12px; }
+.logo { font-family: var(--display); font-size: 24px; font-weight: 600; flex: 0 0 auto; }
+.nav { display: flex; gap: 18px; flex: 1 1 auto; min-width: 0; font-weight: 500; }
+.nav button { background: none; border: 0; color: var(--muted); padding: 10px 0; font-weight: 500; white-space: nowrap; }
+.nav button[aria-current="true"] { color: var(--green); font-weight: 700; }
+.top-actions { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; margin-left: auto; }
+
+/* бургер: на узких экранах пункты уезжают в выдвижную панель, а не во вторую строку */
+.burger { display: none; width: 44px; height: 44px; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); }
+.burger span { display: block; width: 18px; height: 2px; background: currentColor; position: relative; transition: transform .18s ease, background .18s ease; }
+.burger span::before, .burger span::after { content: ""; position: absolute; left: 0; width: 18px; height: 2px; background: currentColor; transition: transform .18s ease, top .18s ease; }
+.burger span::before { top: -6px; } .burger span::after { top: 6px; }
+.burger[aria-expanded="true"] span { background: transparent; }
+.burger[aria-expanded="true"] span::before { top: 0; transform: rotate(45deg); }
+.burger[aria-expanded="true"] span::after { top: 0; transform: rotate(-45deg); }
+@media (prefers-reduced-motion: reduce) { .burger span, .burger span::before, .burger span::after { transition: none; } }
+
+.drawer { display: none; border-top: 1px solid var(--line); background: var(--surface); }
+.drawer-in { display: flex; flex-direction: column; gap: 4px; padding-block: 12px; }
+.drawer button { display: flex; align-items: center; min-height: 48px; padding: 0 14px; border: 0; border-radius: 12px; background: none; color: var(--ink); font-size: 16px; font-weight: 600; text-align: left; }
+.drawer button[aria-current="true"] { background: var(--green-soft); color: var(--green-ink); }
+
+@media (max-width: 860px) {
+  .nav { display: none; }
+  .burger { display: flex; }
+  #topSearch { display: none; }
+  .drawer.open { display: block; }
+}
+
+/* кнопки */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid transparent; font-weight: 600; }
+.btn-primary { background: var(--brick); color: var(--on-accent); }
+.btn-green { background: var(--green); color: var(--on-accent); }
+.btn-ghost { background: none; border-color: var(--line); color: var(--ink); }
+.btn-line { background: none; border-color: currentColor; color: var(--ink); }
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+.btn-sm { min-height: 38px; padding: 0 14px; border-radius: 10px; font-size: 14px; }
+
+/* поля */
+label.fl { display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700; color: var(--muted); }
+input[type="text"], input[type="email"], input[type="search"], select { min-height: 46px; padding: 0 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--sunken); color: var(--ink); font: inherit; font-weight: 400; width: 100%; }
+input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--green); }
+input[type="range"] { accent-color: var(--green); width: 100%; }
+
+/* карточки */
+.grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.card { display: flex; flex-direction: column; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 12px; box-shadow: var(--shadow); text-align: left; }
+.card h3 { font-family: var(--body); font-size: 17px; font-weight: 600; letter-spacing: 0; padding: 0 4px; }
+.card p { margin: 0 0 6px; padding: 0 4px; font-size: 13px; color: var(--muted); }
+.ph { border-radius: 12px; display: grid; place-items: center; gap: 8px; color: var(--ph-ink); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; }
+.artbox { border-radius: 12px; overflow: hidden; background: var(--sunken); display: grid; place-items: center; }
+.artbox svg { width: 100%; height: 100%; display: block; }
+.step-hint { display: inline-block; margin-top: 8px; padding: 5px 12px; border-radius: 999px; background: var(--green-soft); color: var(--green-ink); font-size: 13px; font-weight: 700; }
+video { width: 100%; max-width: 100%; border-radius: 16px; display: block; background: #17150F; }
+
+/* галерея */
+.gal-main { position: relative; border-radius: 18px; overflow: hidden; background: var(--sunken); aspect-ratio: 16/10; max-height: 440px; }
+.gal-main img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+.gal-main .artbox { width: 100%; height: 100%; border-radius: 0; }
+.gal-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 999px; border: 0; background: rgba(22,21,15,.55); color: #fff; display: grid; place-items: center; }
+.gal-nav:hover { background: rgba(22,21,15,.78); }
+.gal-count { position: absolute; right: 12px; bottom: 12px; padding: 5px 12px; border-radius: 999px; background: rgba(22,21,15,.6); color: #fff; font-size: 12px; font-weight: 700; }
+.gal-badge { position: absolute; left: 12px; bottom: 12px; padding: 5px 12px; border-radius: 999px; background: var(--brick); color: var(--on-accent); font-size: 12px; font-weight: 700; }
+.gal-thumbs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; margin-top: 10px; }
+.gal-thumbs button { flex: 0 0 84px; height: 64px; border-radius: 10px; overflow: hidden; border: 2px solid transparent; background: var(--sunken); padding: 0; }
+.gal-thumbs button[aria-current="true"] { border-color: var(--green); }
+.gal-thumbs img, .gal-thumbs .artbox { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+
+/* просмотр во весь экран */
+.lightbox { position: fixed; inset: 0; z-index: 50; background: rgba(12,11,8,.94); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: max(20px, env(safe-area-inset-top, 0px)) 20px max(20px, env(safe-area-inset-bottom, 0px)); }
+.lightbox img, .lightbox .artbox { max-width: min(96vw, 1000px); max-height: 76vh; border-radius: 14px; background: var(--sunken); }
+.lightbox .cap { color: #EDE7DA; font-size: 14px; text-align: center; max-width: 60ch; }
+
+/* отзывы */
+.stars { display: inline-flex; gap: 2px; }
+.star { width: 18px; height: 18px; }
+.rate-btn { width: 44px; height: 44px; border: 0; background: none; padding: 0; display: grid; place-items: center; }
+.review { display: flex; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.ava { flex: 0 0 auto; width: 44px; height: 44px; border-radius: 999px; background: var(--green-soft); color: var(--green-ink); display: grid; place-items: center; font-weight: 700; }
+.rev-shots { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+.rev-shots button { width: 92px; height: 72px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--sunken); padding: 0; }
+.rev-shots img { width: 100%; height: 100%; object-fit: cover; }
+.drop { border: 1.5px dashed var(--line); border-radius: 14px; padding: 18px; text-align: center; color: var(--muted); font-size: 14px; }
+.drop.over { border-color: var(--green); background: var(--green-soft); color: var(--green-ink); }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 700; background: var(--sunken); color: var(--muted); }
+.chip-g { background: var(--green-soft); color: var(--green-ink); }
+.chip-b { background: var(--brick-soft); color: var(--brick-ink); }
+.row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* секции */
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+.sec-head h2 { font-size: 28px; }
+
+/* админка */
+.admin { display: flex; flex-wrap: wrap; min-height: 70vh; }
+.side { flex: 1 1 230px; min-width: 0; background: var(--panel); color: var(--panel-ink); padding: 20px 14px; display: flex; flex-direction: column; gap: 18px; }
+.side button { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; min-height: 44px; padding: 0 14px; border: 0; border-radius: 10px; background: none; color: var(--panel-ink); text-align: left; }
+.side button[aria-current="true"] { background: var(--panel-hi); color: #fff; font-weight: 700; }
+.work { flex: 999 1 560px; min-width: 0; padding: 24px clamp(16px, 3vw, 28px); background: var(--sunken); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 760px; }
+th { text-align: left; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 12px 14px; border-bottom: 1px solid var(--line); background: var(--surface); }
+td { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+
+/* всплывашка */
+#toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(20px + env(safe-area-inset-bottom, 0px)); z-index: 40; background: var(--panel); color: #fff; padding: 12px 20px; border-radius: 999px; font-size: 14px; font-weight: 600; box-shadow: 0 6px 24px rgba(0,0,0,.25); max-width: min(92vw, 420px); text-align: center; }
+@media (prefers-reduced-motion: no-preference) { #toast { animation: pop .18s ease-out; } @keyframes pop { from { opacity: 0; transform: translate(-50%, 8px); } } }
+
+.note { background: var(--green-soft); color: var(--green-ink); border-radius: 14px; padding: 14px 16px; font-size: 13px; line-height: 1.55; }
+.muted { color: var(--muted); }
+.tnum { font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap">
+
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="#" data-go="home">Food Guru</a>
+    <nav class="nav" id="nav"></nav>
+    <div class="top-actions" id="topActions"></div>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Меню"><span></span></button>
+  </div>
+  <div class="drawer" id="drawer"><div class="wrap drawer-in" id="drawerIn"></div></div>
+</header>
+
+<main id="app"></main>
+
+<footer style="background: var(--panel); color: var(--panel-ink); margin-top: 48px;">
+  <div class="wrap" style="padding-block: 28px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; font-size: 13px;">
+    <span>Прототип кулинарного портала «Food Guru». Данные демонстрационные.</span>
+    <span>Фото заменяются плейсхолдерами</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+"use strict";
+
+/* ---------- данные (соответствуют сидам бэкенда) ---------- */
+const CATS = ["Завтраки", "Супы", "Горячее", "Салаты", "Выпечка", "Десерты"];
+
+const R = (slug, title, cat, min, serv, diff, lead, tags, diet, kb, ing, steps, status, art, reel) =>
+  ({ slug, title, cat, min, serv, diff, lead, tags, diet, kb, ing, steps, status, art, reel });
+
+const RECIPES = [
+  R("tykvennyy-krem-sup", "Тыквенный крем-суп с хрустящим нутом", "Супы", 35, 4, "Просто",
+    "Бархатная текстура без единой ложки сливок. Тыкву запекаем до карамелизации, нут обжариваем с копчёной паприкой — он даёт хруст, которого обычно не хватает супам-пюре.",
+    ["вегетарианское", "до 45 минут"], ["veg", "gf"], [210, 6, 9, 24],
+    [["Тыква, очищенная", 200, "г"], ["Нут отварной", 60, "г"], ["Лук репчатый", 0.25, "шт"], ["Чеснок", 0.5, "зубчика"], ["Овощной бульон", 175, "мл"], ["Оливковое масло", 0.75, "ст. л."], ["Копчёная паприка", 0.25, "ч. л."], ["Имбирь свежий", 4, "г"]],
+    ["Разогрейте духовку до 200 °C. Тыкву нарежьте кубиками 3 см, выложите на противень, сбрызните маслом и запекайте 20 минут до мягких, слегка карамелизованных краёв.",
+     "Пока тыква в духовке, обжарьте лук с имбирём и чесноком на среднем огне 5 минут — до прозрачности, не допуская румяной корочки.",
+     "Отложите треть нута для подачи. Остальной отправьте к луку вместе с запечённой тыквой, прогрейте минуту.",
+     "Влейте горячий бульон, доведите до кипения и пробейте блендером до полностью гладкой текстуры.",
+     "Отложенный нут обсушите, обжарьте на сухой сковороде с паприкой и щепоткой соли до хруста — 4–5 минут.",
+     "Разлейте суп по тарелкам, сверху выложите хрустящий нут и добавьте каплю оливкового масла."], "published"),
+
+  R("shokoladnyy-fondan", "Шоколадный фондан с жидким центром", "Десерты", 25, 2, "Средне",
+    "Снаружи — пропечённый бисквит, внутри — тёплый шоколад, который вытекает на тарелку. Вся хитрость во времени: девять минут, ни минутой больше.",
+    ["до 45 минут", "шоколад"], [], [480, 9, 31, 42],
+    [["Тёмный шоколад 70%", 50, "г"], ["Сливочное масло", 40, "г"], ["Яйцо", 1, "шт"], ["Сахар", 30, "г"], ["Мука", 15, "г"], ["Соль", 0.5, "щепотка"], ["Какао для формы", 1, "ч. л."]],
+    [["Формы смажьте мягким маслом и присыпьте какао, стряхнув излишки. Уберите в холодильник — холодная форма помогает тесту подняться ровно.", "2 формы по 150 мл"],
+     ["Шоколад и масло растопите на водяной бане, помешивая. Снимите с огня, как только масса станет гладкой.", "не выше 50 °C · 4 минуты"],
+     ["Яйца с сахаром и солью взбейте миксером добела — масса должна заметно посветлеть и увеличиться вдвое.", "3 минуты на средней скорости"],
+     ["Влейте тёплый шоколад в яичную массу тонкой струйкой, непрерывно мешая. Просейте муку и вмешайте лопаткой снизу вверх.", "мука 30 г, просеять"],
+     ["Разлейте тесто по формам, заполняя на три четверти. На этом месте тесто можно убрать в холодильник на сутки.", "по 3/4 высоты"],
+     ["Выпекайте в разогретой духовке. Края должны схватиться, а центр при лёгком покачивании — дрожать.", "200 °C · 9 минут"],
+     ["Дайте постоять минуту, пройдите ножом вдоль стенки и переверните на тарелку. Подавайте сразу: через пару минут центр загустеет.", "подавать немедленно"]],
+    "published", "fondan", "fondan-reels.mp4"),
+
+  R("pasta-krevetki-tomat", "Паста с креветками в томатно-сливочном соусе", "Горячее", 25, 2, "Просто",
+    "Ужин на одной сковороде за время варки пасты. Креветки кладутся в соус последними и готовятся ровно две минуты — дольше они становятся резиновыми.",
+    ["до 45 минут", "на ужин"], [], [560, 32, 22, 58],
+    [["Спагетти", 90, "г"], ["Креветки очищенные", 120, "г"], ["Томаты в собственном соку", 100, "г"], ["Сливки 20%", 50, "мл"], ["Чеснок", 1, "зубчик"], ["Оливковое масло", 1, "ст. л."], ["Базилик свежий", 3, "листа"], ["Хлопья чили", 0.25, "ч. л."]],
+    [["Поставьте воду для пасты и посолите её как следует — это единственный момент, когда солится сама паста.", "10 г соли на литр"],
+     ["Креветки обсушите бумажным полотенцем. Мокрые креветки не обжарятся, а потушатся в собственном соке.", "обязательный шаг"],
+     ["Чеснок нарежьте пластинами и прогрейте в масле на среднем огне до аромата, не допуская золотистого цвета.", "1 минута"],
+     ["Добавьте томаты и хлопья чили, тушите, пока соус не загустеет и не потемнеет.", "6 минут"],
+     ["Влейте сливки, прогрейте до кипения и сразу убавьте огонь.", "не кипятить долго"],
+     ["Опустите креветки в соус и готовьте, пока они не станут плотными и розовыми.", "2 минуты, не больше"],
+     ["Переложите пасту в сковороду за минуту до готовности вместе с половником воды из-под неё и доведите на сильном огне. Снимите с огня и добавьте базилик.", "вода от пасты — 80 мл"]],
+    "published", "pasta", "pasta-reels.mp4"),
+
+  R("pasta-cacio-e-pepe", "Паста качо-э-пепе", "Горячее", 30, 2, "Просто",
+    "Три ингредиента и правильная эмульсия — весь секрет. Главное не перегреть сыр, иначе он свернётся комками.",
+    ["до 45 минут", "сыр"], [], [520, 19, 21, 62],
+    [["Спагетти", 100, "г"], ["Пекорино романо", 45, "г"], ["Чёрный перец горошком", 0.5, "ч. л."], ["Соль крупная", 0.5, "ч. л."]],
+    ["Отварите спагетти в небольшом количестве воды — она должна стать по-настоящему крахмалистой.",
+     "Перец крупно раздавите и прогрейте на сухой сковороде до аромата, около минуты.",
+     "Сыр натрите мелко и разотрите с парой ложек тёплой воды из-под пасты в однородную пасту.",
+     "Переложите почти готовые спагетти к перцу, добавьте сырную пасту и энергично перемешивайте вне огня до глянцевого соуса."], "published"),
+
+  R("syrniki-risovaya-muka", "Сырники на рисовой муке", "Завтраки", 20, 3, "Просто",
+    "Пышные внутри, с карамельной корочкой снаружи. Рисовая мука держит форму не хуже пшеничной и подходит тем, кто избегает глютена.",
+    ["без глютена", "до 45 минут"], ["gf"], [240, 16, 11, 19],
+    [["Творог 9%", 150, "г"], ["Рисовая мука", 25, "г"], ["Яйцо", 0.33, "шт"], ["Сахар", 1, "ч. л."], ["Ванильный сахар", 0.25, "ч. л."], ["Масло для жарки", 0.5, "ст. л."]],
+    ["Творог протрите через сито — это единственный шаг, который нельзя пропускать.",
+     "Смешайте с яйцом, сахаром и ванилью, затем вмешайте рисовую муку и дайте тесту постоять 10 минут.",
+     "Сформируйте шайбы толщиной около 2 см, обваляйте в муке.",
+     "Жарьте на среднем огне под крышкой по 3–4 минуты с каждой стороны."], "published"),
+
+  R("kinoa-svekla-feta", "Киноа с печёной свёклой и фетой", "Салаты", 25, 2, "Просто",
+    "Тёплый салат, который заменяет полноценный ужин. Свёклу удобно запечь заранее — она спокойно живёт в холодильнике три дня.",
+    ["вегетарианское", "без глютена"], ["veg", "gf"], [330, 12, 14, 38],
+    [["Киноа", 60, "г"], ["Свёкла", 120, "г"], ["Фета", 40, "г"], ["Грецкий орех", 15, "г"], ["Оливковое масло", 1, "ст. л."], ["Лимонный сок", 1, "ч. л."]],
+    ["Свёклу заверните в фольгу и запекайте при 200 °C около часа, пока нож не будет входить свободно.",
+     "Киноа промойте и отварите в подсоленной воде 12 минут, затем откиньте и дайте подсохнуть.",
+     "Свёклу нарежьте дольками, смешайте с киноа, заправьте маслом и лимонным соком.",
+     "Сверху раскрошите фету и подсушенные орехи."], "published"),
+
+  R("bedra-medovo-gorchichnye", "Бёдра в медово-горчичном соусе", "Горячее", 50, 4, "Просто",
+    "Одна форма для запекания, минимум посуды. Соус карамелизуется на коже и даёт ту самую липкую корочку.",
+    ["на ужин"], ["gf"], [410, 28, 24, 16],
+    [["Куриные бёдра", 1.5, "шт"], ["Мёд", 0.5, "ст. л."], ["Горчица зернистая", 0.5, "ст. л."], ["Соевый соус", 0.5, "ст. л."], ["Чеснок", 0.5, "зубчика"], ["Тимьян", 1, "веточка"]],
+    ["Смешайте мёд, обе горчицы, соевый соус и раздавленный чеснок.",
+     "Бёдра обсушите бумажным полотенцем — иначе кожа не подрумянится — и обмажьте соусом.",
+     "Оставьте мариноваться хотя бы 20 минут, лучше на ночь.",
+     "Запекайте при 200 °C 35–40 минут, поливая соусом из формы каждые 15 минут."], "published"),
+
+  R("shakshuka-s-fetoy", "Шакшука с фетой", "Завтраки", 25, 2, "Просто",
+    "Завтрак на одной сковороде. Яйца должны остаться с жидким желтком — снимайте с огня чуть раньше, чем кажется нужным.",
+    ["вегетарианское", "до 45 минут"], ["veg", "gf"], [290, 17, 19, 12],
+    [["Яйца", 1.5, "шт"], ["Томаты в собственном соку", 200, "г"], ["Перец болгарский", 0.5, "шт"], ["Лук", 0.5, "шт"], ["Фета", 30, "г"], ["Зира молотая", 0.25, "ч. л."]],
+    ["Обжарьте лук и перец до мягкости, 7–8 минут.",
+     "Добавьте зиру, прогрейте полминуты, влейте томаты и тушите до загустения.",
+     "Сделайте в соусе углубления и разбейте в них яйца.",
+     "Накройте крышкой и готовьте 5–6 минут, пока белок не схватится. Раскрошите фету сверху."], "published"),
+
+  R("chechevichnyy-sup", "Чечевичный суп с томатами", "Супы", 40, 4, "Просто",
+    "Красная чечевица разваривается сама и загущает суп без всякой муки.",
+    ["вегетарианское", "до 45 минут"], ["veg", "gf"], [230, 13, 6, 32],
+    [["Чечевица красная", 50, "г"], ["Томаты рубленые", 100, "г"], ["Морковь", 0.5, "шт"], ["Лук", 0.25, "шт"], ["Овощной бульон", 200, "мл"], ["Паприка", 0.25, "ч. л."]],
+    ["Лук и морковь пассеруйте 6 минут.", "Добавьте чечевицу, томаты, специи и бульон.",
+     "Варите 20 минут, пока чечевица не разойдётся.", "Пробейте блендером наполовину — так остаётся текстура."], "published"),
+
+  R("gribnoy-sup-slivki", "Грибной суп со сливками", "Супы", 40, 4, "Средне",
+    "Часть грибов идёт в пюре, часть обжаривается отдельно и кладётся сверху — два разных вкуса в одной тарелке.",
+    ["до 45 минут"], [], [280, 9, 18, 20],
+    [["Шампиньоны", 125, "г"], ["Сливки 20%", 50, "мл"], ["Картофель", 50, "г"], ["Лук", 0.25, "шт"], ["Бульон", 150, "мл"], ["Тимьян", 1, "веточка"]],
+    ["Четверть грибов отложите, остальные обжарьте с луком до выпаривания влаги.",
+     "Добавьте картофель и бульон, варите 15 минут.", "Пробейте блендером, влейте сливки, прогрейте не доводя до кипения.",
+     "Отложенные грибы обжарьте на сильном огне до румяности и выложите сверху."], "published"),
+
+  R("hachapuri-adzharski", "Хачапури по-аджарски", "Выпечка", 60, 4, "Средне",
+    "Лодочка из теста с сыром сулугуни, яйцом и кусочком сливочного масла.",
+    ["грузинская кухня", "сыр"], [], [520, 22, 26, 48], [], [], "moderation"),
+
+  R("pankeyki-na-kefire", "Панкейки на кефире", "Завтраки", 25, 4, "Просто",
+    "Кефир и сода дают пузырьки, которые держат форму до тарелки.",
+    ["на ужин"], [], [310, 9, 11, 44], [], [], "moderation"),
+
+  R("tiramisu", "Тирамису", "Десерты", 40, 6, "Средне",
+    "Классика без выпекания. Савоярди нужно окунать быстро, иначе десерт поплывёт.",
+    ["сыр"], [], [420, 8, 27, 36], [], [], "rejected"),
+
+  R("borshch-s-govyadinoy", "Борщ с говядиной", "Супы", 120, 6, "Средне",
+    "Бульон варится три часа, зато дальше всё просто.",
+    ["на ужин"], [], [340, 21, 14, 29], [], [], "draft")
+];
+
+const PUBLISHED = RECIPES.filter(r => r.status === "published");
+const PH = ["--ph1", "--ph2", "--ph3", "--ph4"];
+const STATUS = {
+  published: ["Опубликован", "chip-g"],
+  moderation: ["На модерации", "chip-b"],
+  rejected: ["Возвращён", ""],
+  draft: ["Черновик", ""]
+};
+const ROLES = {
+  content_manager: "Контент-менеджер",
+  editor_lead: "Руководитель редакции",
+  admin: "Администратор"
+};
+
+const COLLECTIONS = [
+  { slug: "october", title: "Что приготовить в октябре", accent: "var(--green)",
+    lead: "Тыква, грибы и чечевица — всё, что сейчас стоит дёшево и пахнет как надо. Семь рецептов, которые закрывают будний ужин без похода в магазин за редкостями.",
+    recipes: ["tykvennyy-krem-sup", "gribnoy-sup-slivki", "chechevichnyy-sup", "kinoa-svekla-feta"] },
+  { slug: "one-pan", title: "Ужин на одной сковороде", accent: "var(--brick)",
+    lead: "Когда мыть три кастрюли нет сил. Всё готовится в одной посуде, а лишние действия из рецептов убраны сознательно.",
+    recipes: ["pasta-krevetki-tomat", "shakshuka-s-fetoy", "bedra-medovo-gorchichnye", "pasta-cacio-e-pepe"] },
+  { slug: "sweet", title: "Десерты без миксера", accent: "var(--panel)",
+    lead: "Венчик, миска и духовка. Ни одного рецепта, где нужна техника дороже сковородки.",
+    recipes: ["shokoladnyy-fondan", "syrniki-risovaya-muka"] }
+];
+
+const ARTICLES = [
+  { slug: "pasta-voda", title: "Почему воду из-под пасты выливать нельзя", date: "21 октября",
+    lead: "Крахмал, который переходит в воду при варке, — единственное, что связывает соус с пастой. Без него соус стекает на дно тарелки.",
+    body: [
+      "Паста при варке отдаёт в воду крахмал. Чем меньше воды в кастрюле, тем он концентрированнее — поэтому «варить в большом количестве воды» для соусов совет вредный.",
+      "Крахмал работает как эмульгатор: он удерживает жир и воду вместе, не давая соусу расслоиться. Именно поэтому качо-э-пепе получается кремовым без единой ложки сливок.",
+      "Правило простое: прежде чем сливать пасту, зачерпните стакан воды. Добавляйте её в соус по столовой ложке, пока он не станет обволакивать макароны и не перестанет стекать с них."
+    ] },
+  { slug: "duhovka-oshibki", title: "Пять ошибок с духовкой, из-за которых всё подгорает", date: "16 октября",
+    lead: "Чаще всего виновата не духовка, а привычки. Разбираем то, что ломает выпечку сильнее всего.",
+    body: [
+      "Не прогрели. Духовке нужно 15–20 минут после сигнала, а не до него: термостат показывает температуру воздуха, а не стенок, которые и дают основной жар.",
+      "Открывали дверцу. Каждое открытие — минус 20–30 градусов и осевший бисквит. Для фондана это фатально.",
+      "Поставили в середину то, что должно стоять внизу. Пироги с влажной начинкой пекутся на нижнем уровне, иначе низ остаётся сырым.",
+      "Положили на холодный противень. Он забирает жар, и корочка не успевает схватиться.",
+      "Доверились таймеру вместо глаз. Разброс между духовками достигает 25 градусов, поэтому в рецептах у нас всегда есть признак готовности, а не только минуты."
+    ] },
+  { slug: "shokolad-vybor", title: "Какой шоколад брать для десертов", date: "9 октября",
+    lead: "На упаковке важны два числа, и это не цена и не вес.",
+    body: [
+      "Процент какао. Для фондана и ганаша берите 70%: при меньшем проценте в плитке слишком много сахара, и десерт выходит приторным, а начинка не держит форму.",
+      "Состав жира. В настоящем шоколаде только какао-масло. Если в составе пальмовое или «эквивалент какао-масла» — это кондитерская глазурь, она не плавится гладко и застывает с налётом.",
+      "Капли и каллеты удобнее плитки: они одинакового размера и плавятся равномерно. Плитку перед растапливанием рубите ножом, а не ломайте по долькам."
+    ] }
+];
+
+const CATEGORIES = [
+  { slug: "zavtraki", title: "Завтраки", accent: "var(--yolk)",
+    lead: "То, что готовится, пока закипает чайник, и то, ради чего стоит встать на полчаса раньше в выходной." },
+  { slug: "supy", title: "Супы", accent: "var(--pumpkin)",
+    lead: "Кремовые и прозрачные, на бульоне и на воде. Почти все живут в холодильнике три дня и на второй день становятся только лучше." },
+  { slug: "goryachee", title: "Горячее", accent: "var(--brick)",
+    lead: "Основные блюда на каждый день: сковорода, духовка, одна кастрюля. Ничего, что требует су-вида и пяти часов." },
+  { slug: "salaty", title: "Салаты", accent: "var(--basil)",
+    lead: "Тёплые и холодные, как гарнир и как полноценный ужин. Заправки — в составе, без отсылок «возьмите готовую»." },
+  { slug: "vypechka", title: "Выпечка", accent: "var(--noodle)",
+    lead: "Дрожжевое и бездрожжевое тесто, пироги и хлеб. Везде указан размер формы — без него рецепт выпечки бесполезен." },
+  { slug: "deserty", title: "Десерты", accent: "var(--berry)",
+    lead: "Домашние сладости без кондитерской техники. Максимум оборудования — миксер, и то не всегда." }
+];
+
+const catBySlug = s => CATEGORIES.find(c => c.slug === s);
+const catByTitle = t => CATEGORIES.find(c => c.title === t);
+
+const bySlugIn = (arr, s) => arr.find(x => x.slug === s);
+
+/* ---------- состояние ---------- */
+const S = {
+  view: "home",
+  slug: null,
+  user: null,
+  favorites: new Set(),
+  servings: 4,
+  shareOpen: false,
+  letter: null,          // имитация письма в ящике
+  authStage: "form",     // form | sent | done | expired
+  draftName: "",
+  draftEmail: "",
+  f: { q: "", cats: new Set(), maxTime: 120, diff: new Set(), diet: new Set(), sort: "pop" },
+  adminRole: "editor_lead",
+  adminTab: "moderation",
+  gal: 0,                // текущий кадр галереи
+  box: null,             // открытый просмотр во весь экран
+  photos: {},            // фото редакции, добавленные через загрузку: slug → [{src, cap}]
+  reviews: {},           // отзывы: slug → [{name, rating, text, shots, date, seed}]
+  draftShots: [],        // снимки, прикреплённые к ещё не отправленному отзыву
+  draftRating: 0,
+  draftText: ""          // текст отзыва переживает перерисовку: иначе клик по звезде стирает написанное
+};
+
+const app = document.getElementById("app");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const bySlug = s => RECIPES.find(r => r.slug === s);
+
+function toast(msg) {
+  document.getElementById("toast")?.remove();
+  const t = document.createElement("div");
+  t.id = "toast";
+  t.setAttribute("role", "status");
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2600);
+}
+
+function go(view, slug) {
+  S.view = view;
+  if (slug) {
+    S.slug = slug;
+    if (view === "recipe") {
+      S.servings = bySlug(slug)?.serv || 4;
+      S.shareOpen = false;
+      S.gal = 0;
+      S.draftShots = [];
+      S.draftRating = 0;
+      S.draftText = "";
+    }
+  }
+  window.scrollTo({ top: 0, behavior: "instant" });
+  render();
+}
+
+/* Избранное и сессия переживают перезагрузку. Хранилище может быть
+   недоступно (приватное окно, запрет на данные сайта) — поэтому try/catch. */
+const STORE = "food-guru-demo";
+
+function save() {
+  try {
+    localStorage.setItem(STORE, JSON.stringify({
+      user: S.user, favorites: [...S.favorites],
+      photos: S.photos, reviews: S.reviews
+    }));
+  } catch (e) {
+    // Чаще всего это переполнение: фотографии занимают много места.
+    // Данные остаются в памяти страницы, теряется только сохранение между визитами.
+    toast("Снимков накопилось больше, чем помещается в браузер — в этой сессии всё на месте");
+  }
+}
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORE);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (data.user) S.user = data.user;
+    if (Array.isArray(data.favorites)) S.favorites = new Set(data.favorites);
+    if (data.photos && typeof data.photos === "object") S.photos = data.photos;
+    if (data.reviews && typeof data.reviews === "object") S.reviews = data.reviews;
+  } catch (e) { /* демо работает и без сохранения */ }
+}
+
+/* Снимок с телефона весит мегабайты. Ужимаем до 1100 px по длинной стороне:
+   в галерее этого хватает, а в хранилище браузера помещается на порядок больше. */
+function shrink(file, maxSide = 1100, quality = 0.72) {
+  return new Promise((resolve, reject) => {
+    if (!file.type.startsWith("image/")) return reject(new Error("не изображение"));
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error("не удалось прочитать файл"));
+    reader.onload = () => {
+      const img = new Image();
+      img.onerror = () => reject(new Error("не удалось открыть изображение"));
+      img.onload = () => {
+        const k = Math.min(1, maxSide / Math.max(img.width, img.height));
+        const c = document.createElement("canvas");
+        c.width = Math.round(img.width * k);
+        c.height = Math.round(img.height * k);
+        c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+        try {
+          resolve(c.toDataURL("image/jpeg", quality));
+        } catch (err) { reject(err); }
+      };
+      img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+async function filesToShots(files, limit = 3) {
+  const out = [];
+  for (const f of [...files].slice(0, limit)) {
+    try { out.push(await shrink(f)); }
+    catch (e) { toast("Файл «" + f.name + "» не похож на изображение"); }
+  }
+  return out;
+}
+
+/* ---------- мелкие кусочки разметки ---------- */
+function ph(i, label, h) {
+  return `<div class="ph" style="background: var(${PH[i % 4]}); height:${h}px">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M3 13h18a9 9 0 0 1-18 0Z"/><path d="M12 3.5v3.2"/><path d="M8.4 6.7h7.2"/></svg>
+    <span>${label}</span></div>`;
+}
+
+/* Оригинальные иллюстрации блюд — рисованные, не фотостоки. */
+const ART = {
+  fondan: `<svg viewBox="0 0 400 300" role="img" aria-label="Шоколадный фондан в разрезе с вытекающим центром">
+    <defs>
+      <linearGradient id="fdPlate" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="var(--plate)"/><stop offset="1" stop-color="var(--sunken)"/>
+      </linearGradient>
+      <linearGradient id="fdCake" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="var(--choc)"/><stop offset=".55" stop-color="var(--choc-d)"/><stop offset="1" stop-color="var(--choc-d)"/>
+      </linearGradient>
+      <linearGradient id="fdTop" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="var(--choc)"/><stop offset="1" stop-color="var(--choc-d)"/>
+      </linearGradient>
+      <radialGradient id="fdCore" cx=".35" cy=".3" r=".9">
+        <stop offset="0" stop-color="var(--gold)"/><stop offset="1" stop-color="var(--choc)"/>
+      </radialGradient>
+      <filter id="fdBlur" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="7"/>
+      </filter>
+      <filter id="fdSoft" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="3"/>
+      </filter>
+    </defs>
+    <ellipse cx="208" cy="252" rx="150" ry="26" fill="#000" opacity=".4" filter="url(#fdBlur)"/>
+    <ellipse cx="200" cy="232" rx="152" ry="38" fill="url(#fdPlate)"/>
+    <ellipse cx="200" cy="228" rx="126" ry="29" fill="var(--sunken)"/>
+    <ellipse cx="148" cy="226" rx="36" ry="9" fill="#fff" opacity=".16" filter="url(#fdSoft)"/>
+    <ellipse cx="200" cy="234" rx="88" ry="19" fill="var(--choc)"/>
+    <ellipse cx="170" cy="230" rx="26" ry="6" fill="var(--gold)" opacity=".3" filter="url(#fdSoft)"/>
+    <path d="M136 108h128l-10 112h-108z" fill="url(#fdCake)"/>
+    <ellipse cx="200" cy="108" rx="64" ry="17" fill="url(#fdTop)"/>
+    <g fill="var(--choc)" opacity=".55">
+      <circle cx="162" cy="140" r="2.6"/><circle cx="176" cy="168" r="2"/><circle cx="154" cy="186" r="2.4"/>
+      <circle cx="232" cy="146" r="2.2"/><circle cx="244" cy="178" r="2.6"/><circle cx="222" cy="200" r="2"/>
+      <circle cx="168" cy="206" r="1.8"/><circle cx="238" cy="124" r="1.8"/>
+    </g>
+    <path d="M196 94h9v128h-9z" fill="#000" opacity=".3"/>
+    <ellipse cx="200" cy="168" rx="31" ry="15" fill="url(#fdCore)"/>
+    <path d="M187 168h26l-5 54h-16z" fill="url(#fdCore)"/>
+    <ellipse cx="200" cy="222" rx="9" ry="6" fill="url(#fdCore)"/>
+    <ellipse cx="190" cy="162" rx="9" ry="4" fill="#fff" opacity=".34" filter="url(#fdSoft)"/>
+    <g fill="#fff" opacity=".9">
+      <circle cx="168" cy="100" r="2.6"/><circle cx="188" cy="94" r="2"/><circle cx="214" cy="96" r="2.6"/>
+      <circle cx="236" cy="103" r="2"/><circle cx="200" cy="88" r="2"/><circle cx="152" cy="106" r="1.6"/>
+    </g>
+    <ellipse cx="172" cy="100" rx="26" ry="7" fill="#fff" opacity=".12" filter="url(#fdSoft)"/>
+  </svg>`,
+  pasta: `<svg viewBox="0 0 400 300" role="img" aria-label="Сковорода с пастой, креветками и томатами">
+    <defs>
+      <linearGradient id="paPan" x1="0" y1="0" x2=".4" y2="1">
+        <stop offset="0" stop-color="var(--noodle)" stop-opacity=".45"/>
+        <stop offset=".3" stop-color="var(--pan)"/><stop offset="1" stop-color="#000"/>
+      </linearGradient>
+      <radialGradient id="paSauce" cx=".36" cy=".3" r=".85">
+        <stop offset="0" stop-color="var(--tomato)"/><stop offset="1" stop-color="var(--choc-d)"/>
+      </radialGradient>
+      <linearGradient id="paShrimp" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".4" stop-color="var(--shrimp)"/><stop offset="1" stop-color="var(--tomato)"/>
+      </linearGradient>
+      <radialGradient id="paTom" cx=".35" cy=".3" r=".8">
+        <stop offset="0" stop-color="var(--shrimp)"/><stop offset="1" stop-color="var(--tomato)"/>
+      </radialGradient>
+      <filter id="paBlur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8"/></filter>
+      <filter id="paSoft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3"/></filter>
+    </defs>
+    <ellipse cx="210" cy="188" rx="150" ry="104" fill="#000" opacity=".45" filter="url(#paBlur)"/>
+    <ellipse cx="200" cy="160" rx="150" ry="112" fill="url(#paPan)"/>
+    <ellipse cx="200" cy="162" rx="131" ry="96" fill="var(--sunken)"/>
+    <ellipse cx="200" cy="164" rx="120" ry="86" fill="url(#paSauce)"/>
+    <g stroke="var(--noodle)" stroke-width="7" fill="none" stroke-linecap="round" opacity=".55">
+      <path d="M122 168c22-34 68-48 108-34s62 50 44 74"/>
+      <path d="M130 194c30-30 70-14 102-30s56-6 58 20"/>
+    </g>
+    <g stroke="var(--noodle)" stroke-width="7" fill="none" stroke-linecap="round">
+      <path d="M118 160c22-34 68-48 108-34s62 50 44 74"/>
+      <path d="M126 186c30-30 70-14 102-30s56-6 58 20"/>
+      <path d="M140 132c34 22 76-4 112 12s34 46 10 56"/>
+      <path d="M152 206c40 6 80-18 118-6"/>
+    </g>
+    <g stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity=".32">
+      <path d="M120 157c22-34 68-48 108-34"/>
+      <path d="M142 129c30 20 68-2 102 10"/>
+    </g>
+    <g fill="none" stroke-linecap="round">
+      <path d="M156 126a26 26 0 0 1 40 10c4 10-4 16-12 12s-12-14-6-20 20-4 24 6" stroke="url(#paShrimp)" stroke-width="11"/>
+      <path d="M232 186a26 26 0 0 1 40 10c4 10-4 16-12 12s-12-14-6-20 20-4 24 6" stroke="url(#paShrimp)" stroke-width="11"/>
+      <path d="M214 112a22 22 0 0 1 34 8c3 9-4 14-10 10s-10-12-5-17 17-3 20 5" stroke="url(#paShrimp)" stroke-width="9"/>
+    </g>
+    <g stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity=".45">
+      <path d="M160 122a24 24 0 0 1 32 8"/><path d="M236 182a24 24 0 0 1 32 8"/>
+    </g>
+    <circle cx="168" cy="202" r="13" fill="url(#paTom)"/>
+    <circle cx="262" cy="134" r="11" fill="url(#paTom)"/>
+    <ellipse cx="164" cy="197" rx="4" ry="2.6" fill="#fff" opacity=".5"/>
+    <ellipse cx="258" cy="130" rx="3.4" ry="2.2" fill="#fff" opacity=".5"/>
+    <g fill="var(--basil)">
+      <ellipse cx="206" cy="94" rx="15" ry="8" transform="rotate(-18 206 94)"/>
+      <ellipse cx="146" cy="168" rx="13" ry="7" transform="rotate(24 146 168)"/>
+    </g>
+    <g stroke="#fff" stroke-width="1.2" opacity=".35" fill="none">
+      <path d="M194 97h24"/><path d="M135 170h22"/>
+    </g>
+    <ellipse cx="150" cy="104" rx="46" ry="22" fill="#fff" opacity=".1" filter="url(#paSoft)"/>
+  </svg>`
+};
+
+/* Параметрический конструктор иллюстраций: посуда + заливка + россыпь элементов.
+   Один генератор на весь каталог — иллюстрации выходят разные, но одной руки. */
+let _uid = 0;
+
+function scatter(n, cx, cy, rx, ry, seed) {
+  const out = [];
+  for (let i = 0; i < n; i++) {
+    const a = i * 2.39996 + seed;
+    const r = Math.sqrt((i + 0.6) / n) * 0.8;
+    out.push([cx + Math.cos(a) * rx * r, cy + Math.sin(a) * ry * r, (a * 57) % 360]);
+  }
+  return out;
+}
+
+function dish(cfg) {
+  const id = "g" + (++_uid);
+  const vessel = cfg.vessel || "bowl";
+  const base = cfg.base || "var(--broth)";
+  const items = cfg.items || [];
+  const label = cfg.label || "Иллюстрация блюда";
+
+  // геометрия посуды: центр и радиусы области с едой
+  const G = {
+    bowl: { cx: 200, cy: 148, rx: 118, ry: 27, rim: [140, 34], bodyR: 140 },
+    plate: { cx: 200, cy: 166, rx: 116, ry: 32, rim: [152, 44], bodyR: 0 },
+    pan: { cx: 200, cy: 162, rx: 116, ry: 82, rim: [150, 110], bodyR: 0 }
+  }[vessel];
+
+  let body = "";
+  if (vessel === "bowl") {
+    body = `
+      <path d="M60 148a140 140 0 0 0 280 0z" fill="url(#${id}v)"/>
+      <ellipse cx="200" cy="148" rx="${G.rim[0]}" ry="${G.rim[1]}" fill="url(#${id}r)"/>
+      <ellipse cx="200" cy="148" rx="${G.rx}" ry="${G.ry}" fill="url(#${id}b)"/>
+      <ellipse cx="146" cy="214" rx="34" ry="46" fill="#fff" opacity=".1" filter="url(#${id}s)"/>`;
+  } else if (vessel === "plate") {
+    body = `
+      <ellipse cx="200" cy="166" rx="${G.rim[0]}" ry="${G.rim[1]}" fill="url(#${id}r)"/>
+      <ellipse cx="200" cy="166" rx="124" ry="36" fill="url(#${id}v)"/>
+      <ellipse cx="200" cy="166" rx="${G.rx}" ry="${G.ry}" fill="url(#${id}b)"/>
+      <ellipse cx="128" cy="160" rx="38" ry="10" fill="#fff" opacity=".2" filter="url(#${id}s)"/>`;
+  } else {
+    body = `
+      <ellipse cx="200" cy="162" rx="150" ry="112" fill="url(#${id}v)"/>
+      <ellipse cx="200" cy="164" rx="131" ry="96" fill="var(--sunken)"/>
+      <ellipse cx="200" cy="164" rx="${G.rx}" ry="${G.ry}" fill="url(#${id}b)"/>
+      <ellipse cx="146" cy="110" rx="48" ry="22" fill="#fff" opacity=".1" filter="url(#${id}s)"/>`;
+  }
+
+  let deco = "";
+  items.forEach((it, k) => {
+    const pts = scatter(it.n || 5, G.cx, G.cy, G.rx * (it.spread || 0.82),
+      G.ry * (it.spread || 0.82), (k + 1) * 1.7);
+    const s = it.size || 7;
+    pts.forEach(([x, y, a], j) => {
+      if (it.type === "leaf") {
+        deco += `<g transform="rotate(${a.toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})">
+          <ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${s * 1.7}" ry="${s * 0.8}" fill="${it.color}"/>
+          <line x1="${(x - s * 1.4).toFixed(1)}" y1="${y.toFixed(1)}" x2="${(x + s * 1.4).toFixed(1)}" y2="${y.toFixed(1)}" stroke="#fff" stroke-opacity=".3" stroke-width="1"/></g>`;
+      } else if (it.type === "chunk") {
+        deco += `<g transform="rotate(${a.toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})">
+          <rect x="${(x - s).toFixed(1)}" y="${(y - s * 0.7).toFixed(1)}" width="${s * 2}" height="${s * 1.4}" rx="3" fill="${it.color}"/>
+          <rect x="${(x - s).toFixed(1)}" y="${(y - s * 0.7).toFixed(1)}" width="${s * 2}" height="${s * 0.5}" rx="3" fill="#fff" opacity=".22"/></g>`;
+      } else if (it.type === "disc") {
+        deco += `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${s * 2}" ry="${s * 1.5}" fill="${it.color}"/>
+          <ellipse cx="${(x - s * 0.5).toFixed(1)}" cy="${(y - s * 0.4).toFixed(1)}" rx="${s * 0.8}" ry="${s * 0.45}" fill="#fff" opacity=".3"/>`;
+      } else if (it.type === "swirl") {
+        deco += `<path d="M${(x - s * 2.4).toFixed(1)} ${y.toFixed(1)}q${s * 1.2} ${-s * 1.4} ${s * 2.4} 0t${s * 2.4} 0" fill="none" stroke="${it.color}" stroke-width="${Math.max(2, s * 0.6)}" stroke-linecap="round" opacity=".9"/>`;
+      } else {
+        deco += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${s}" fill="${it.color}"/>
+          <circle cx="${(x - s * 0.3).toFixed(1)}" cy="${(y - s * 0.3).toFixed(1)}" r="${s * 0.3}" fill="#fff" opacity=".35"/>`;
+      }
+      if (j > 60) return;
+    });
+  });
+
+  return `<svg viewBox="0 0 400 300" role="img" aria-label="${label}">
+    <defs>
+      <linearGradient id="${id}v" x1="0" y1="0" x2=".4" y2="1">
+        <stop offset="0" stop-color="var(--plate)"/><stop offset=".45" stop-color="var(--plate)"/><stop offset="1" stop-color="var(--choc-d)"/>
+      </linearGradient>
+      <linearGradient id="${id}r" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".5"/><stop offset=".4" stop-color="var(--plate)"/><stop offset="1" stop-color="var(--sunken)"/>
+      </linearGradient>
+      <radialGradient id="${id}b" cx=".36" cy=".3" r=".85">
+        <stop offset="0" stop-color="${base}"/><stop offset="1" stop-color="var(--choc-d)"/>
+      </radialGradient>
+      <filter id="${id}s" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="6"/></filter>
+      <filter id="${id}d" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="9"/></filter>
+    </defs>
+    <ellipse cx="212" cy="${vessel === "bowl" ? 250 : 206}" rx="150" ry="${vessel === "pan" ? 100 : 30}" fill="#000" opacity=".42" filter="url(#${id}d)"/>
+    ${body}
+    ${deco}
+  </svg>`;
+}
+
+/* Спецификации блюд. Из одной спецификации получаются и главная иллюстрация,
+   и кадры «ингредиенты» и «в процессе» для галереи. */
+const DISH_SPEC = {
+  sup: {
+    vessel: "bowl", base: "var(--pumpkin)", label: "Тыквенный крем-суп с нутом в миске",
+    items: [{ type: "swirl", color: "var(--sourcream)", n: 2, size: 6, spread: 0.5 },
+            { type: "dot", color: "var(--noodle)", n: 11, size: 6 },
+            { type: "leaf", color: "var(--basil)", n: 2, size: 5, spread: 0.6 }]
+  },
+  syrniki: {
+    vessel: "plate", base: "var(--sourcream)", label: "Сырники на тарелке со сметаной и ягодами",
+    items: [{ type: "disc", color: "var(--noodle)", n: 3, size: 13, spread: 0.55 },
+            { type: "dot", color: "var(--berry)", n: 6, size: 7, spread: 0.95 },
+            { type: "leaf", color: "var(--basil)", n: 1, size: 5, spread: 0.3 }]
+  },
+  kinoa: {
+    vessel: "bowl", base: "var(--noodle)", label: "Киноа с печёной свёклой и фетой в миске",
+    items: [{ type: "chunk", color: "var(--beet)", n: 6, size: 9 },
+            { type: "chunk", color: "var(--feta)", n: 5, size: 7, spread: 0.65 },
+            { type: "dot", color: "var(--mush)", n: 5, size: 4, spread: 0.9 },
+            { type: "leaf", color: "var(--basil)", n: 2, size: 5, spread: 0.5 }]
+  },
+  shakshuka: {
+    vessel: "pan", base: "var(--tomato)", label: "Шакшука на сковороде с яйцами и фетой",
+    items: [{ type: "disc", color: "var(--feta)", n: 2, size: 15, spread: 0.45 },
+            { type: "dot", color: "var(--yolk)", n: 2, size: 12, spread: 0.45 },
+            { type: "chunk", color: "var(--feta)", n: 5, size: 6, spread: 0.95 },
+            { type: "leaf", color: "var(--basil)", n: 3, size: 6, spread: 0.85 }]
+  },
+  chechevica: {
+    vessel: "bowl", base: "var(--broth)", label: "Чечевичный суп с томатами в миске",
+    items: [{ type: "dot", color: "var(--tomato)", n: 8, size: 6 },
+            { type: "dot", color: "var(--noodle)", n: 7, size: 4, spread: 0.9 },
+            { type: "leaf", color: "var(--basil)", n: 2, size: 5, spread: 0.45 }]
+  },
+  griby: {
+    vessel: "bowl", base: "var(--sourcream)", label: "Грибной крем-суп со сливками в миске",
+    items: [{ type: "chunk", color: "var(--mush)", n: 6, size: 8, spread: 0.7 },
+            { type: "swirl", color: "var(--feta)", n: 2, size: 6, spread: 0.4 },
+            { type: "leaf", color: "var(--basil)", n: 2, size: 4, spread: 0.8 }]
+  },
+  cacio: {
+    vessel: "plate", base: "var(--noodle)", label: "Паста качо-э-пепе на тарелке",
+    items: [{ type: "swirl", color: "var(--gold)", n: 5, size: 7, spread: 0.6 },
+            { type: "dot", color: "var(--choc-d)", n: 9, size: 3, spread: 0.85 },
+            { type: "chunk", color: "var(--feta)", n: 3, size: 5, spread: 0.5 }]
+  },
+  bedra: {
+    vessel: "pan", base: "var(--brick)", label: "Куриные бёдра в медово-горчичном соусе",
+    items: [{ type: "chunk", color: "var(--choc)", n: 4, size: 18, spread: 0.6 },
+            { type: "dot", color: "var(--gold)", n: 7, size: 5, spread: 0.95 },
+            { type: "leaf", color: "var(--basil)", n: 3, size: 6, spread: 0.9 }]
+  },
+  fondanSpec: {
+    vessel: "plate", base: "var(--choc)", label: "Шоколадный фондан на тарелке",
+    items: [{ type: "disc", color: "var(--choc-d)", n: 2, size: 16, spread: 0.4 },
+            { type: "dot", color: "var(--gold)", n: 5, size: 5, spread: 0.7 },
+            { type: "dot", color: "var(--berry)", n: 4, size: 6, spread: 0.95 }]
+  },
+  pastaSpec: {
+    vessel: "pan", base: "var(--tomato)", label: "Паста с креветками на сковороде",
+    items: [{ type: "swirl", color: "var(--noodle)", n: 4, size: 8, spread: 0.6 },
+            { type: "chunk", color: "var(--shrimp)", n: 4, size: 10, spread: 0.75 },
+            { type: "leaf", color: "var(--basil)", n: 3, size: 6, spread: 0.9 }]
+  }
+};
+
+Object.entries(DISH_SPEC).forEach(([k, spec]) => { ART[k] = dish(spec); });
+
+/* Кадр «ингредиенты»: всё разложено на доске, элементов больше и шире. */
+function variantIngredients(spec) {
+  return dish({
+    vessel: "plate", base: "var(--sunken)",
+    label: "Ингредиенты, разложенные перед приготовлением",
+    items: spec.items.map(it => ({ ...it, spread: 0.95, n: Math.min(9, (it.n || 4) + 3), size: (it.size || 6) * 0.9 }))
+  });
+}
+
+/* Кадр «в процессе»: всё в сковороде, элементов меньше и ближе к центру. */
+function variantProcess(spec) {
+  return dish({
+    vessel: "pan", base: spec.base,
+    label: "Блюдо в процессе приготовления",
+    items: spec.items.slice(0, 2).map(it => ({ ...it, spread: 0.6, n: Math.max(3, (it.n || 4) - 1) }))
+  });
+}
+
+const ART_BY_SLUG = {
+  "tykvennyy-krem-sup": "sup", "syrniki-risovaya-muka": "syrniki",
+  "kinoa-svekla-feta": "kinoa", "shakshuka-s-fetoy": "shakshuka",
+  "chechevichnyy-sup": "chechevica", "gribnoy-sup-slivki": "griby",
+  "pasta-cacio-e-pepe": "cacio", "bedra-medovo-gorchichnye": "bedra"
+};
+RECIPES.forEach(r => { if (!r.art && ART_BY_SLUG[r.slug]) r.art = ART_BY_SLUG[r.slug]; });
+
+/* Спецификация для вариантов: у рисованных вручную — своя. */
+const SPEC_BY_SLUG = {
+  ...ART_BY_SLUG,
+  "shokoladnyy-fondan": "fondanSpec",
+  "pasta-krevetki-tomat": "pastaSpec"
+};
+
+/* Галерея рецепта: кадр блюда, ингредиенты, процесс — плюс фото читателей. */
+function galleryFor(r) {
+  const spec = DISH_SPEC[SPEC_BY_SLUG[r.slug]];
+  const base = [{ kind: "art", html: ART[r.art], cap: "Готовое блюдо" }];
+  if (spec) {
+    base.push({ kind: "art", html: variantIngredients(spec), cap: "Ингредиенты" });
+    base.push({ kind: "art", html: variantProcess(spec), cap: "В процессе" });
+  }
+  const own = (S.photos[r.slug] || []).map(p => ({ kind: "photo", src: p.src, cap: p.cap || "Фото редакции" }));
+  const readers = (S.reviews[r.slug] || []).flatMap(rv =>
+    (rv.shots || []).map(src => ({ kind: "photo", src, cap: "Фото читателя · " + rv.name, reader: true })));
+  return [...own, ...base, ...readers];
+}
+
+function pic(r, i, h, label) {
+  if (r.art) return `<div class="artbox" style="height:${h}px">${ART[r.art]}</div>`;
+  return ph(i, label, h);
+}
+
+function fmt(n) {
+  const r = Math.round(n * 100) / 100;
+  return (Math.abs(r - Math.round(r)) < 0.01 ? String(Math.round(r)) : String(r).replace(".", ",")).replace("-", "−");
+}
+
+function cardHtml(r, i) {
+  const fav = S.favorites.has(r.slug);
+  return `<button class="card" data-recipe="${r.slug}">
+    ${pic(r, i, 160, "Фото 4:3")}
+    <div class="row" style="padding:0 4px">
+      <span class="chip chip-g">${esc(r.cat)}</span>
+      <span class="chip">${r.min} мин</span>
+      ${r.reel ? '<span class="chip chip-b">Рилс</span>' : ""}
+      ${fav ? '<span class="chip chip-b">В избранном</span>' : ""}
+    </div>
+    <h3>${esc(r.title)}</h3>
+    <p>${r.min} мин · ${r.serv} порции · ${esc(r.diff)}</p>
+  </button>`;
+}
+
+/* ---------- экраны ---------- */
+function viewHome() {
+  const top = PUBLISHED.slice(0, 4);
+  return `
+  <section class="wrap band">
+    <div style="display:flex;flex-wrap:wrap;gap:30px;align-items:center">
+      <div style="flex:1 1 440px;min-width:0">${ph(0, "Фото блюда — 4:3", 380)}</div>
+      <div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:16px">
+        <span class="chip chip-g" style="align-self:flex-start">Рецепт недели</span>
+        <h1 style="font-size:clamp(30px,4.4vw,46px);line-height:1.08">Тыквенный крем-суп с хрустящим нутом</h1>
+        <p class="muted" style="margin:0;font-size:17px">Бархатная текстура без сливок, запечённая тыква и нут, обжаренный с копчёной паприкой. Готовится в одной кастрюле.</p>
+        <p class="muted" style="margin:0;font-size:14px">35 минут · 4 порции · Просто</p>
+        <div class="row">
+          <button class="btn btn-primary" data-recipe="tykvennyy-krem-sup">Открыть рецепт</button>
+          <button class="btn btn-line" data-go="catalog">Все рецепты</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:10px">
+    <div class="row">
+      ${CATEGORIES.map(c => `<button class="btn btn-ghost btn-sm" data-category="${c.slug}">${esc(c.title)}</button>`).join("")}
+    </div>
+  </section>
+
+  <section class="wrap band">
+    <div class="sec-head"><h2>Популярное на этой неделе</h2><button class="btn btn-ghost btn-sm" data-go="catalog">Смотреть все →</button></div>
+    <div class="grid">${top.map((r, i) => cardHtml(r, i)).join("")}</div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:44px">
+    <div class="sec-head"><h2>Подборки редакции</h2><button class="btn btn-ghost btn-sm" data-go="collections">Все подборки →</button></div>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      ${COLLECTIONS.map(c => `<button data-collection="${c.slug}" style="display:flex;flex-direction:column;justify-content:flex-end;min-height:220px;padding:22px;border:0;border-radius:18px;background:${c.accent};color:#fff;text-align:left;gap:8px">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85">${c.recipes.length} рецептов</span>
+          <span style="font-family:var(--display);font-size:24px;font-weight:600;line-height:1.2">${esc(c.title)}</span></button>`).join("")}
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:44px">
+    <div class="sec-head"><h2>Журнал</h2><button class="btn btn-ghost btn-sm" data-go="journal">Все материалы →</button></div>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      ${ARTICLES.map(a => `<button data-article="${a.slug}" class="card" style="padding:22px;gap:6px">
+        <span class="muted" style="font-size:13px">${esc(a.date)}</span>
+        <h3 style="font-family:var(--display);font-size:21px;font-weight:600;padding:0">${esc(a.title)}</h3>
+        <p class="muted" style="margin:0;padding:0;font-size:14px;line-height:1.5">${esc(a.lead)}</p>
+      </button>`).join("")}
+    </div>
+  </section>
+
+  ${S.user ? "" : `
+  <section class="wrap" style="padding-bottom:44px">
+    <div style="display:flex;flex-wrap:wrap;gap:30px;align-items:center;background:var(--green-soft);border-radius:20px;padding:clamp(20px,3vw,36px)">
+      <div style="flex:1 1 320px;min-width:0">
+        <h2 style="font-size:26px;color:var(--green-ink)">Сохраняйте рецепты в избранное</h2>
+        <p style="margin:8px 0 0;color:var(--green-ink);font-size:15px">Достаточно имени и почты. Мы отправим письмо со ссылкой — перейдите по ней, чтобы подтвердить адрес.</p>
+      </div>
+      <button class="btn btn-green" style="flex:0 0 auto" data-go="auth">Создать аккаунт</button>
+    </div>
+  </section>`}`;
+}
+
+function filtered() {
+  const f = S.f;
+  let list = PUBLISHED.filter(r => {
+    if (f.q && !(r.title + " " + r.lead).toLowerCase().includes(f.q.toLowerCase())) return false;
+    if (f.cats.size && !f.cats.has(r.cat)) return false;
+    if (r.min > f.maxTime) return false;
+    if (f.diff.size && !f.diff.has(r.diff)) return false;
+    for (const d of f.diet) if (!r.diet.includes(d)) return false;
+    return true;
+  });
+  if (f.sort === "fast") list = [...list].sort((a, b) => a.min - b.min);
+  if (f.sort === "az") list = [...list].sort((a, b) => a.title.localeCompare(b.title, "ru"));
+  return list;
+}
+
+function viewCatalog() {
+  const f = S.f;
+  const list = filtered();
+  const cb = (name, checked, kind, val) =>
+    `<label style="display:flex;align-items:center;gap:10px;min-height:30px;font-size:15px;font-weight:400;color:var(--ink)">
+      <input type="checkbox" data-filter="${kind}" value="${esc(val)}" ${checked ? "checked" : ""}> ${esc(name)}</label>`;
+
+  return `
+  <div class="wrap band">
+    <h1 style="font-size:clamp(28px,4vw,40px)">Все рецепты</h1>
+    <p class="muted" style="margin:6px 0 0">Найдено ${list.length} из ${PUBLISHED.length} опубликованных</p>
+
+    <div style="display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start;margin-top:24px">
+      <aside style="flex:1 1 250px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <h2 style="font-family:var(--body);font-size:16px;font-weight:700">Фильтры</h2>
+          <button class="btn btn-sm" style="color:var(--brick);background:none;border:0;padding:0" data-reset="1">Сбросить</button>
+        </div>
+        <label class="fl">Поиск
+          <input type="search" id="fq" value="${esc(f.q)}" placeholder="Например, тыква" data-filter="q">
+        </label>
+        <fieldset style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:8px">
+          <legend style="padding:0;font-size:13px;font-weight:700;color:var(--muted)">Категория</legend>
+          ${CATS.map(c => cb(c, f.cats.has(c), "cat", c)).join("")}
+        </fieldset>
+        <label class="fl">Время приготовления: до <span class="tnum">${f.maxTime}</span> минут
+          <input type="range" min="15" max="120" step="5" value="${f.maxTime}" data-filter="time">
+        </label>
+        <fieldset style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:8px">
+          <legend style="padding:0;font-size:13px;font-weight:700;color:var(--muted)">Сложность</legend>
+          ${["Просто", "Средне"].map(d => cb(d, f.diff.has(d), "diff", d)).join("")}
+        </fieldset>
+        <fieldset style="border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:8px">
+          <legend style="padding:0;font-size:13px;font-weight:700;color:var(--muted)">Диета</legend>
+          ${cb("Вегетарианское", f.diet.has("veg"), "diet", "veg")}
+          ${cb("Без глютена", f.diet.has("gf"), "diet", "gf")}
+        </fieldset>
+      </aside>
+
+      <section style="flex:999 1 540px;min-width:0">
+        <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:18px">
+          <div class="row">
+            ${[...f.cats].map(c => `<span class="chip chip-g">${esc(c)}</span>`).join("")}
+            ${f.maxTime < 120 ? `<span class="chip chip-g">До ${f.maxTime} мин</span>` : ""}
+            ${[...f.diff].map(d => `<span class="chip chip-g">${esc(d)}</span>`).join("")}
+          </div>
+          <label style="display:flex;align-items:center;gap:8px;font-size:14px" class="muted">Сортировка
+            <select data-filter="sort" style="width:auto">
+              <option value="pop" ${f.sort === "pop" ? "selected" : ""}>Сначала популярные</option>
+              <option value="fast" ${f.sort === "fast" ? "selected" : ""}>Быстрые в приготовлении</option>
+              <option value="az" ${f.sort === "az" ? "selected" : ""}>По алфавиту</option>
+            </select>
+          </label>
+        </div>
+        ${list.length ? `<div class="grid">${list.map((r, i) => cardHtml(r, i)).join("")}</div>` : emptyState()}
+      </section>
+    </div>
+  </div>`;
+}
+
+/* Пустое состояние разное по причине: виноват запрос или слишком узкие фильтры.
+   Если дело в фильтрах — показываем, что нашёл бы один запрос без них. */
+function emptyState() {
+  const f = S.f;
+  const q = f.q.trim();
+  const byQuery = q
+    ? PUBLISHED.filter(r => (r.title + " " + r.lead + " " + r.tags.join(" ")).toLowerCase().includes(q.toLowerCase()))
+    : [];
+  const activeFilters = f.cats.size + f.diff.size + f.diet.size + (f.maxTime < 120 ? 1 : 0);
+
+  const shell = (icon, title, text, actions, extra = "") => `
+    <div style="background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:40px 28px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px">
+      <div style="width:60px;height:60px;border-radius:999px;background:var(--sunken);display:grid;place-items:center;color:var(--muted)">${icon}</div>
+      <h3 style="font-family:var(--display);font-size:24px">${title}</h3>
+      <p class="muted" style="margin:0;max-width:48ch;line-height:1.6">${text}</p>
+      <div class="row" style="justify-content:center;margin-top:4px">${actions}</div>
+      ${extra}
+    </div>`;
+
+  const lens = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>`;
+  const funnel = `<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 5h16l-6 7v6l-4 2v-8z"/></svg>`;
+
+  // запрос что-то находит, но его отсекают фильтры
+  if (q && byQuery.length && activeFilters) {
+    return shell(funnel,
+      "Фильтры отсекают всё найденное",
+      `По запросу «${esc(q)}» ${plural(byQuery.length, "есть", "есть", "есть")} ${byQuery.length} ${plural(byQuery.length, "рецепт", "рецепта", "рецептов")}, но ${plural(activeFilters, "активный фильтр не пропускает его", "активные фильтры не пропускают их", "активные фильтры не пропускают их")}.`,
+      `<button class="btn btn-green btn-sm" data-keepquery="1">Снять фильтры, оставить запрос</button>
+       <button class="btn btn-ghost btn-sm" data-reset="1">Сбросить всё</button>`,
+      `<div style="width:100%;margin-top:20px;text-align:left">
+         <p class="muted" style="margin:0 0 12px;font-size:13px;letter-spacing:.08em;text-transform:uppercase">Нашлось бы без фильтров</p>
+         <div class="grid">${byQuery.slice(0, 3).map((r, i) => cardHtml(r, i)).join("")}</div>
+       </div>`);
+  }
+
+  // запрос не находит ничего
+  if (q) {
+    const suggestions = ["тыква", "паста", "шоколад", "суп"].filter(s => s !== q.toLowerCase());
+    return shell(lens,
+      `По запросу «${esc(q)}» ничего нет`,
+      "Возможно, опечатка или такого рецепта пока не написали. Поиск ищет по названию, описанию и тегам.",
+      `<button class="btn btn-ghost btn-sm" data-reset="1">Очистить поиск</button>`,
+      `<div style="width:100%;margin-top:18px">
+         <p class="muted" style="margin:0 0 10px;font-size:13px">Попробуйте:</p>
+         <div class="row" style="justify-content:center">
+           ${suggestions.map(s => `<button class="btn btn-ghost btn-sm" data-query="${esc(s)}">${esc(s)}</button>`).join("")}
+         </div>
+       </div>`);
+  }
+
+  // фильтров слишком много
+  const hints = [];
+  if (f.maxTime < 60) hints.push("увеличить время приготовления");
+  if (f.diet.size) hints.push("снять ограничение по диете");
+  if (f.cats.size > 1) hints.push("оставить одну категорию");
+  if (f.diff.size === 1) hints.push("добавить вторую сложность");
+
+  return shell(funnel,
+    "Под такие условия ничего нет",
+    hints.length
+      ? `Сейчас стоит ${plural(activeFilters, "фильтр", "фильтра", "фильтров")}: ${activeFilters}. Помогло бы ${hints.slice(0, 2).join(" или ")}.`
+      : "Попробуйте ослабить условия — например, увеличить время приготовления.",
+    `<button class="btn btn-green btn-sm" data-reset="1">Сбросить фильтры</button>
+     <button class="btn btn-ghost btn-sm" data-go="collections">Открыть подборки</button>`);
+}
+
+function viewRecipe() {
+  const r = bySlug(S.slug);
+  if (!r) return `<div class="wrap band"><h1>Рецепт не найден</h1></div>`;
+  const k = S.servings;
+  const fav = S.favorites.has(r.slug);
+  const url = location.href.split("#")[0];
+  const tg = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(r.title + " — рецепт на «Food Guru»")}`;
+
+  return `
+  <div class="wrap band">
+    <nav class="muted" style="font-size:13px;margin-bottom:14px">
+      <button style="background:none;border:0;color:inherit;padding:0" data-go="home">Главная</button> /
+      <button style="background:none;border:0;color:inherit;padding:0" data-go="catalog">${esc(r.cat)}</button> / <span>${esc(r.title)}</span>
+    </nav>
+
+    <div style="display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start">
+      <div style="flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:18px">
+        <div class="row">
+          <span class="chip chip-g">${esc(r.cat)}</span>
+          ${r.tags.map(t => `<span class="chip">${esc(t)}</span>`).join("")}
+        </div>
+        <h1 style="font-size:clamp(30px,4.4vw,46px);line-height:1.1">${esc(r.title)}</h1>
+        <p class="muted" style="margin:0;font-size:17px;max-width:62ch">${esc(r.lead)}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:24px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+          ${[["Время", r.min + " минут"], ["Сложность", r.diff], ["Калорийность", r.kb[0] + " ккал / порция"], ["Автор", "Мария Левина"]]
+            .map(([l, v]) => `<div><div class="muted" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase">${l}</div><div style="font-size:16px;font-weight:700">${esc(v)}</div></div>`).join("")}
+        </div>
+        ${galleryHtml(r)}
+      </div>
+
+      <aside style="flex:1 1 300px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:12px">
+        <h2 style="font-family:var(--body);font-size:17px;font-weight:700">Действия</h2>
+        <button class="btn ${fav ? "btn-ghost" : "btn-primary"}" data-fav="${r.slug}">${fav ? "В избранном ✓" : "В избранное"}</button>
+        <button class="btn btn-line" data-share="1" aria-expanded="${S.shareOpen}">Поделиться</button>
+        ${S.shareOpen ? `
+        <div style="display:flex;flex-direction:column;gap:10px;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--sunken)">
+          <a class="btn" style="background:#2A8BBE;color:#fff" href="${tg}" target="_blank" rel="noopener">Отправить в Telegram</a>
+          <label class="fl">Ссылка на рецепт
+            <input type="text" id="shareLink" readonly value="${esc(url)}">
+          </label>
+          <button class="btn btn-ghost btn-sm" data-copy="${esc(url)}">Скопировать ссылку</button>
+          <p class="muted" style="margin:0;font-size:12px">Превью в мессенджере собирается из Open Graph-разметки, которую отдаёт SSR.</p>
+        </div>` : ""}
+        <div style="margin-top:6px;padding-top:14px;border-top:1px solid var(--line);display:flex;align-items:center;gap:10px">
+          <div style="width:42px;height:42px;border-radius:999px;background:var(--green-soft);color:var(--green-ink);display:grid;place-items:center;font-weight:700">МЛ</div>
+          <div><div style="font-weight:700">Мария Левина</div><div class="muted" style="font-size:13px">Контент-менеджер · 64 рецепта</div></div>
+        </div>
+      </aside>
+    </div>
+
+    ${r.reel ? `<div style="display:flex;flex-wrap:wrap;gap:26px;align-items:center;margin-top:40px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px">
+      <div style="flex:0 1 270px;min-width:0">
+        <video src="${r.reel}" controls playsinline loop preload="metadata" style="aspect-ratio:9/16"></video>
+      </div>
+      <div style="flex:1 1 320px;min-width:0;display:flex;flex-direction:column;gap:10px">
+        <span class="chip chip-b" style="align-self:flex-start">Рилс · 20 секунд</span>
+        <h2 style="font-size:24px">Весь рецепт за двадцать секунд</h2>
+        <p class="muted" style="margin:0">Граммовки, температура и таймеры появляются прямо на шагах — удобно держать перед собой у плиты и так же удобно выкладывать в ленту. Вертикальный формат 1080×1920.</p>
+      </div>
+    </div>` : ""}
+
+    <div style="display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start;margin-top:44px">
+      <div style="flex:1 1 300px;min-width:0;background:var(--green-soft);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:14px">
+        <h2 style="font-size:25px;color:var(--green-ink)">Ингредиенты</h2>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surface);border-radius:14px;padding:8px 12px">
+          <span style="font-weight:600">Порций</span>
+          <div style="display:flex;align-items:center;gap:6px">
+            <button class="btn btn-ghost" style="width:42px;min-height:42px;padding:0" data-serv="-1" aria-label="Уменьшить число порций">−</button>
+            <span class="tnum" style="min-width:30px;text-align:center;font-size:18px;font-weight:700">${k}</span>
+            <button class="btn btn-ghost" style="width:42px;min-height:42px;padding:0" data-serv="1" aria-label="Увеличить число порций">+</button>
+          </div>
+        </div>
+        <ul style="margin:0;padding:0;list-style:none">
+          ${r.ing.map(([n, a, u]) => `<li style="display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid rgba(128,128,128,.18)">
+            <span>${esc(n)}</span><span class="tnum" style="font-weight:700;color:var(--green);white-space:nowrap">${fmt(a * k)} ${esc(u)}</span></li>`).join("")}
+        </ul>
+        <p style="margin:0;font-size:13px;color:var(--green-ink)">Количество пересчитывается автоматически.</p>
+      </div>
+
+      <div style="flex:999 1 500px;min-width:0;display:flex;flex-direction:column;gap:18px">
+        <h2 style="font-size:25px">Приготовление</h2>
+        <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px">
+          ${r.steps.map((s, i) => {
+            const text = Array.isArray(s) ? s[0] : s;
+            const hint = Array.isArray(s) ? s[1] : null;
+            return `<li style="display:flex;gap:16px;align-items:flex-start">
+              <span style="flex:0 0 auto;width:34px;height:34px;border-radius:999px;background:var(--green);color:var(--on-accent);display:grid;place-items:center;font-weight:700">${i + 1}</span>
+              <div style="min-width:0">
+                <p style="margin:0;font-size:16px;line-height:1.65">${esc(text)}</p>
+                ${hint ? `<span class="step-hint">${esc(hint)}</span>` : ""}
+              </div></li>`;
+          }).join("")}
+        </ol>
+        <div class="row" style="margin-top:6px">
+          ${[["Белки", r.kb[1] + " г"], ["Жиры", r.kb[2] + " г"], ["Углеводы", r.kb[3] + " г"], ["Ккал", r.kb[0]]]
+            .map(([l, v]) => `<div style="flex:1 1 120px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px">
+              <div class="muted" style="font-size:11px;letter-spacing:.1em;text-transform:uppercase">${l}</div>
+              <div class="tnum" style="font-size:19px;font-weight:700">${v}</div></div>`).join("")}
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px">
+      ${reviewsHtml(r)}
+    </div>
+
+    <div style="margin-top:48px">
+      <div class="sec-head"><h2>Похожие рецепты</h2></div>
+      <div class="grid">${PUBLISHED.filter(x => x.cat === r.cat && x.slug !== r.slug).concat(PUBLISHED.filter(x => x.cat !== r.cat)).slice(0, 3).map((x, i) => cardHtml(x, i + 1)).join("")}</div>
+    </div>
+  </div>`;
+}
+
+/* ---------- галерея ---------- */
+function frameHtml(item, cls = "") {
+  return item.kind === "photo"
+    ? `<img src="${item.src}" alt="${esc(item.cap)}" class="${cls}" loading="lazy">`
+    : `<div class="artbox ${cls}">${item.html}</div>`;
+}
+
+function galleryHtml(r) {
+  const items = galleryFor(r);
+  const i = Math.min(S.gal, items.length - 1);
+  const cur = items[i];
+  const arrow = dir => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="${dir < 0 ? "m14.5 5-7 7 7 7" : "m9.5 5 7 7-7 7"}"/></svg>`;
+
+  return `<div>
+    <div class="gal-main">
+      ${frameHtml(cur)}
+      <button class="gal-nav" style="left:12px" data-gal="-1" aria-label="Предыдущий кадр">${arrow(-1)}</button>
+      <button class="gal-nav" style="right:12px" data-gal="1" aria-label="Следующий кадр">${arrow(1)}</button>
+      <button class="gal-count" data-box="${i}" aria-label="Открыть во весь экран">${i + 1} / ${items.length}</button>
+      ${cur.reader ? `<span class="gal-badge">Фото читателя</span>` : ""}
+    </div>
+    <div class="gal-thumbs" role="tablist" aria-label="Кадры рецепта">
+      ${items.map((it, k) => `<button role="tab" aria-current="${k === i}" data-galto="${k}" aria-label="${esc(it.cap)}">${frameHtml(it)}</button>`).join("")}
+      <button data-addphoto="${r.slug}" style="flex:0 0 84px;height:64px;border:1.5px dashed var(--line);border-radius:10px;background:var(--sunken);color:var(--muted);font-size:12px;font-weight:600;display:grid;place-items:center">+ фото</button>
+    </div>
+    <p class="muted" style="margin:8px 0 0;font-size:13px">${esc(cur.cap)} · иллюстрации заменяются фотографиями по мере съёмки</p>
+  </div>`;
+}
+
+function lightboxHtml() {
+  if (!S.box) return "";
+  const items = S.box.items;
+  const i = S.box.i;
+  const cur = items[i];
+  return `<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Просмотр снимка">
+    <div style="display:flex;align-items:center;gap:14px;max-width:100%">
+      <button class="gal-nav" style="position:static;transform:none" data-boxnav="-1" aria-label="Предыдущий">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m14.5 5-7 7 7 7"/></svg></button>
+      ${frameHtml(cur)}
+      <button class="gal-nav" style="position:static;transform:none" data-boxnav="1" aria-label="Следующий">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9.5 5 7 7-7 7"/></svg></button>
+    </div>
+    <p class="cap">${esc(cur.cap)} · ${i + 1} из ${items.length}</p>
+    <button class="btn btn-ghost btn-sm" data-boxclose="1" style="background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3)">Закрыть</button>
+  </div>`;
+}
+
+/* ---------- отзывы ---------- */
+const SEED_REVIEWS = {
+  "shokoladnyy-fondan": [
+    { name: "Ирина", rating: 5, date: "24 октября", seed: true, shots: [],
+      text: "Девять минут — действительно предел. На одиннадцати центр схватился, получился обычный кекс. Во второй раз засекла ровно девять, и всё вышло." },
+    { name: "Павел", rating: 4, date: "22 октября", seed: true, shots: [],
+      text: "Делал на 56% шоколаде, потому что другого не было — слишком сладко. Совет про 70% не для красоты." }
+  ],
+  "pasta-krevetki-tomat": [
+    { name: "Ольга", rating: 5, date: "23 октября", seed: true, shots: [],
+      text: "Про обсушить креветки — ключевое. Раньше всегда бросала прямо из пачки и не понимала, почему они варятся, а не жарятся." }
+  ]
+};
+
+function starsHtml(n, size = 16) {
+  let out = `<span class="stars" role="img" aria-label="Оценка ${n} из 5">`;
+  for (let i = 1; i <= 5; i++) {
+    out += `<svg class="star" width="${size}" height="${size}" viewBox="0 0 24 24" aria-hidden="true"
+      fill="${i <= n ? "var(--brick)" : "none"}" stroke="${i <= n ? "var(--brick)" : "var(--line)"}" stroke-width="1.6">
+      <path d="m12 3.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 17l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.8z"/></svg>`;
+  }
+  return out + "</span>";
+}
+
+function reviewsHtml(r) {
+  const list = S.reviews[r.slug] || [];
+  const avg = list.length ? (list.reduce((s, x) => s + x.rating, 0) / list.length) : 0;
+  const withShots = list.filter(x => (x.shots || []).length).length;
+
+  const form = !S.user
+    ? `<div class="note" style="margin-bottom:20px">Отзывы оставляют авторизованные читатели с подтверждённой почтой.
+         <button class="btn btn-green btn-sm" style="margin-top:10px" data-go="auth">Создать аккаунт</button></div>`
+    : `<form id="revForm" data-slug="${r.slug}" style="background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px;margin-bottom:22px">
+        <h3 style="font-family:var(--body);font-size:17px;font-weight:700">Приготовили? Расскажите, как вышло</h3>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span style="font-size:14px;color:var(--muted);font-weight:600">Оценка</span>
+          <div class="row" style="gap:0">
+            ${[1, 2, 3, 4, 5].map(n => `<button type="button" class="rate-btn" data-rate="${n}" aria-label="Поставить ${n} из 5">
+              <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"
+                fill="${n <= S.draftRating ? "var(--brick)" : "none"}" stroke="${n <= S.draftRating ? "var(--brick)" : "var(--line)"}" stroke-width="1.6">
+                <path d="m12 3.6 2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 17l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.8z"/></svg></button>`).join("")}
+          </div>
+        </div>
+        <label class="fl" for="revText">Что получилось
+          <textarea id="revText" rows="3" placeholder="Что изменили, что пошло не так, сколько времени заняло"
+            style="padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--sunken);color:var(--ink);font:inherit;font-weight:400;resize:vertical">${esc(S.draftText)}</textarea>
+        </label>
+        <div class="drop" id="revDrop">
+          Перетащите фото сюда или
+          <label style="color:var(--green);font-weight:700;cursor:pointer;text-decoration:underline">выберите на устройстве
+            <input type="file" id="revFiles" accept="image/*" multiple style="display:none">
+          </label>
+          <div style="margin-top:6px;font-size:12px">До трёх снимков, фото уменьшается автоматически</div>
+        </div>
+        ${S.draftShots.length ? `<div class="rev-shots">${S.draftShots.map((s, k) =>
+          `<button type="button" data-dropshot="${k}" title="Убрать снимок"><img src="${s}" alt="Прикреплённый снимок ${k + 1}"></button>`).join("")}</div>` : ""}
+        <button class="btn btn-green" type="submit" style="align-self:flex-start">Опубликовать отзыв</button>
+      </form>`;
+
+  return `
+    <div class="sec-head">
+      <h2>Отзывы${list.length ? ` · ${list.length}` : ""}</h2>
+      ${list.length ? `<div class="row" style="align-items:center">
+        ${starsHtml(Math.round(avg), 18)}
+        <span class="muted" style="font-size:14px">${avg.toFixed(1).replace(".", ",")} из 5${withShots ? ` · ${withShots} с фото` : ""}</span>
+      </div>` : ""}
+    </div>
+    ${form}
+    ${list.length
+      ? `<div>${list.map((rv, k) => `
+          <div class="review">
+            <div class="ava">${esc((rv.name || "?")[0].toUpperCase())}</div>
+            <div style="min-width:0;flex:1 1 auto">
+              <div class="row" style="align-items:center;gap:10px">
+                <strong>${esc(rv.name)}</strong>
+                ${starsHtml(rv.rating)}
+                <span class="muted" style="font-size:13px">${esc(rv.date)}</span>
+                ${rv.seed ? `<span class="chip" style="font-size:11px">пример</span>` : ""}
+              </div>
+              <p style="margin:8px 0 0;line-height:1.6">${esc(rv.text)}</p>
+              ${(rv.shots || []).length ? `<div class="rev-shots">${rv.shots.map((s, j) =>
+                `<button data-revshot="${r.slug}|${k}|${j}" aria-label="Открыть снимок ${j + 1}"><img src="${s}" alt="Фото от ${esc(rv.name)}"></button>`).join("")}</div>` : ""}
+            </div>
+          </div>`).join("")}</div>`
+      : `<p class="muted" style="margin:0">Пока никто не отчитался. Будете первым — приложите фото, оно попадёт в галерею рецепта.</p>`}`;
+}
+
+function viewAuth() {
+  if (S.authStage === "sent") {
+    return `<div class="wrap band" style="max-width:620px">
+      <div style="background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(22px,4vw,38px);text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center">
+        <div style="width:64px;height:64px;border-radius:999px;background:var(--green-soft);display:grid;place-items:center">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m3.8 7 8.2 6 8.2-6"/></svg>
+        </div>
+        <h1 style="font-size:28px">Письмо отправлено</h1>
+        <p class="muted" style="margin:0">Мы написали на <strong style="color:var(--ink)">${esc(S.letter.email)}</strong>. Перейдите по ссылке из письма, чтобы подтвердить адрес.</p>
+        <button class="btn btn-green" data-go="inbox">Открыть почтовый ящик</button>
+        <p class="muted" style="margin:0;font-size:13px">В прототипе ящик встроен в страницу. В реальном проекте письмо уходит через Mailhog.</p>
+      </div>
+    </div>`;
+  }
+
+  if (S.authStage === "done") {
+    return `<div class="wrap band" style="max-width:620px">
+      <div style="background:var(--green-soft);border-radius:20px;padding:clamp(22px,4vw,38px);text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center">
+        <div style="width:64px;height:64px;border-radius:999px;background:var(--green);display:grid;place-items:center">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--on-accent)" stroke-width="2.4" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+        </div>
+        <h1 style="font-size:28px;color:var(--green-ink)">Адрес подтверждён</h1>
+        <p style="margin:0;color:var(--green-ink)">Аккаунт активен. Теперь рецепты можно сохранять в избранное.</p>
+        <button class="btn btn-green" data-go="account">В личный кабинет</button>
+      </div>
+    </div>`;
+  }
+
+  if (S.authStage === "expired") {
+    return `<div class="wrap band" style="max-width:620px">
+      <div style="background:var(--brick-soft);border-radius:20px;padding:clamp(22px,4vw,38px);text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center">
+        <div style="width:64px;height:64px;border-radius:999px;background:var(--brick);display:grid;place-items:center;color:var(--on-accent);font-size:30px;font-weight:700">!</div>
+        <h1 style="font-size:28px;color:var(--brick-ink)">Ссылка устарела</h1>
+        <p style="margin:0;color:var(--brick-ink)">Срок действия истёк или ссылкой уже воспользовались. Токен одноразовый — это и есть защита.</p>
+        <button class="btn btn-primary" data-resend="1">Прислать новую</button>
+      </div>
+    </div>`;
+  }
+
+  return `<div class="wrap band">
+    <div style="display:flex;flex-wrap:wrap;gap:26px;align-items:stretch">
+      <form id="regForm" style="flex:1 1 400px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,3vw,34px);display:flex;flex-direction:column;gap:16px">
+        <h1 style="font-size:32px">Создать аккаунт</h1>
+        <p class="muted" style="margin:0">Пароль придумывать не нужно — вход по ссылке из письма.</p>
+        <label class="fl" for="rn">Имя
+          <input type="text" id="rn" required minlength="2" placeholder="Анна" value="${esc(S.draftName)}">
+        </label>
+        <label class="fl" for="re">Email
+          <input type="email" id="re" required placeholder="anna@example.com" value="${esc(S.draftEmail)}">
+          <span style="font-weight:400;color:var(--muted)">На этот адрес придёт ссылка для подтверждения.</span>
+        </label>
+        <label style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--muted)">
+          <input type="checkbox" id="rt" required style="margin-top:2px">
+          <span>Соглашаюсь с условиями использования и обработкой персональных данных</span>
+        </label>
+        <button class="btn btn-green" type="submit">Отправить ссылку на почту</button>
+      </form>
+      <div style="flex:1 1 320px;min-width:0;background:var(--green-soft);border-radius:20px;padding:clamp(20px,3vw,34px);display:flex;flex-direction:column;gap:16px;color:var(--green-ink)">
+        <h2 style="font-size:25px;color:var(--green-ink)">Как это работает</h2>
+        <ol style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
+          ${["Вы оставляете имя и почту — аккаунт создаётся со статусом «не подтверждён».",
+             "На адрес уходит письмо с уникальной ссылкой. Ссылка одноразовая и живёт 24 часа.",
+             "После перехода адрес подтверждён — открываются избранное, списки покупок и комментарии."]
+            .map((t, i) => `<li style="display:flex;gap:12px;align-items:flex-start">
+              <span style="flex:0 0 auto;width:32px;height:32px;border-radius:999px;background:var(--green);color:var(--on-accent);display:grid;place-items:center;font-weight:700">${i + 1}</span>
+              <span style="font-size:15px">${t}</span></li>`).join("")}
+        </ol>
+        <div style="margin-top:auto;background:var(--surface);border-radius:14px;padding:14px;font-size:13px;color:var(--muted)">До подтверждения доступен только просмотр рецептов. Повторную отправку можно запросить не чаще раза в минуту.</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function viewInbox() {
+  const L = S.letter;
+  if (!L) return `<div class="wrap band"><h1>Ящик пуст</h1><p class="muted">Сначала зарегистрируйтесь.</p><button class="btn btn-green" data-go="auth">К регистрации</button></div>`;
+  return `<div class="wrap band" style="max-width:720px">
+    <p class="muted" style="margin:0 0 10px;font-size:13px;letter-spacing:.1em;text-transform:uppercase">Почтовый ящик — имитация Mailhog</p>
+    <div style="background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden">
+      <div style="padding:14px 20px;border-bottom:1px solid var(--line);background:var(--sunken)">
+        <p class="muted" style="margin:0;font-size:13px">От: Food Guru &lt;no-reply@food-guru.local&gt; → ${esc(L.email)}</p>
+        <p style="margin:4px 0 0;font-weight:700">Подтвердите адрес почты</p>
+      </div>
+      <div style="padding:24px 20px;display:flex;flex-direction:column;gap:16px">
+        <h2 style="font-size:22px">Здравствуйте, ${esc(L.name)}!</h2>
+        <p style="margin:0">Остался один шаг. Нажмите кнопку, чтобы подтвердить адрес и активировать аккаунт.</p>
+        <button class="btn btn-green" style="align-self:flex-start" data-verify="1">Подтвердить email</button>
+        <p class="muted" style="margin:0;font-size:13px;word-break:break-all">Если кнопка не работает, скопируйте ссылку:<br>food-guru.local/verify/${esc(L.token)}</p>
+        <p class="muted" style="margin:0;font-size:13px">Ссылка действует 24 часа и срабатывает один раз. Если вы не регистрировались — проигнорируйте письмо.</p>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:14px;font-size:13px">${L.used ? "Ссылкой уже воспользовались — повторное нажатие покажет экран «Ссылка устарела»." : "Нажмите кнопку в письме, чтобы увидеть, что происходит дальше."}</p>
+  </div>`;
+}
+
+function viewAccount() {
+  if (!S.user) return `<div class="wrap band"><h1>Нужен вход</h1><p class="muted">Создайте аккаунт, чтобы сохранять рецепты.</p><button class="btn btn-green" data-go="auth">Создать аккаунт</button></div>`;
+  const favs = [...S.favorites].map(bySlug).filter(Boolean);
+  return `<div class="wrap band">
+    <h1 style="font-size:clamp(28px,4vw,38px)">Личный кабинет</h1>
+    <div class="row" style="align-items:center;margin-top:8px">
+      <span class="muted">${esc(S.user.email)}</span>
+      <span class="chip chip-g">Email подтверждён</span>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:26px;align-items:flex-start;margin-top:26px">
+      <nav style="flex:1 1 220px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:4px">
+        <span style="display:flex;align-items:center;min-height:44px;padding:0 14px;border-radius:10px;background:var(--green-soft);color:var(--green-ink);font-weight:700">Избранное · ${favs.length}</span>
+        <span style="display:flex;align-items:center;min-height:44px;padding:0 14px;color:var(--muted)">Списки покупок · 0</span>
+        <span style="display:flex;align-items:center;min-height:44px;padding:0 14px;color:var(--muted)">Мои комментарии · 0</span>
+        <button style="display:flex;align-items:center;min-height:44px;padding:0 14px;border:0;background:none;color:var(--brick);font-weight:600;text-align:left" data-logout="1">Выйти</button>
+      </nav>
+      <section style="flex:999 1 520px;min-width:0">
+        <div class="sec-head"><h2>Избранное</h2></div>
+        ${favs.length
+          ? `<div class="grid">${favs.map((r, i) => cardHtml(r, i)).join("")}</div>`
+          : `<div style="background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:36px;text-align:center">
+              <h3 style="font-family:var(--display);font-size:21px">Пока пусто</h3>
+              <p class="muted" style="margin:8px 0 16px">Откройте любой рецепт и нажмите «В избранное».</p>
+              <button class="btn btn-ghost" data-go="catalog">К каталогу</button></div>`}
+      </section>
+    </div>
+  </div>`;
+}
+
+function viewAdmin() {
+  const role = S.adminRole;
+  const tabs = [["moderation", "На модерации"], ["published", "Опубликованы"], ["draft", "Черновики"], ["rejected", "Возвращены"]];
+  const list = RECIPES.filter(r => r.status === S.adminTab);
+  const canPublish = role === "editor_lead" || role === "admin";
+  const canUsers = role === "editor_lead" || role === "admin";
+
+  return `<div class="admin">
+    <aside class="side">
+      <div style="padding:0 10px">
+        <div style="font-family:var(--display);font-size:21px;font-weight:600;color:#fff">Food Guru</div>
+        <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.7">Админ-панель</div>
+      </div>
+      <nav style="display:flex;flex-direction:column;gap:3px">
+        <button aria-current="true">Рецепты <span class="chip chip-b" style="font-size:11px">${RECIPES.filter(r => r.status === "moderation").length}</span></button>
+        <button data-admin-users="1">Пользователи</button>
+        <button data-admin-users="1">Журнал действий</button>
+      </nav>
+      <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px;padding:12px;border-radius:12px;background:var(--panel-hi)">
+        <label style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.75">Смотреть глазами роли</label>
+        <select data-role="1" style="background:var(--panel);color:#fff;border-color:transparent">
+          ${Object.entries(ROLES).map(([k, v]) => `<option value="${k}" ${role === k ? "selected" : ""}>${v}</option>`).join("")}
+        </select>
+      </div>
+    </aside>
+
+    <section class="work">
+      <h1 style="font-size:28px">Рецепты</h1>
+      <p class="muted" style="margin:6px 0 18px">${RECIPES.length} материалов · права применяются по роли, как в <code>RecipePolicy</code></p>
+
+      <div class="row" style="margin-bottom:16px">
+        ${tabs.map(([k, n]) => `<button class="btn btn-sm ${S.adminTab === k ? "btn-green" : "btn-ghost"}" data-tab="${k}">${n} · ${RECIPES.filter(r => r.status === k).length}</button>`).join("")}
+      </div>
+
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Рецепт</th><th>Автор</th><th>Категория</th><th>Статус</th><th>Действия</th></tr></thead>
+          <tbody>
+            ${list.length ? list.map(r => {
+              const [label, cls] = STATUS[r.status];
+              return `<tr>
+                <td style="font-weight:600">${esc(r.title)}</td>
+                <td class="muted">Мария Левина</td>
+                <td class="muted">${esc(r.cat)}</td>
+                <td><span class="chip ${cls}">${label}</span></td>
+                <td><div class="row">
+                  <button class="btn btn-ghost btn-sm" data-act="edit">Открыть</button>
+                  ${r.status === "moderation"
+                    ? `<button class="btn btn-sm ${canPublish ? "btn-green" : "btn-ghost"}" data-act="publish">Опубликовать</button>
+                       <button class="btn btn-ghost btn-sm" data-act="reject">Вернуть</button>`
+                    : ""}
+                </div></td>
+              </tr>`;
+            }).join("") : `<tr><td colspan="5" class="muted" style="padding:28px;text-align:center">В этом статусе пусто</td></tr>`}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note" style="margin-top:18px">
+        Сейчас вы — <strong>${ROLES[role]}</strong>.
+        ${role === "content_manager"
+          ? "Можно создавать и править свои рецепты. Публикация и возврат на доработку недоступны — нажмите «Опубликовать», чтобы увидеть ответ сервера."
+          : role === "editor_lead"
+            ? "Можно публиковать, возвращать на доработку и править чужие рецепты. Роли меняются только контент-менеджерам, настройки системы закрыты."
+            : "Доступно всё, включая настройки системы и журнал действий."}
+      </div>
+    </section>
+  </div>`;
+}
+
+function viewCategory() {
+  const c = catBySlug(S.slug);
+  if (!c) return viewCatalog();
+  const list = PUBLISHED.filter(r => r.cat === c.title);
+  const quick = list.filter(r => r.min <= 30).length;
+  const others = CATEGORIES.filter(x => x.slug !== c.slug);
+
+  return `<div class="wrap band">
+    <nav class="muted" style="font-size:13px;margin-bottom:14px">
+      <button style="background:none;border:0;color:inherit;padding:0" data-go="home">Главная</button> /
+      <button style="background:none;border:0;color:inherit;padding:0" data-go="catalog">Рецепты</button> / <span>${esc(c.title)}</span>
+    </nav>
+
+    <div style="background:${c.accent};color:#fff;border-radius:20px;padding:clamp(22px,4vw,38px);margin-bottom:26px">
+      <h1 style="font-size:clamp(28px,4vw,42px);color:#fff">${esc(c.title)}</h1>
+      <p style="margin:12px 0 0;font-size:17px;line-height:1.6;max-width:62ch;opacity:.94">${esc(c.lead)}</p>
+      ${list.length ? `<p style="margin:16px 0 0;font-size:14px;opacity:.85">${list.length} ${plural(list.length, "рецепт", "рецепта", "рецептов")}${quick ? ` · ${quick} за полчаса и быстрее` : ""}</p>` : ""}
+    </div>
+
+    ${list.length
+      ? `<div class="grid">${list.map((r, i) => cardHtml(r, i)).join("")}</div>`
+      : `<div style="background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:44px 28px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px">
+           <div style="width:60px;height:60px;border-radius:999px;background:var(--sunken);display:grid;place-items:center;color:var(--muted)">
+             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 13h18a9 9 0 0 1-18 0Z"/><path d="M12 3.5v3.2"/><path d="M8.4 6.7h7.2"/></svg>
+           </div>
+           <h2 style="font-size:24px">Раздел пока готовится</h2>
+           <p class="muted" style="margin:0;max-width:46ch">Рецепты этой категории ещё на модерации. Как только редакция их опубликует, они появятся здесь.</p>
+           <button class="btn btn-green" data-go="catalog">Смотреть все рецепты</button>
+         </div>`}
+
+    <div style="margin-top:40px;padding-top:26px;border-top:1px solid var(--line)">
+      <h2 style="font-size:22px;margin-bottom:14px">Другие категории</h2>
+      <div class="row">
+        ${others.map(x => `<button class="btn btn-ghost btn-sm" data-category="${x.slug}">${esc(x.title)}</button>`).join("")}
+      </div>
+    </div>
+  </div>`;
+}
+
+function plural(n, one, few, many) {
+  const m10 = n % 10, m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return one;
+  if (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14)) return few;
+  return many;
+}
+
+function viewCollections() {
+  return `<div class="wrap band">
+    <h1 style="font-size:clamp(28px,4vw,40px)">Подборки редакции</h1>
+    <p class="muted" style="margin:6px 0 26px">Рецепты, собранные вокруг одной задачи: сезон, посуда, повод.</p>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      ${COLLECTIONS.map(c => `<button data-collection="${c.slug}" style="display:flex;flex-direction:column;justify-content:flex-end;min-height:240px;padding:24px;border:0;border-radius:18px;background:${c.accent};color:#fff;text-align:left;gap:10px">
+        <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85">${c.recipes.length} рецептов</span>
+        <span style="font-family:var(--display);font-size:25px;font-weight:600;line-height:1.2">${esc(c.title)}</span>
+        <span style="font-size:14px;opacity:.9;line-height:1.5">${esc(c.lead.split(".")[0])}.</span>
+      </button>`).join("")}
+    </div>
+  </div>`;
+}
+
+function viewCollection() {
+  const c = bySlugIn(COLLECTIONS, S.slug);
+  if (!c) return viewCollections();
+  const list = c.recipes.map(bySlug).filter(Boolean);
+  return `<div class="wrap band">
+    <nav class="muted" style="font-size:13px;margin-bottom:14px">
+      <button style="background:none;border:0;color:inherit;padding:0" data-go="collections">Подборки</button> / <span>${esc(c.title)}</span>
+    </nav>
+    <div style="background:${c.accent};color:#fff;border-radius:20px;padding:clamp(22px,4vw,38px);margin-bottom:28px">
+      <h1 style="font-size:clamp(28px,4vw,40px);color:#fff">${esc(c.title)}</h1>
+      <p style="margin:12px 0 0;font-size:17px;line-height:1.6;max-width:62ch;opacity:.92">${esc(c.lead)}</p>
+    </div>
+    <div class="grid">${list.map((r, i) => cardHtml(r, i)).join("")}</div>
+  </div>`;
+}
+
+function viewJournal() {
+  return `<div class="wrap band">
+    <h1 style="font-size:clamp(28px,4vw,40px)">Журнал</h1>
+    <p class="muted" style="margin:6px 0 26px">Короткие разборы: почему получается или не получается.</p>
+    <div style="display:flex;flex-direction:column;gap:16px;max-width:760px">
+      ${ARTICLES.map(a => `<button data-article="${a.slug}" class="card" style="padding:24px;gap:8px">
+        <span class="muted" style="font-size:13px">${esc(a.date)}</span>
+        <h2 style="font-size:24px">${esc(a.title)}</h2>
+        <p class="muted" style="margin:0;padding:0;font-size:15px;line-height:1.55">${esc(a.lead)}</p>
+      </button>`).join("")}
+    </div>
+  </div>`;
+}
+
+function viewArticle() {
+  const a = bySlugIn(ARTICLES, S.slug);
+  if (!a) return viewJournal();
+  return `<div class="wrap band" style="max-width:720px">
+    <nav class="muted" style="font-size:13px;margin-bottom:14px">
+      <button style="background:none;border:0;color:inherit;padding:0" data-go="journal">Журнал</button> / <span>${esc(a.date)}</span>
+    </nav>
+    <h1 style="font-size:clamp(28px,4.2vw,42px);line-height:1.12">${esc(a.title)}</h1>
+    <p style="font-size:19px;line-height:1.6;color:var(--muted);margin:16px 0 28px">${esc(a.lead)}</p>
+    ${a.body.map(p => `<p style="font-size:17px;line-height:1.75;margin:0 0 20px">${esc(p)}</p>`).join("")}
+    <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--line)">
+      <h2 style="font-size:22px;margin-bottom:16px">Читать дальше</h2>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        ${ARTICLES.filter(x => x.slug !== a.slug).map(x => `<button data-article="${x.slug}" class="card" style="padding:18px;gap:4px">
+          <span class="muted" style="font-size:13px">${esc(x.date)}</span>
+          <h3 style="font-size:19px;font-family:var(--display);font-weight:600">${esc(x.title)}</h3>
+        </button>`).join("")}
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ---------- отрисовка ---------- */
+function renderChrome() {
+  const items = [["home", "Главная"], ["catalog", "Рецепты"], ["collections", "Подборки"],
+                 ["journal", "Журнал"], ["admin", "Админка"]];
+  const active = k => S.view === k || (k === "catalog" && S.view === "category")
+    || (k === "collections" && S.view === "collection")
+    || (k === "journal" && S.view === "article");
+
+  document.getElementById("nav").innerHTML = items
+    .map(([k, n]) => `<button data-go="${k}" aria-current="${active(k)}">${n}</button>`).join("");
+
+  document.getElementById("topActions").innerHTML = `
+    <input type="search" id="topSearch" placeholder="Найти рецепт" aria-label="Поиск по рецептам"
+           style="width:190px;min-height:40px;border-radius:999px;font-size:14px">
+    ${S.user
+      ? `<button class="btn btn-ghost btn-sm" data-go="account">${esc(S.user.name)} · ${S.favorites.size} ★</button>`
+      : `<button class="btn btn-green btn-sm" data-go="auth">Войти</button>`}`;
+
+  // та же навигация плюс категории — для выдвижной панели на телефоне
+  document.getElementById("drawerIn").innerHTML =
+    items.map(([k, n]) => `<button data-go="${k}" aria-current="${active(k)}">${n}</button>`).join("")
+    + `<div style="margin:10px 0 4px;padding:0 14px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)">Категории</div>`
+    + CATS.map(c => `<button data-cat="${esc(c)}" style="font-weight:500;color:var(--muted)">${esc(c)}</button>`).join("")
+    + (S.user ? `<button data-go="account">Избранное · ${S.favorites.size}</button>`
+              : `<button data-go="auth" style="color:var(--green)">Войти</button>`);
+}
+
+function closeDrawer() {
+  document.getElementById("drawer").classList.remove("open");
+  document.getElementById("burger").setAttribute("aria-expanded", "false");
+}
+
+function render() {
+  renderChrome();
+  const views = {
+    home: viewHome, catalog: viewCatalog, recipe: viewRecipe, auth: viewAuth,
+    inbox: viewInbox, account: viewAccount, admin: viewAdmin,
+    collections: viewCollections, collection: viewCollection,
+    journal: viewJournal, article: viewArticle, category: viewCategory
+  };
+  app.innerHTML = (views[S.view] || viewHome)();
+
+  let box = document.getElementById("boxHost");
+  if (!box) {
+    box = document.createElement("div");
+    box.id = "boxHost";
+    document.body.appendChild(box);
+  }
+  box.innerHTML = lightboxHtml();
+}
+
+function openBox(items, i) {
+  S.box = { items, i: Math.max(0, Math.min(i, items.length - 1)) };
+  render();
+}
+
+/* ---------- события ---------- */
+document.addEventListener("click", e => {
+  if (e.target.closest("#burger")) {
+    const dr = document.getElementById("drawer");
+    const open = dr.classList.toggle("open");
+    document.getElementById("burger").setAttribute("aria-expanded", String(open));
+    return;
+  }
+
+  const t = e.target.closest("[data-go],[data-recipe],[data-collection],[data-article],[data-category],[data-query],[data-keepquery],[data-fav],[data-share],[data-copy],[data-serv],[data-cat],[data-reset],[data-verify],[data-resend],[data-tab],[data-act],[data-logout],[data-admin-users],[data-gal],[data-galto],[data-box],[data-boxnav],[data-boxclose],[data-revshot],[data-addphoto],[data-rate],[data-dropshot]");
+  if (!t) return;
+
+  /* --- галерея и просмотр --- */
+  if (t.dataset.gal) {
+    const items = galleryFor(bySlug(S.slug));
+    S.gal = (S.gal + Number(t.dataset.gal) + items.length) % items.length;
+    return render();
+  }
+  if (t.dataset.galto) { S.gal = Number(t.dataset.galto); return render(); }
+  if (t.dataset.box) return openBox(galleryFor(bySlug(S.slug)), Number(t.dataset.box));
+  if (t.dataset.boxnav) {
+    const n = S.box.items.length;
+    S.box.i = (S.box.i + Number(t.dataset.boxnav) + n) % n;
+    return render();
+  }
+  if (t.dataset.boxclose) { S.box = null; return render(); }
+  if (t.dataset.revshot) {
+    const [slug, ri, si] = t.dataset.revshot.split("|");
+    const rv = (S.reviews[slug] || [])[Number(ri)];
+    if (!rv) return;
+    const items = rv.shots.map(src => ({ kind: "photo", src, cap: "Фото читателя · " + rv.name, reader: true }));
+    return openBox(items, Number(si));
+  }
+  if (t.dataset.addphoto) {
+    const slug = t.dataset.addphoto;
+    const inp = document.createElement("input");
+    inp.type = "file"; inp.accept = "image/*"; inp.multiple = true;
+    inp.onchange = async () => {
+      const shots = await filesToShots(inp.files, 6);
+      if (!shots.length) return;
+      S.photos[slug] = [...(S.photos[slug] || []), ...shots.map(src => ({ src, cap: "Фото редакции" }))];
+      S.gal = 0;
+      save();
+      toast(shots.length === 1 ? "Снимок добавлен в галерею" : shots.length + " снимка добавлены в галерею");
+      render();
+    };
+    inp.click();
+    return;
+  }
+
+  /* --- форма отзыва --- */
+  if (t.dataset.rate) { S.draftRating = Number(t.dataset.rate); return render(); }
+  if (t.dataset.dropshot) { S.draftShots.splice(Number(t.dataset.dropshot), 1); return render(); }
+
+  closeDrawer();
+
+  if (t.dataset.go) { e.preventDefault(); if (t.dataset.go === "auth" && S.user) return go("account"); return go(t.dataset.go); }
+  if (t.dataset.recipe) return go("recipe", t.dataset.recipe);
+  if (t.dataset.collection) return go("collection", t.dataset.collection);
+  if (t.dataset.article) return go("article", t.dataset.article);
+  if (t.dataset.category) return go("category", t.dataset.category);
+
+  if (t.dataset.cat) {
+    const c = catByTitle(t.dataset.cat);
+    return c ? go("category", c.slug) : go("catalog");
+  }
+  if (t.dataset.query) { S.f.q = t.dataset.query; return go("catalog"); }
+  if (t.dataset.keepquery) {
+    S.f = { q: S.f.q, cats: new Set(), maxTime: 120, diff: new Set(), diet: new Set(), sort: S.f.sort };
+    return render();
+  }
+  if (t.dataset.reset) { S.f = { q: "", cats: new Set(), maxTime: 120, diff: new Set(), diet: new Set(), sort: "pop" }; return render(); }
+
+  if (t.dataset.fav) {
+    if (!S.user) { toast("Сначала подтвердите email — избранное только для активных аккаунтов"); return go("auth"); }
+    S.favorites.has(t.dataset.fav) ? S.favorites.delete(t.dataset.fav) : S.favorites.add(t.dataset.fav);
+    toast(S.favorites.has(t.dataset.fav) ? "Сохранено в избранное" : "Убрано из избранного");
+    save();
+    return render();
+  }
+
+  if (t.dataset.share) { S.shareOpen = !S.shareOpen; return render(); }
+
+  if (t.dataset.copy) {
+    const text = t.dataset.copy;
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(text).then(() => toast("Ссылка скопирована")).catch(() => {
+        document.getElementById("shareLink")?.select();
+        toast("Скопируйте ссылку вручную — выделено");
+      });
+    } else {
+      document.getElementById("shareLink")?.select();
+      toast("Скопируйте ссылку вручную — выделено");
+    }
+    return;
+  }
+
+  if (t.dataset.serv) {
+    S.servings = Math.min(12, Math.max(1, S.servings + Number(t.dataset.serv)));
+    return render();
+  }
+
+  if (t.dataset.verify) {
+    if (S.letter.used) { S.authStage = "expired"; return go("auth"); }
+    S.letter.used = true;
+    S.user = { name: S.letter.name, email: S.letter.email };
+    S.authStage = "done";
+    save();
+    return go("auth");
+  }
+
+  if (t.dataset.resend) {
+    S.letter = { ...S.letter, token: Math.random().toString(36).slice(2, 14), used: false };
+    S.authStage = "sent";
+    toast("Новый токен выпущен, старый погашен");
+    return go("auth");
+  }
+
+  if (t.dataset.logout) { S.user = null; S.favorites.clear(); S.authStage = "form"; S.letter = null; save(); toast("Сессия закрыта"); return go("home"); }
+
+  if (t.dataset.tab) { S.adminTab = t.dataset.tab; return render(); }
+
+  if (t.dataset.adminUsers) { toast(S.adminRole === "content_manager" ? "403 — недостаточно прав" : "Раздел появится на этапе 5"); return; }
+
+  if (t.dataset.act) {
+    const a = t.dataset.act;
+    if (a === "edit") return toast("Редактор рецепта — этап 4");
+    if (S.adminRole === "content_manager") return toast("403 — публикует только руководитель редакции");
+    return toast(a === "publish" ? "Рецепт опубликован, запись ушла в журнал действий" : "Возвращён на доработку с комментарием");
+  }
+});
+
+document.addEventListener("input", e => {
+  if (e.target.id === "revText") { S.draftText = e.target.value; return; }
+  const f = e.target.dataset.filter;
+  if (!f) return;
+  if (f === "q") { S.f.q = e.target.value; const p = e.target.selectionStart; render(); const el = document.getElementById("fq"); if (el) { el.focus(); el.setSelectionRange(p, p); } return; }
+  if (f === "time") { S.f.maxTime = Number(e.target.value); return render(); }
+  if (f === "sort") { S.f.sort = e.target.value; return render(); }
+  const set = f === "cat" ? S.f.cats : f === "diff" ? S.f.diff : S.f.diet;
+  e.target.checked ? set.add(e.target.value) : set.delete(e.target.value);
+  render();
+});
+
+document.addEventListener("change", async e => {
+  if (e.target.dataset.role) { S.adminRole = e.target.value; render(); return; }
+  if (e.target.id === "revFiles") {
+    const shots = await filesToShots(e.target.files, 3 - S.draftShots.length);
+    S.draftShots = [...S.draftShots, ...shots].slice(0, 3);
+    render();
+  }
+});
+
+/* перетаскивание файлов в форму отзыва */
+document.addEventListener("dragover", e => {
+  const d = e.target.closest("#revDrop");
+  if (!d) return;
+  e.preventDefault();
+  d.classList.add("over");
+});
+document.addEventListener("dragleave", e => {
+  e.target.closest("#revDrop")?.classList.remove("over");
+});
+document.addEventListener("drop", async e => {
+  const d = e.target.closest("#revDrop");
+  if (!d) return;
+  e.preventDefault();
+  d.classList.remove("over");
+  const shots = await filesToShots(e.dataTransfer.files, 3 - S.draftShots.length);
+  S.draftShots = [...S.draftShots, ...shots].slice(0, 3);
+  render();
+});
+
+document.addEventListener("submit", e => {
+  if (e.target.id === "revForm") {
+    e.preventDefault();
+    const slug = e.target.dataset.slug;
+    const text = (document.getElementById("revText")?.value || S.draftText).trim();
+    if (!S.draftRating) return toast("Поставьте оценку от 1 до 5");
+    if (text.length < 10) return toast("Напишите пару предложений — так отзыв полезнее");
+
+    const date = new Date().toLocaleDateString("ru-RU", { day: "numeric", month: "long" });
+    S.reviews[slug] = [{
+      name: S.user.name, rating: S.draftRating, text, shots: S.draftShots, date
+    }, ...(S.reviews[slug] || [])];
+
+    S.draftShots = []; S.draftRating = 0; S.draftText = "";
+    save();
+    toast(S.reviews[slug][0].shots.length ? "Отзыв опубликован, фото ушло в галерею" : "Отзыв опубликован");
+    return render();
+  }
+
+  if (e.target.id !== "regForm") return;
+  e.preventDefault();
+  const name = document.getElementById("rn").value.trim();
+  const email = document.getElementById("re").value.trim().toLowerCase();
+  if (!document.getElementById("rt").checked) return toast("Нужно согласие на обработку данных");
+  S.draftName = name; S.draftEmail = email;
+  S.letter = { name, email, token: Math.random().toString(36).slice(2, 14), used: false };
+  S.authStage = "sent";
+  go("auth");
+});
+
+document.addEventListener("keydown", e => {
+  if (e.target.id === "topSearch" && e.key === "Enter") {
+    e.preventDefault();
+    S.f.q = e.target.value.trim();
+    go("catalog");
+    return;
+  }
+  if (e.key === "Escape") { closeDrawer(); if (S.box) { S.box = null; render(); } return; }
+  if (S.box && (e.key === "ArrowLeft" || e.key === "ArrowRight")) {
+    const n = S.box.items.length;
+    S.box.i = (S.box.i + (e.key === "ArrowLeft" ? -1 : 1) + n) % n;
+    return render();
+  }
+  if (S.view === "recipe" && !S.box && (e.key === "ArrowLeft" || e.key === "ArrowRight")
+      && !/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) {
+    const items = galleryFor(bySlug(S.slug));
+    S.gal = (S.gal + (e.key === "ArrowLeft" ? -1 : 1) + items.length) % items.length;
+    render();
+  }
+});
+
+load();
+// демо-отзывы подставляются только там, где читатели ещё ничего не написали
+Object.entries(SEED_REVIEWS).forEach(([slug, list]) => {
+  if (!S.reviews[slug] || !S.reviews[slug].length) S.reviews[slug] = list.map(x => ({ ...x }));
+});
+render();
+})();
+</script>
+
+</body>
+</html>
