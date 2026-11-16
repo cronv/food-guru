@@ -1,0 +1,19 @@
+# food-guru за внешним edge-nginx (проект B). TLS терминируется там.
+# Вместо docker-compose.https.yml — Caddy в этом режиме НЕ запускать (порты 80/443 заняты B).
+#   docker compose -f docker-compose.prod.yml -f docker-compose.edge.yml up -d --build
+services:
+  nginx:
+    ports: !reset []          # наружу nginx A больше не смотрит
+    volumes:
+      # Механизм A для работы за прокси: реальный IP посетителя из X-Forwarded-For,
+      # доверие только docker-подсетям (иначе лимиты API и логи увидят IP контейнера B).
+      - ./docker/nginx/realip.conf:/etc/nginx/conf.d/00-realip.conf:ro
+    networks:
+      default: {}
+      edge:
+        aliases: [foodguru-web]   # стабильное DNS-имя для nginx B, не зависит от container_name
+
+networks:
+  edge:
+    external: true
+    name: edge
