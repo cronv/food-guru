@@ -502,7 +502,7 @@ export interface JournalPeriods {
   meta: { total: number };
 }
 
-/** Конверт постраничного ответа Laravel. */
+/** Конверт постраничного ответа API. */
 export interface Paginated<T> {
   data: T[];
   links?: { first?: string; last?: string; prev?: string | null; next?: string | null };
@@ -521,7 +521,7 @@ export interface Envelope<T> {
   meta?: Record<string, unknown>;
 }
 
-/** Ошибка валидации Laravel. */
+/** Ошибка валидации. */
 export interface ApiError {
   message: string;
   code?: string;

@@ -1,6 +1,7 @@
 # Боевая сборка: API, SSR публичного сайта, админка и обвязка.
 # Отличия от docker-compose.yml: нет Mailhog (письма идут через реальный SMTP),
-# код внутри образов, добавлены обработчик очереди и планировщик.
+# код внутри образов. Очередь и планировщик не нужны: письма уходят сразу,
+# очистку токенов запускает cron командой food-guru:prune-email-tokens (deploy.sh).
 #
 #   docker compose -f docker-compose.prod.yml up -d --build
 
@@ -12,26 +13,31 @@ services:
       - "80:80"
     volumes:
       - ./docker/nginx/api.prod.conf:/etc/nginx/conf.d/api.conf:ro
+      - ./docker/nginx/symfony-routes.conf:/etc/nginx/symfony-routes.conf:ro
+      - ./docker/nginx/symfony-fastcgi.conf:/etc/nginx/symfony-fastcgi.conf:ro
       - ./docker/nginx/site.prod.conf:/etc/nginx/conf.d/site.conf:ro
       - site-build:/var/www/site:ro
       - admin-build:/var/www/admin:ro
-      - storage-public:/var/www/html/public/storage:ro
+      # Загруженные файлы: nginx только читает, пишет PHP-приложение.
+      - ./storage:/var/www/storage:ro
     depends_on:
-      - php
+      - api
       - ssr
 
-  php:
+  # Бэкенд на Symfony 7.4 (api/). Единственный API.
+  api:
     build:
       context: .
-      dockerfile: docker/php/Dockerfile.prod
+      dockerfile: docker/api/Dockerfile.prod
     restart: unless-stopped
-    env_file: ./backend/.env
+    env_file: ./api/.env
     environment:
-      # Один секрет на API и SSR — задаётся в .env рядом с compose.
       SSR_API_KEY: ${SSR_API_KEY:?задайте SSR_API_KEY в .env рядом с compose}
     volumes:
-      - storage-public:/var/www/html/public/storage
-      - storage-app:/var/www/html/storage/app
+      # Каталог на диске сервера: там же лежат загрузки для бэкапа (см. DEPLOY-REGRU.md).
+      - ./storage:/var/www/storage
+      # Демо-данные для food-guru:seed-demo (запускается вручную, см. deploy.sh): только чтение.
+      - ./seed-assets:/var/www/seed-assets:ro
     depends_on:
       mysql:
         condition: service_healthy
@@ -54,33 +60,6 @@ services:
              cp -r /app/dist/admin/browser/. /export/admin/ &&
              node dist/site/server/server.mjs"
 
-  # Письма подтверждения уходят отсюда, а не из веб-запроса.
-  queue:
-    build:
-      context: .
-      dockerfile: docker/php/Dockerfile.prod
-    restart: unless-stopped
-    command: php artisan queue:work --tries=3 --timeout=60 --sleep=1 --max-time=3600
-    env_file: ./backend/.env
-    volumes:
-      - storage-app:/var/www/html/storage/app
-      - storage-public:/var/www/html/public/storage
-    depends_on:
-      mysql:
-        condition: service_healthy
-
-  # Чистка протухших токенов подтверждения раз в сутки.
-  scheduler:
-    build:
-      context: .
-      dockerfile: docker/php/Dockerfile.prod
-    restart: unless-stopped
-    command: php artisan schedule:work
-    env_file: ./backend/.env
-    depends_on:
-      mysql:
-        condition: service_healthy
-
   mysql:
     image: mysql:8.4
     restart: unless-stopped
@@ -100,7 +79,5 @@ services:
 
 volumes:
   mysql-data:
-  storage-public:
-  storage-app:
   site-build:
   admin-build:

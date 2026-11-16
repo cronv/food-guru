@@ -40,7 +40,7 @@ const out = recipes.map((r) => ({
   reel: r.reel ?? null,
 }));
 
-const dir = join(root, 'backend', 'database', 'seeders', 'assets');
+const dir = join(root, 'seed-assets');
 mkdirSync(dir, { recursive: true });
 writeFileSync(join(dir, 'recipes.json'), JSON.stringify(out, null, 2), 'utf8');
 

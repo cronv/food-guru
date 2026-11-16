@@ -4,7 +4,7 @@
 //   node tools/dishes/make_dishes.mjs
 //
 // На выходе по три SVG на рецепт — «готовое блюдо», «ингредиенты» и «в процессе» —
-// в backend/database/seeders/assets/dishes. Сидер кладёт их в медиатеку.
+// в seed-assets/dishes. Демо-данные из них пока не загружаются (см. deploy.sh).
 //
 // Генератор перенесён из прототипа (site/index.html, функция dish): посуда,
 // заливка и россыпь элементов. Единственное отличие — цвета вписаны значениями,
@@ -15,7 +15,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
-const outDir = join(root, 'backend', 'database', 'seeders', 'assets', 'dishes');
+const outDir = join(root, 'seed-assets', 'dishes');
 
 const PALETTE = {
   sunken: '#F4F1EA', brick: '#B4451F',

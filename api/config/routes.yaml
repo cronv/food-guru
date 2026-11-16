@@ -1,0 +1,12 @@
+# Все контроллеры — под префиксом api/v1.
+# Какие из этих адресов реально уходят в Symfony, решает nginx:
+# docker/nginx/symfony-routes.conf.
+api_v1:
+    resource: routing.controllers
+    prefix: /api/v1
+
+when@test:
+    test_probe:
+        resource: ../tests/Functional/Support/
+        type: attribute
+        prefix: /api/v1

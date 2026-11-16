@@ -4,14 +4,14 @@
 
 | Приложение | Что это | Где живёт |
 | --- | --- | --- |
-| `backend/` | REST API на Laravel 13 | `api.ваш-домен.ru` |
+| `api/` | REST API на Symfony 7.4 | `api.ваш-домен.ru` |
 | `frontend/` → `site` | Публичный сайт, Angular с SSR | `ваш-домен.ru` |
 | `frontend/` → `admin` | Админ-панель, Angular SPA | `admin.ваш-домен.ru` |
 
 Фронтенды собираются из одного воркспейса: `npm run build` делает оба.
 
 Домены уже прописаны: сайт `food-guru.ru`, API `api.food-guru.ru`, админка
-`admin.food-guru.ru` — в `backend/.env.production.example`, `docker/nginx/*.prod.conf`
+`admin.food-guru.ru` — в `api/.env.production.example`, `docker/nginx/*.prod.conf`
 и обоих `environment.prod.ts`. Если домен поменяется — замените `food-guru.ru` во всех
 этих файлах **до** сборки фронтенда.
 
@@ -30,12 +30,12 @@
 [deploy.sh](deploy.sh) делает всё, что описано ниже, одной командой на Alpine, Ubuntu
 или Debian. Он ставит Docker (на Alpine — из репозитория community, где `get.docker.com`
 не работает) и при нехватке памяти добавляет своп. Пароли базы, `SSR_API_KEY` и
-`APP_KEY` генерирует сам и прописывает в оба `.env`. Затем собирает контейнеры,
+`APP_SECRET` генерирует сам и прописывает в оба `.env`. Затем собирает контейнеры,
 выполняет миграции и поднимает HTTPS через Caddy (`docker-compose.https.yml`).
 Сертификаты Let's Encrypt Caddy получает и продлевает сам.
 
 ```sh
-sh deploy.sh --seed --admin вы@почта.ru "Имя Фамилия"
+sh deploy.sh --admin вы@почта.ru "Имя Фамилия"
 ```
 
 Повторный запуск уже заданные пароли не меняет — он же служит для обновления.
@@ -62,27 +62,26 @@ cp .env.example .env
 nano .env                      # DB_PASSWORD, DB_ROOT_PASSWORD и SSR_API_KEY
                                # SSR_API_KEY: вставьте вывод `openssl rand -hex 32`
 
-# 2. Настройки приложения
-cp backend/.env.production.example backend/.env
-nano backend/.env              # тот же DB_PASSWORD, доступы к SMTP; домены уже стоят
+# 2. Настройки приложения: домены уже стоят, нужны почта и платёжная система
+cp api/.env.production.example api/.env
+nano api/.env                  # MAILER_DSN (SMTP), MAIL_FROM_ADDRESS; DB_PASSWORD и SSR_API_KEY
+                               # подставляются из .env, APP_SECRET генерирует deploy.sh
 
 # 3. Сборка и запуск (первый раз занимает 5–10 минут)
 docker compose -f docker-compose.prod.yml up -d --build
 
-# 4. Ключ, таблицы, доступ к загруженным файлам
-docker compose -f docker-compose.prod.yml exec php php artisan key:generate
-docker compose -f docker-compose.prod.yml exec php php artisan migrate --force
-docker compose -f docker-compose.prod.yml exec php php artisan storage:link
+# 4. Таблицы базы: Doctrine-миграции (на существующей базе базовая миграция
+#    только отмечается выполненной — это делает deploy.sh)
+docker compose -f docker-compose.prod.yml exec api php bin/console doctrine:migrations:migrate --no-interaction --env=prod
 
-# 5. Демо-данные — рецепты, книги, товары, конкурсы для наполнения витрины.
-#    Демо-аккаунты без паролей и на несуществующих адресах @food-guru.local:
-#    войти под ними с боевого сайта нельзя.
-docker compose -f docker-compose.prod.yml exec php php artisan db:seed --force
-
-# 6. Ваш аккаунт администратора — на настоящую почту.
+# 5. Ваш аккаунт администратора — на настоящую почту.
 #    Затем: admin.food-guru.ru → «По ссылке» → письмо → задайте пароль.
-docker compose -f docker-compose.prod.yml exec php php artisan food-guru:admin вы@почта.ru "Имя Фамилия"
+docker compose -f docker-compose.prod.yml exec api php bin/console food-guru:admin вы@почта.ru "Имя Фамилия"
 ```
+
+Демо-данные (рецепты, книги, товары) на Symfony пока не перенесены: `--seed` отключён.
+Загруженные файлы живут в каталоге `storage/` рядом с `docker-compose.prod.yml`: там
+медиатека, PDF журнала, видео клуба и ролики. Его нельзя удалять вместе с проектом.
 
 `SSR_API_KEY` обязателен. Сервер рендера ходит в API за всех посетителей с одного
 адреса; с ключом API считает лимит запросов по каждому посетителю, без него — один
@@ -92,7 +91,7 @@ Compose без ключа не запустится.
 Оплаты пока нет: `PAYMENT_PROVIDER` не задан, и страница кошелька показывает
 «Оплата на сайте скоро появится». Бесплатные книги, рецепты, конкурсы, журнал и
 академия работают. Платёжный шлюз подключается реализацией
-`App\Services\Commerce\PaymentGateway`.
+`App\Commerce\Payment\PaymentGateway`.
 
 Проверка: `curl http://ваш-домен.ru` отдаёт готовый HTML с текстом рецептов (это и есть
 SSR — если видите пустой `<app-root></app-root>`, рендер не работает),
@@ -100,8 +99,8 @@ SSR — если видите пустой `<app-root></app-root>`, рендер
 
 ### HTTPS
 
-Запускать без шифрования нельзя: в `backend/.env` стоит `SESSION_SECURE_COOKIE=true`,
-и по HTTP вход не заработает вообще.
+Запускать без шифрования нельзя: сессии Symfony работают с `cookie_secure: auto`
+и отдают cookie только по HTTPS, поэтому по HTTP вход не заработает.
 
 Проще всего — готовый `docker-compose.https.yml`: Caddy перед nginx сам получает
 сертификаты. Добавьте в `.env` рядом с compose `SITE_DOMAIN=food-guru.ru` и
@@ -123,8 +122,7 @@ certbot certonly --standalone -d ваш-домен.ru -d api.ваш-домен.r
 ```bash
 git pull
 docker compose -f docker-compose.prod.yml up -d --build
-docker compose -f docker-compose.prod.yml exec php php artisan migrate --force
-docker compose -f docker-compose.prod.yml exec php php artisan config:cache
+docker compose -f docker-compose.prod.yml exec api php bin/console doctrine:migrations:migrate --no-interaction --env=prod
 ```
 
 ---
@@ -162,34 +160,34 @@ npm run build
 
 ## 3. Обычный хостинг с PHP
 
-Для backend. Нужны PHP 8.3+ с `pdo_mysql`, `mbstring`, `intl`, `zip`, `bcmath`,
-MySQL 8 и возможность задать корень сайта.
+Для api. Нужны PHP 8.5 (как в образах Docker) с `pdo_mysql`, `mbstring`, `intl`, `zip`,
+`bcmath`, MySQL 8 и возможность задать корень сайта.
 
-1. Загрузите `backend/` вне публичной папки, например `~/food-guru-api`.
+1. Загрузите `api/` вне публичной папки, например `~/food-guru-api`.
 2. Заведите поддомен `api.example.com` с корнем `~/food-guru-api/public`.
-   Обязательно: если корнем сделать саму `backend`, наружу окажутся доступны `.env` и код.
+   Обязательно: если корнем сделать саму `api`, наружу окажутся доступны `.env` и код.
 3. Через SSH:
 
    ```bash
    cd ~/food-guru-api
    composer install --no-dev --optimize-autoloader
    cp .env.production.example .env
-   nano .env
-   php artisan key:generate
-   php artisan migrate --force
-   php artisan storage:link
+   nano .env                     # APP_SECRET, DATABASE_URL, MAILER_DSN, STORAGE_PATH
+   php bin/console doctrine:migrations:migrate --no-interaction --env=prod
+   php bin/console food-guru:admin вы@почта.ru "Имя Фамилия"
    ```
 
-4. Очередь. Демона держать негде, поэтому cron раз в минуту:
+4. Очистка старых токенов из писем раз в сутки, через cron:
 
    ```
-   * * * * * cd ~/food-guru-api && php artisan queue:work --stop-when-empty --max-time=55
-   * * * * * cd ~/food-guru-api && php artisan schedule:run
+   17 4 * * * cd ~/food-guru-api && php bin/console food-guru:prune-email-tokens
    ```
 
-   Без первой строки письма подтверждения не отправятся вообще.
+   Письма не ставятся в очередь: Messenger обрабатывает их сразу, демон не нужен.
 
-5. `storage` и `bootstrap/cache` должны быть доступны для записи веб-серверу.
+5. `var/` должна быть доступна для записи веб-серверу, а `STORAGE_PATH` (загруженные
+   файлы) — и для записи, и для чтения. Без записи в `STORAGE_PATH` не загрузится
+   ни одна картинка и ни один PDF журнала.
 
 Фронтенды кладутся как статика из варианта 2.
 
@@ -197,29 +195,28 @@ MySQL 8 и возможность задать корень сайта.
 
 ## Чек-лист перед показом людям
 
-- [ ] `APP_DEBUG=false` — иначе при ошибке посетитель увидит код и настройки
-- [ ] `APP_KEY` сгенерирован
-- [ ] `APP_ENV=production`; `PAYMENT_PROVIDER` пуст (запуск без оплаты) или настоящий
+- [ ] `APP_ENV=prod`; `APP_SECRET` сгенерирован deploy.sh
+- [ ] `PAYMENT_PROVIDER` пуст (запуск без оплаты) или настоящий
       шлюз — но не `test`: тестовая оплата в production отключена
 - [ ] `SSR_API_KEY` задан, а в логе SSR нет строки «SSR_API_KEY не задан»:
       `docker compose -f docker-compose.prod.yml logs ssr | head`
 - [ ] Администратор создан командой `food-guru:admin` и вошёл по ссылке из письма
 - [ ] MySQL и MailHog наружу не торчат: в `docker-compose.yml` их порты привязаны
       к `127.0.0.1`, проверьте `ss -tlnp` на сервере
-- [ ] `pint --test`, `phpstan analyse` и `npm run lint` проходят без ошибок (см. README → Тесты)
+- [ ] `composer cs`, `composer stan` и `npm run lint` проходят без ошибок (см. README → Тесты)
 - [ ] HTTPS работает, по HTTP сайт не отдаётся
 - [ ] Домены подставлены в `environment.prod.ts` **до** сборки фронтенда
 - [ ] Превью ссылки проверено: отправьте ссылку на рецепт себе в Telegram
 - [ ] Письмо подтверждения доходит и не падает в спам (проверьте на Gmail и Яндексе)
 - [ ] `/up` отвечает 200, миграции выполнены
-- [ ] Очередь запущена либо заведён cron
+- [ ] Cron на очистку токенов заведён (`food-guru:prune-email-tokens`, см. deploy.sh)
 - [ ] Демо-контент постепенно заменяется живым. Демо-аккаунты безопасны (без паролей,
       почта `@food-guru.local` не существует), но рецепты от их имени лучше переназначить
       или снять, когда появятся свои
 - [ ] В админку заходит только сотрудник: проверьте, что обычный пользователь получает отказ
-- [ ] Настроено резервное копирование базы и всей папки `storage/app` — в ней лежат
-      и картинки, и PDF журнала; из базы они не восстановятся. В compose это том
-      `storage-app`, бэкап снимайте с него, а не с папки в репозитории
+- [ ] Настроено резервное копирование базы и папки `storage/` — в ней лежат
+      и картинки, и PDF журнала; из базы они не восстановятся. Бэкап снимайте с
+      каталога на сервере, а не с папки в репозитории
 - [ ] Миграции конкурсов, академии и рейтинга выполнены: проверьте, что в базе есть
       таблицы `contests`, `academy_sessions`, `rating_events` и колонка `users.rating_points`
 - [ ] Открыт конкурс в чужом браузере без входа: форма отправки работы и кнопки
@@ -230,7 +227,7 @@ MySQL 8 и возможность задать корень сайта.
       но внешний прокси или балансировщик может резать раньше
 - [ ] Скачивание гайда из журнала отдаёт PDF, а не HTML-страницу ошибки,
       и счётчик скачиваний растёт
-- [ ] Обложка выпуска нарисовалась сама: `docker compose exec php which pdftoppm`
+- [ ] Обложка выпуска нарисовалась сама: `docker compose exec api which pdftoppm`
       должен вернуть путь. Если пусто — обложки придётся загружать руками
 
 ## SEO: чтобы сайт индексировался
@@ -266,33 +263,30 @@ description, Open Graph, `canonical` без параметров, `robots` с `n
 
 ```bash
 docker compose -f docker-compose.prod.yml ps
-docker compose -f docker-compose.prod.yml logs php --tail=50
+docker compose -f docker-compose.prod.yml logs api --tail=50
 docker compose -f docker-compose.prod.yml logs ssr --tail=50
-docker compose -f docker-compose.prod.yml logs queue --tail=50
 ```
 
-**Вход не работает, в ответе 419.** Проверьте `SANCTUM_STATEFUL_DOMAINS` и
-`SESSION_DOMAIN` в `backend/.env`: домен сайта должен быть в списке, а `SESSION_DOMAIN`
-начинаться с точки (`.example.com`), чтобы cookie работала на поддоменах.
+**Вход не работает, в ответе 419.** Проверьте `STATEFUL_DOMAINS` и `SESSION_DOMAIN`
+в `api/.env`: домен сайта должен быть в списке, а `SESSION_DOMAIN` начинаться с точки
+(`.example.com`), чтобы cookie `XSRF-TOKEN` видели и сайт, и админка.
 
-**Письма не приходят.** Смотрите логи `queue`. Чаще всего дело в доступах SMTP или в
-том, что контейнер очереди не запущен — тогда письма копятся в таблице `jobs`.
+**Письма не приходят.** Проверьте `MAILER_DSN` и `MAIL_FROM_ADDRESS` в `api/.env`.
+Без отправителя письма не уходят вовсе; при неверном SMTP в логе `api` будет ошибка отправки.
 
 **Видео на конкурс не загружается, ответ 413.** Работа формата «видео» весит до 100 МБ.
 В образах проекта пределы уже подняты: `client_max_body_size 110m` в
 `docker/nginx/api.prod.conf` и `upload_max_filesize=100M` / `post_max_size=110M`
-в `docker/php/Dockerfile.prod`. Ошибка 413 означает, что запрос идёт через чужой
+в `docker/api/Dockerfile.prod`. Ошибка 413 означает, что запрос идёт через чужой
 прокси — поднимите предел и там. Если `post_max_size` меньше размера файла,
 PHP обрежет его молча, без ошибки: запрос дойдёт, а файла в нём не будет.
 
-**Гайд из журнала не скачивается, 404.** Файл лежит на закрытом диске внутри
-`storage/app` и отдаётся через PHP. Проверьте три вещи: выпуск опубликован (снятый
-с публикации недоступен намеренно), том `storage-app` подключён, файл на месте:
+**Гайд из журнала не скачивается, 404.** Файл лежит на закрытом диске `storage/private`
+и отдаётся через PHP. Проверьте: выпуск опубликован (снятый с публикации недоступен
+намеренно), `STORAGE_PATH` совпадает с каталогом на сервере, файл на месте:
 
 ```bash
-docker compose -f docker-compose.prod.yml exec php \
-  php artisan tinker --execute="dd(App\Models\JournalIssue::first()->file_path);"
-docker compose -f docker-compose.prod.yml exec php ls -la storage/app
+docker compose -f docker-compose.prod.yml exec api ls -la /var/www/storage/private/journal
 ```
 
 **Обложка выпуска не появляется.** Её рисует `pdftoppm` из poppler-utils.
@@ -301,14 +295,10 @@ docker compose -f docker-compose.prod.yml exec php ls -la storage/app
 Без него выпуск публикуется и скачивается как обычно — просто без обложки
 и без числа страниц, обложку можно загрузить картинкой.
 
-**Баллы не начисляются.** Сначала проверьте, подтверждён ли адрес: middleware
-`track.visit` пропускает неподтверждённых. Дальше смотрите таблицу `rating_events` —
-если записи есть, а `users.rating_points` отстаёт, счётчик и журнал разошлись:
-
-```bash
-docker compose -f docker-compose.prod.yml exec php php artisan tinker
->>> app(App\Services\RatingService::class)->recalculate(App\Models\User::find(1));
-```
+**Баллы не начисляются.** Сначала проверьте, подтверждён ли адрес: атрибут
+`TrackVisit` пропускает неподтверждённых. Дальше смотрите таблицу `rating_events` —
+если записи есть, а `users.rating_points` отстаёт, счётчик и журнал разошлись.
+Пересчёт баллов пока не вынесен в команду: сообщите разработчику.
 
 **Конкурс не публикуется.** Публикация требует заполненной даты начала приёма работ.
 Занятие академии — даты эфира для вебинара и стрима, ссылки на запись для видеоурока.
@@ -316,8 +306,8 @@ docker compose -f docker-compose.prod.yml exec php php artisan tinker
 
 **Страница пустая, в консоли ошибки CORS.** Адрес API в `environment.prod.ts` не
 совпадает с реальным, либо фронтенд собран до того, как его поменяли. Ещё одна причина —
-`SITE_URL` и `ADMIN_URL` в `backend/.env`: API разрешает запросы только с этих двух
-адресов (`config/cors.php`), и они должны совпадать до буквы, включая `https://` и `www`.
+`SITE_URL` и `ADMIN_URL` в `api/.env`: API разрешает запросы только с этих двух
+адресов (`config/packages/nelmio_cors.yaml`), и они должны совпадать до буквы, включая `https://` и `www`.
 
 **Сборка падает с «JavaScript heap out of memory».** Не хватает памяти на сборку
 Angular: добавьте своп или соберите фронтенд локально по варианту 2.

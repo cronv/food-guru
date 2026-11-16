@@ -4,30 +4,23 @@ services:
     ports:
       - "8000:80"
     volumes:
-      - ./backend:/var/www/html
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./docker/nginx/symfony-routes.conf:/etc/nginx/symfony-routes.conf:ro
+      - ./docker/nginx/symfony-fastcgi.conf:/etc/nginx/symfony-fastcgi.conf:ro
+      - ./storage:/var/www/storage:ro
     depends_on:
-      - php
+      - api
 
-  php:
+  # API на Symfony: php-fpm, код в ./api, загруженные файлы в ./storage.
+  api:
     build:
       context: ./docker/php
+    working_dir: /var/www/api
     volumes:
-      - ./backend:/var/www/html
-    depends_on:
-      mysql:
-        condition: service_healthy
-
-  # Обработчик очереди: письма подтверждения уходят отсюда.
-  # Перезапуск нужен при первом запуске: контейнер стартует раньше миграций,
-  # падает без таблицы jobs и без него так и остаётся лежать.
-  queue:
-    build:
-      context: ./docker/php
-    command: php artisan queue:work --tries=3 --timeout=60
-    restart: unless-stopped
-    volumes:
-      - ./backend:/var/www/html
+      - ./api:/var/www/api
+      - ./storage:/var/www/storage
+      # Демо-данные для food-guru:seed-demo: только чтение.
+      - ./seed-assets:/var/www/seed-assets:ro
     depends_on:
       mysql:
         condition: service_healthy

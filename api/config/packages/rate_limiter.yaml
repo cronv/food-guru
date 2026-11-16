@@ -1,0 +1,10 @@
+framework:
+    rate_limiter:
+        auth_mail:
+            policy: 'token_bucket'
+            limit: 5
+            rate: { interval: '1 hour' }
+        auth_mail_ip:
+            policy: 'token_bucket'
+            limit: 30
+            rate: { interval: '1 hour' }

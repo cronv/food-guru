@@ -9,7 +9,7 @@
 
 | Папка | Что это |
 | --- | --- |
-| `backend/` | REST API на Laravel 13: 14 таблиц, роли, вход по ссылке из письма |
+| `api/` | REST API на Symfony 7.4: роли, вход по ссылке из письма, Doctrine-миграции |
 | `frontend/projects/site/` | Публичный сайт, Angular 18 с SSR |
 | `frontend/projects/admin/` | Админ-панель, Angular 18 SPA |
 | `frontend/projects/shared/` | Общие типы, API-клиент, авторизация, дизайн-токены |
@@ -20,16 +20,13 @@
 ## Запуск для разработки
 
 ```bash
-# backend
-cp backend/.env.example backend/.env
+# api
 docker compose up -d --build
-docker compose exec php composer install
-docker compose exec php chown -R www-data:www-data storage bootstrap/cache
-# artisan — от www-data, как работает php-fpm: иначе закрытые файлы (PDF журнала,
-# видео академии) создаются от root с правами 700, и сайт отвечает на них 404.
-docker compose exec -u www-data php php artisan key:generate
-docker compose exec -u www-data php php artisan migrate --seed
-docker compose exec -u www-data php php artisan storage:link
+docker compose exec -u www-data api composer install
+# bin/console — от www-data, как работает php-fpm: иначе кэш и файлы, созданные от root,
+# ломают веб-запросы.
+docker compose exec -u www-data api php bin/console doctrine:migrations:migrate --no-interaction
+docker compose exec -u www-data api php bin/console food-guru:admin вы@почта.ru "Имя Фамилия"
 
 # frontend
 cd frontend
@@ -53,24 +50,16 @@ npm run start:admin # админка на 4300
 человек придумывает сразу после первого перехода по ссылке (регистрация
 подтверждает почту), позже его можно задать или сменить в личном кабинете.
 
-У демо-аккаунтов пароля нет, поэтому первый вход — по ссылке:
+Пароля при создании аккаунта нет, первый вход — по ссылке:
 
-1. Откройте http://localhost:4300 (админка) или сайт, вкладка «По ссылке».
-2. Введите почту из таблицы ниже, нажмите «Получить ссылку».
+1. Создайте администратора командой `food-guru:admin` (см. «Запуск для разработки»).
+2. Откройте http://localhost:4300 (админка), вкладка «По ссылке», введите почту.
 3. Откройте http://localhost:8025, найдите письмо, перейдите по ссылке.
 4. На открывшейся странице задайте пароль — дальше можно входить по нему.
 
-| Роль | Email |
-| --- | --- |
-| Администратор | admin@food-guru.local |
-| Руководитель редакции | lead@food-guru.local |
-| Контент-менеджер | manager@food-guru.local |
-| Пользователь | user@food-guru.local |
-| Пользователь без подтверждения | pending@food-guru.local |
-
-На боевом сервере эти аккаунты безопасны: пароля нет, а письмо со ссылкой на
-`@food-guru.local` никуда не дойдёт. Свой аккаунт администратора создайте командой
-`php artisan food-guru:admin вы@почта.ru` и войдите по ссылке из письма.
+Демо-аккаунты и демо-данные пока не перенесены с Laravel: `deploy.sh --seed` отключён.
+Команда `food-guru:admin` работает и на боевом сервере: письмо со ссылкой уходит на
+указанную почту, пароль на сервере не хранится.
 
 ## Роли
 
@@ -194,9 +183,8 @@ npm run start:admin # админка на 4300
 - В nginx папка загрузок объявлена через `location ^~ /storage/`. Приставка
   обязательна: без неё регулярное `location ~ \.php$` выигрывает у префиксного.
   Внутри стоит вторая страховка — `return 403` на `.php`.
-- Частота запросов ограничена на всём API (`throttleApi` в `bootstrap/app.php`).
-  В Laravel 13 это не включается само: лимитер объявлен в провайдере, но без
-  явной строки к маршрутам не применяется.
+- Частота запросов ограничена на всём API (`ApiRateLimitSubscriber`, лимит
+  60 в минуту на пользователя или адрес, для SSR-сервера 300 с верным ключом).
 - Заголовки безопасности повторены внутри каждого `location` со своим
   `add_header`: в nginx свой `add_header` отменяет унаследованные от `server`.
 - Политика содержимого включена в режиме отчёта. Включать сразу на запрет
@@ -218,8 +206,8 @@ npm run start:admin # админка на 4300
 Иллюстрации нарисованы кодом: снимки из интернета не использовались, права на
 графику ваши. Для демо-рецептов их делает `node tools/dishes/make_dishes.mjs` —
 по три кадра на рецепт (готовое блюдо, ингредиенты, в процессе) в
-`backend/database/seeders/assets/dishes/`; сидер кладёт их в медиатеку как обложку
-и галерею. Тексты рецептов сидер берёт из прототипа: `node tools/dishes/export_recipes.mjs`.
+`seed-assets/dishes/`. Тексты рецептов выгружаются из прототипа: `node tools/dishes/export_recipes.mjs`.
+Загрузка этих файлов в медиатеку при развёртывании пока не перенесена с Laravel.
 В рабочем сайте фотографии загружаются через админку и читателями в отзывах.
 
 ## Видеорецепты
@@ -227,7 +215,7 @@ npm run start:admin # админка на 4300
 `tools/reels/` генерирует вертикальные ролики 1080×1920 по 20 секунд с граммовками
 и подсказками. Рендер идёт в Docker, около минуты на ролик; как добавить рецепт —
 в `tools/reels/README.md`. Готовые ролики для сидов лежат в
-`backend/database/seeders/assets/reels/` (`<slug>.mp4`), сидер привязывает их к рецептам.
+`seed-assets/reels/` (`<slug>.mp4`).
 
 На сайте ролик стоит на странице рецепта, лентой на главной и отдельной страницей
 `/reels`. Редакция загружает ролик в редакторе рецепта (MP4 или WebM до 80 МБ).
@@ -406,8 +394,7 @@ BreadcrumbList, ItemList, WebSite с поиском, Organization), `robots.txt`
 
 Выпуски — PDF с гайдами недели и месяца. Раздел фильтруется по годам и месяцам.
 
-**PDF лежит на закрытом диске** `local` — это `storage/app/private/journal`
-(в сборках Laravel до 11.21 — `storage/app/journal`), — и отдаётся только
+**PDF лежит на закрытом диске** — это `storage/private/journal`, — и отдаётся только
 маршрутом `/journal/{slug}/download`. Файл на `public` был бы доступен по прямой
 ссылке: счётчик скачиваний перестал бы что-либо значить, а ссылка продолжала бы
 работать после снятия выпуска с публикации. Поэтому путь к файлу хранится в самой
@@ -460,7 +447,7 @@ BreadcrumbList, ItemList, WebSite с поиском, Organization), `robots.txt`
 
 ```bash
 # бэкенд
-cd backend && composer test
+docker compose exec -u www-data api composer test
 
 # фронтенд
 cd frontend && npm test          # публичный сайт
@@ -470,12 +457,9 @@ cd frontend && npm run test:admin
 Проверки кода — перед каждой выкладкой, все должны проходить без ошибок:
 
 ```bash
-# бэкенд: стиль (Pint, пресет Laravel) и статический анализ (Larastan, уровень 5)
-docker compose exec -u www-data php vendor/bin/pint --test
-docker compose exec -u www-data php vendor/bin/phpstan analyse --memory-limit=1G
-
-# после изменения моделей и миграций — обновить docblock'и моделей для анализатора
-docker compose exec -u www-data php php artisan ide-helper:models --write --reset
+# бэкенд: стиль (php-cs-fixer) и статический анализ (PHPStan, уровень 8)
+docker compose exec api composer cs
+docker compose exec -u www-data api composer stan
 
 # фронтенд: angular-eslint (шаблоны, доступность, префиксы селекторов)
 cd frontend && npm run lint

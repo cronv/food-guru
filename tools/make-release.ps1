@@ -15,19 +15,18 @@ $archive = Join-Path $outDir ("food-guru-{0}.tar.gz" -f (Get-Date -Format 'yyyyM
 # Пути относительно корня, через «/». Папка из списка не обходится вовсе.
 $skip = @(
   # Секреты: .env с паролями создаётся на сервере, примеры едут.
-  '^\.env$', '^backend/\.env$', '\.env\.local$',
+  '^\.env$', '^api/\.env$', '^api/\.env\.local$', '\.env\.local$',
+  # Загруженные файлы — данные сервера, в архив не едут и на сервере не перезаписываются.
+  '^storage/',
   # Зависимости и сборки.
   '(^|/)(node_modules|__pycache__|\.git)$',
-  '^backend/vendor$', '^frontend/(dist|\.angular)$', '^backend/\.phpunit\.cache$',
-  # Симлинка от storage:link: на сервере её создаёт deploy.sh.
-  '^backend/public/storage$',
-  '^backend/storage/framework/phpstan$',
+  '^api/vendor$', '^api/var$', '^api/\.phpunit\.cache$', '^api/[^/]+\.out$', '^frontend/(dist|\.angular)$',
   # Готовые рилсы — тяжёлые и серверу не нужны.
   '^tools/reels/out$',
   '^release$', '^vendor\.zip$'
 )
-# Локальные загрузки, логи и кэши Laravel: папки нужны, файлы в них — нет.
-$emptyDirs = '^backend/storage/(app|logs|framework/(cache|sessions|views|testing))/'
+# Кэш и логи Symfony: папки нужны, файлы в них — нет.
+$emptyDirs = '^api/var/(cache|log|sessions)/'
 
 $entries = New-Object System.Collections.Generic.List[string]
 

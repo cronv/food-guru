@@ -1,0 +1,47 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+
+    # Сессии Symfony. Cookie сессии не видна фронтенду; XSRF-TOKEN — отдельная cookie
+    # (src/Security/XsrfSubscriber.php). Домен общий для сайта и админки.
+    session:
+        name: FGSESSID
+        cookie_samesite: lax
+        cookie_secure: auto
+        cookie_domain: '%env(default::SESSION_DOMAIN)%'
+        cookie_lifetime: 2592000
+        gc_maxlifetime: 2592000
+        save_path: '%kernel.project_dir%/var/sessions'
+
+    # Лимиты: 60 в минуту на пользователя или IP,
+    # 300 в минуту на посетителя для запросов SSR-сервера с верным ключом.
+    rate_limiter:
+        api:
+            policy: fixed_window
+            limit: 60
+            interval: '1 minute'
+        api_ssr:
+            policy: fixed_window
+            limit: 300
+            interval: '1 minute'
+
+when@test:
+    framework:
+        test: true
+        rate_limiter:
+            # Час, а не минута: тестовый набор медленный, и минутное окно сбрасывалось бы посреди теста.
+            api:
+                policy: fixed_window
+                limit: 60
+                interval: '1 hour'
+                cache_pool: cache.rate_limiter_test
+            api_ssr:
+                policy: fixed_window
+                limit: 300
+                interval: '1 hour'
+                cache_pool: cache.rate_limiter_test
+        cache:
+            pools:
+                # Не в памяти: array-кэш сбрасывается между запросами (kernel.reset),
+                # и лимит никогда бы не наступил. Очищается перед каждым тестом (ApiTestCase).
+                cache.rate_limiter_test:
+                    adapter: cache.adapter.filesystem

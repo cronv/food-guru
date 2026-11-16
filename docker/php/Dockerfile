@@ -1,10 +1,11 @@
-FROM php:8.3-fpm-alpine
+FROM php:8.5-fpm-alpine
 
 # poppler-utils: pdftoppm рисует обложку выпуска журнала из первой
 # страницы PDF, pdfinfo считает страницы. Без них выпуск просто
 # останется без обложки — загрузка файла не ломается.
+# OPcache в PHP 8.5 встроен в ядро: ставить его отдельно нельзя, сборка падает.
 RUN apk add --no-cache git unzip icu-dev oniguruma-dev libzip-dev poppler-utils \
-    && docker-php-ext-install pdo_mysql intl mbstring zip bcmath opcache
+    && docker-php-ext-install pdo_mysql intl mbstring zip bcmath
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 

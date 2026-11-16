@@ -114,7 +114,7 @@ export function app(): express.Express {
 const SITE_URL = (process.env['SITE_URL'] || environment.siteUrl).replace(/\/$/, '');
 // Внутренний адрес API для сервера (например, http://api:8000 в docker), если отличается от публичного.
 const API_URL = (process.env['API_INTERNAL_URL'] || environment.apiBaseUrl).replace(/\/$/, '');
-// Общий с API секрет (SSR_API_KEY в backend/.env). Без него лимит API — один на всех посетителей.
+// Общий с API секрет (SSR_API_KEY в api/.env и в .env рядом с compose). Без него лимит API — один на всех посетителей.
 const SSR_API_KEY = process.env['SSR_API_KEY'] || '';
 if (!SSR_API_KEY) {
   console.warn('SSR_API_KEY не задан: под нагрузкой API начнёт отвечать 429 на серверный рендер.');

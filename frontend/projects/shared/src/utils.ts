@@ -40,7 +40,7 @@ export function formatShortDate(iso: string | null | undefined): string {
   return d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
 }
 
-/** Собирает текст ошибки Laravel в одну строку для показа человеку. */
+/** Собирает текст ошибки из ответа API в одну строку для показа человеку. */
 export function errorText(err: unknown, fallback = 'Что-то пошло не так. Попробуйте ещё раз.'): string {
   const e = err as {
     status?: number;
@@ -48,7 +48,7 @@ export function errorText(err: unknown, fallback = 'Что-то пошло не 
     error?: { message?: string; errors?: Record<string, string[]> };
   };
 
-  // Laravel отвечает на лимит английским «Too Many Attempts.» — переводим и говорим, сколько ждать.
+  // Сервер отвечает на лимит английским «Too Many Attempts.» — переводим и говорим, сколько ждать.
   if (e?.status === 429) {
     const seconds = Number(e.headers?.get('Retry-After'));
     const wait = seconds > 0

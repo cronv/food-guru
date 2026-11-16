@@ -1,0 +1,12 @@
+# CORS: cookie-запросы только с двух своих фронтендов.
+nelmio_cors:
+    defaults:
+        origin_regex: false
+        allow_origin: ['%env(SITE_URL)%', '%env(ADMIN_URL)%']
+        allow_credentials: true
+        allow_methods: ['GET', 'OPTIONS', 'POST', 'PUT', 'PATCH', 'DELETE']
+        allow_headers: ['*']
+        expose_headers: ['Retry-After']
+        max_age: 0
+    paths:
+        '^/api/': null
