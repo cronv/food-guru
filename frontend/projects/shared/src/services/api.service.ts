@@ -87,9 +87,8 @@ export class ApiService {
    */
   withCsrf<T>(request: () => Observable<T>): Observable<T> {
     const fetchToken = () => this.http
-      .get(`${this.base}/sanctum/csrf-cookie`, { withCredentials: true, responseType: 'text' })
+      .get(`${this.base}/api/v1/home`, { withCredentials: true, observe: 'response' })
       .pipe(tap(() => (this.csrfReady = true)));
-
     const first = this.csrfReady ? request() : fetchToken().pipe(switchMap(() => request()));
 
     return first.pipe(
