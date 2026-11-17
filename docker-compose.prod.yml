@@ -34,6 +34,7 @@ services:
     environment:
       SSR_API_KEY: ${SSR_API_KEY:?задайте SSR_API_KEY в .env рядом с compose}
     volumes:
+      - ./docker/php/zzz-listen.conf:/usr/local/etc/php-fpm.d/zzz-listen.conf:ro
       # Каталог на диске сервера: там же лежат загрузки для бэкапа (см. DEPLOY-REGRU.md).
       - ./storage:/var/www/storage
       # Демо-данные для food-guru:seed-demo (запускается вручную, см. deploy.sh): только чтение.
