@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Enum\UserRole;
 use App\Security\Attribute\VerifiedEmail;
 use Doctrine\DBAL\Connection;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,6 +23,8 @@ final class MediaController
     public function __construct(
         private readonly Connection $db,
         private readonly InputValidator $validator,
+        #[Autowire(env: 'STORAGE_PATH')]
+        private readonly string $root,
     ) {
     }
 
@@ -47,14 +50,17 @@ final class MediaController
     {
         $data = $this->validator->validate($request, [
             'file' => 'required|file|image',
-            'alt' => 'nullable|string|max:200',
+            'alt'  => 'nullable|string|max:200',
         ]);
 
-        /** @var UploadedFile|null $file */
         $file = $request->files->get('file');
         if (!$file instanceof UploadedFile) {
             return new JsonResponse(['message' => 'Файл не передан.'], 422);
         }
+
+        // Снимаем метаданные ДО перемещения: после move() временного файла уже нет.
+        $size = $file->getSize();
+        $mime = $file->getMimeType();
 
         $allowed = ['jpg', 'jpeg', 'png', 'webp', 'gif'];
         $ext = strtolower((string) $file->guessExtension());
@@ -63,11 +69,10 @@ final class MediaController
         }
 
         $name = bin2hex(random_bytes(16)).'.'.$ext;
-        $dir = date('Y/m');
-        $storagePath = $_ENV['STORAGE_PATH'] ?? '/var/www/storage';
-        $targetDir = $storagePath.'/public/uploads/'.$dir;
+        $dir  = date('Y/m');
+        $targetDir = rtrim($this->root, '/').'/public/uploads/'.$dir;
         if (!is_dir($targetDir)) {
-            mkdir($targetDir, 0777, true);
+            mkdir($targetDir, 0775, true);      // не 0777
         }
         $file->move($targetDir, $name);
         $path = 'uploads/'.$dir.'/'.$name;
@@ -80,15 +85,15 @@ final class MediaController
 
         $this->db->insert('media', [
             'uploaded_by' => $user->getId(),
-            'path' => $path,
-            'disk' => 'public',
-            'width' => $width,
-            'height' => $height,
-            'size' => $file->getSize(),
-            'mime' => $file->getMimeType(),
-            'alt' => $data['alt'] ?? null,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+            'path'        => $path,
+            'disk'        => 'public',
+            'width'       => $width,
+            'height'      => $height,
+            'size'        => $size,             // снято до move
+            'mime'        => $mime,             // снято до move
+            'alt'         => $data['alt'] ?? null,
+            'created_at'  => date('Y-m-d H:i:s'),
+            'updated_at'  => date('Y-m-d H:i:s'),
         ]);
         $id = (int) $this->db->lastInsertId();
 
@@ -106,10 +111,7 @@ final class MediaController
             return new JsonResponse(['message' => 'Forbidden.'], 403);
         }
 
-        // Удаляем файл.
-        $storagePath = $_ENV['STORAGE_PATH'] ?? '/var/www/storage';
-        $targetDir = $storagePath.'/public/';
-        $fullPath = $targetDir . $media['path'];
+        $fullPath = rtrim($this->root, '/').'/public/' . $media['path'];
         if (is_file($fullPath)) {
             @unlink($fullPath);
         }
