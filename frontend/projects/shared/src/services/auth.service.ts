@@ -19,7 +19,7 @@ export class AuthService {
   readonly loaded = signal(false);
 
   readonly isAuthenticated = computed(() => this.user() !== null);
-  readonly isVerified = computed(() => this.user()?.email_verified_at === true);
+  readonly isVerified = computed(() => !!this.user()?.email_verified_at);
   readonly isStaff = computed(() => this.user()?.is_staff === true);
 
   /** Роли вложены: проверяем минимальный уровень, а не точное совпадение. */
