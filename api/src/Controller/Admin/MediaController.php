@@ -64,7 +64,8 @@ final class MediaController
 
         $name = bin2hex(random_bytes(16)).'.'.$ext;
         $dir = date('Y/m');
-        $targetDir = \dirname(__DIR__, 3).'/public/uploads/'.$dir;
+        $storagePath = $_ENV['STORAGE_PATH'] ?? '/var/www/storage';
+        $targetDir = $storagePath.'/public/uploads/'.$dir;
         if (!is_dir($targetDir)) {
             mkdir($targetDir, 0777, true);
         }
@@ -106,7 +107,9 @@ final class MediaController
         }
 
         // Удаляем файл.
-        $fullPath = \dirname(__DIR__, 3).'/public/'.$media['path'];
+        $storagePath = $_ENV['STORAGE_PATH'] ?? '/var/www/storage';
+        $targetDir = $storagePath.'/public/';
+        $fullPath = $targetDir . $media['path'];
         if (is_file($fullPath)) {
             @unlink($fullPath);
         }
