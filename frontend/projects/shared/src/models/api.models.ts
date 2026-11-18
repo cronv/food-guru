@@ -145,6 +145,7 @@ export interface User {
   role: UserRole;
   role_label: string;
   email_verified: boolean;
+  email_verified_at: boolean;
   /** Пароль задан. Без него войти можно только по ссылке из письма. */
   has_password: boolean;
   is_staff: boolean;
